@@ -152,6 +152,70 @@ a.card.cz-fly .card-arrow { color: #1a2a4d; }
   .ski-website-thumb { width: 100%; min-height: 100px; }
   .ski-website-body { padding: 1.2rem; }
 }
+
+/* ── ACTIEPUNTEN ── */
+.act-title {
+  display: flex; align-items: center; gap: .7rem;
+  font-size: 1.05rem; font-weight: 600; color: #1a3d2b;
+  margin-bottom: 1.2rem; margin-top: 0;
+}
+.act-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, rgba(45,106,79,.25), transparent); }
+.act-title + .act-title { margin-top: 2.5rem; }
+
+/* Timeline */
+.timeline { position: relative; padding-left: 2rem; margin-bottom: 2.5rem; }
+.timeline::before { content: ''; position: absolute; left: .6rem; top: .5rem; bottom: .5rem; width: 2px; background: linear-gradient(to bottom, #52b788, #dde6f2); border-radius: 2px; }
+.tl-item { position: relative; margin-bottom: 1rem; }
+.tl-item:last-child { margin-bottom: 0; }
+.tl-dot {
+  position: absolute; left: -1.65rem; top: .35rem;
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 2px solid white; box-shadow: 0 0 0 2px #ccc;
+  background: #ccc;
+}
+.tl-dot.urgent { background: #e74c3c; box-shadow: 0 0 0 2px #e74c3c; }
+.tl-dot.soon   { background: #d4820a; box-shadow: 0 0 0 2px #d4820a; }
+.tl-dot.later  { background: #52b788; box-shadow: 0 0 0 2px #52b788; }
+.tl-dot.done   { background: #2d6a4f; box-shadow: 0 0 0 2px #2d6a4f; }
+.tl-card {
+  background: white; border-radius: 12px; padding: 1rem 1.2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06); border: 1px solid rgba(26,61,43,.06);
+}
+.tl-when { font-size: .65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: .25rem; }
+.tl-when.urgent { color: #e74c3c; }
+.tl-when.soon   { color: #d4820a; }
+.tl-when.later  { color: #2d6a4f; }
+.tl-when.done   { color: #2d6a4f; }
+.tl-title { font-size: .9rem; font-weight: 600; color: #1a2a4a; margin-bottom: .3rem; }
+.tl-desc { font-size: .79rem; color: #6b7c70; line-height: 1.55; }
+.tl-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .5rem; }
+.tl-tag { font-size: .65rem; background: #f0f3f8; color: #555; padding: .15rem .55rem; border-radius: 50px; }
+.tl-tag.red { background: #fde8e8; color: #c0392b; }
+.tl-tag.orange { background: #fff3e0; color: #9b6000; }
+.tl-tag.green { background: #e8f4ee; color: #2d6a4f; }
+
+/* Checklist grid */
+.check-transport-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.check-card {
+  background: white; border-radius: 14px; padding: 1.3rem 1.4rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07); border: 1px solid rgba(26,61,43,.06);
+  border-top: 3px solid #ccc;
+}
+.check-card.auto   { border-top-color: #2d6a4f; }
+.check-card.fly    { border-top-color: #1a2a4d; }
+.check-card.combi  { border-top-color: #1a5c50; }
+.check-card.general{ border-top-color: #52b788; }
+.check-card h4 { font-size: .9rem; font-weight: 600; color: #1a2a4a; margin-bottom: .8rem; display: flex; align-items: center; gap: .4rem; }
+.check-list { list-style: none; padding: 0; }
+.check-list li {
+  font-size: .79rem; color: #555; padding: .28rem 0;
+  border-bottom: 1px solid #f0f3f8; display: flex; align-items: flex-start; gap: .5rem; line-height: 1.4;
+}
+.check-list li:last-child { border-bottom: none; }
+.check-list li::before { content: '☐'; font-size: .85rem; flex-shrink: 0; margin-top: -.05rem; color: #bbb; }
+
+/* Algemeen check wide */
+.check-algemeen-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
 </style>
 </head>
 <body>
@@ -169,6 +233,7 @@ a.card.cz-fly .card-arrow { color: #1a2a4d; }
   <button class="tab-btn active" onclick="showTab(this,'voorstellen')">🗺 Voorstellen</button>
   <button class="tab-btn" onclick="showTab(this,'uitgangspunten')">📋 Uitgangspunten</button>
   <button class="tab-btn" onclick="showTab(this,'skigebied')">⛷️ Skigebied</button>
+  <button class="tab-btn" onclick="showTab(this,'actiepunten')">✅ Actiepunten</button>
 </div>
 
 <div class="main">
@@ -342,6 +407,280 @@ a.card.cz-fly .card-arrow { color: #1a2a4d; }
       <img src="Skileraar2.jpeg" alt="Skileraar">
       <img src="Skilerares.jpg" alt="Skilerares">
       <img src="Skilerares3.jpeg" alt="Skilerares">
+    </div>
+
+  </div>
+
+  <!-- TAB: ACTIEPUNTEN -->
+  <div id="actiepunten" class="tab-content">
+
+    <!-- STAPPENPLAN -->
+    <div class="act-title">🗓 Stappenplan — wanneer wat regelen</div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot urgent"></div>
+        <div class="tl-card">
+          <div class="tl-when urgent">Nu — maart / april 2026</div>
+          <div class="tl-title">⚡ Bestemming definitief kiezen &amp; accommodatie reserveren</div>
+          <div class="tl-desc">Keuze maken tussen Optie 1, 2 of 3. Daarna direct accommodatie boeken — carnavalsvakantie is het drukste moment van het skiseizoen. Aldrov Resort of vergelijkbaar: vraag 3 aangrenzende units aan.</div>
+          <div class="tl-tags">
+            <span class="tl-tag red">⚠️ Hoogste prioriteit</span>
+            <span class="tl-tag">Aldrov Resort Vítkovice</span>
+            <span class="tl-tag">booking.com</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot urgent"></div>
+        <div class="tl-card">
+          <div class="tl-when urgent">April / mei 2026</div>
+          <div class="tl-title">✈️ Vluchten boeken (vroegboek = goedkoopst)</div>
+          <div class="tl-desc">Retourvluchten vanuit EIN, RTM, AMS of BRU naar Praag (PRG) voor Zo 7 feb en Za 13 feb 2027. Vroegboek ~€70 p.p. retour. Let op: bij Optie 1 (auto) sla je dit over.</div>
+          <div class="tl-tags">
+            <span class="tl-tag red">Optie 2 + 3</span>
+            <span class="tl-tag">Ryanair · easyJet · Transavia</span>
+            <span class="tl-tag">EIN / RTM / AMS / BRU → PRG</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot soon"></div>
+        <div class="tl-card">
+          <div class="tl-when soon">Juni / juli 2026</div>
+          <div class="tl-title">🚌 Groepsshuttle Praag → Špindlerův Mlýn reserveren</div>
+          <div class="tl-desc">Transfer PRG ↔ resort voor 11 of 14 personen. Groepsshuttle ~€35-40 p.p. retour. Boek als groep voor vaste prijs. Aanbieders: Ski Transfers, Shuttle Direct.</div>
+          <div class="tl-tags">
+            <span class="tl-tag orange">Optie 2 + 3</span>
+            <span class="tl-tag">~€35-40 p.p. retour</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot soon"></div>
+        <div class="tl-card">
+          <div class="tl-when soon">September / oktober 2026</div>
+          <div class="tl-title">🎿 Skipassen bestellen via GOPASS</div>
+          <div class="tl-desc">GOPASS online vroegboek is goedkoopste optie. 5-daagse pas: volwassene ~€120, junior (tot 18j) ~€90. Bestel via gopass.travel — direct aan de kassa is duurder.</div>
+          <div class="tl-tags">
+            <span class="tl-tag green">Alle opties</span>
+            <span class="tl-tag">gopass.travel</span>
+            <span class="tl-tag">8 volw. + 6 juniors</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot soon"></div>
+        <div class="tl-card">
+          <div class="tl-when soon">Oktober / november 2026</div>
+          <div class="tl-title">📚 Skiles boeken via CheckYeti</div>
+          <div class="tl-desc">Privéles voor 6 kinderen, 4 dagen × 3 uur per dag. 2 leraren inhuren = groepjes van 3. Via checkyeti.com: vergelijk aanbieders, gratis annulering tot kort voor vertrek. ~€55/uur per leraar.</div>
+          <div class="tl-tags">
+            <span class="tl-tag green">Alle opties</span>
+            <span class="tl-tag">checkyeti.com</span>
+            <span class="tl-tag">2 leraren × 4d × 3u · ~€1.320 totaal</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot soon"></div>
+        <div class="tl-card">
+          <div class="tl-when soon">November 2026</div>
+          <div class="tl-title">🛡 Reisverzekering afsluiten (incl. wintersport)</div>
+          <div class="tl-desc">Zorg dat alle 14 personen gedekt zijn voor wintersport inclusief piste-ongelukken en bergreddingskosten. Vergelijk via independer.nl of schadeverzekering.nl. Sluit zo vroeg mogelijk af zodat annuleringsdekking actief is.</div>
+          <div class="tl-tags">
+            <span class="tl-tag green">Alle opties</span>
+            <span class="tl-tag">⚠️ Wintersportdekking verplicht</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot later"></div>
+        <div class="tl-card">
+          <div class="tl-when later">December 2026</div>
+          <div class="tl-title">🎿 Skihuur voorboeken (Optie 2 + 3)</div>
+          <div class="tl-desc">Huur alvast boeken bij Yellow Point of SnowMonkey in Špindlerův Mlýn. Online voorboeken = lagere prijs en geen wachtrij bij aankomst. ~€20/p/dag voor compleet pakket.</div>
+          <div class="tl-tags">
+            <span class="tl-tag orange">Optie 2 + 3</span>
+            <span class="tl-tag">Yellow Point · SnowMonkey</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot later"></div>
+        <div class="tl-card">
+          <div class="tl-when later">Januari 2027</div>
+          <div class="tl-title">🚗 Tsjechisch vignet boeken + reisdocumenten checken</div>
+          <div class="tl-desc">Digitaal vignet boeken via edalnice.cz (~€14 per auto, tijdvak 10 dagen). Controleer of alle reisdocumenten (paspoort of ID) geldig zijn tot minstens 3 maanden na reisdatum. Winterbanden + sneeuwkettingen controleren.</div>
+          <div class="tl-tags">
+            <span class="tl-tag orange">Optie 1 + 2</span>
+            <span class="tl-tag orange">ID/paspoort: Optie 2 + 3</span>
+            <span class="tl-tag">edalnice.cz</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot later"></div>
+        <div class="tl-card">
+          <div class="tl-when later">Week voor vertrek — vr 5 feb 2027</div>
+          <div class="tl-title">📦 Inpakken &amp; laatste check</div>
+          <div class="tl-desc">Paklijst doorlopen (zie Meenemen hieronder). Auto: dakkoffer monteren en beladingstips checken. Vliegtuig: handbagage vs ruimbagage splitsen. Weerbericht Špindlerův Mlýn checken voor sneeuwverwachting.</div>
+          <div class="tl-tags">
+            <span class="tl-tag green">Alle opties</span>
+            <span class="tl-tag">mountain-forecast.com</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot done"></div>
+        <div class="tl-card">
+          <div class="tl-when done">Zaterdag 6 feb (auto) · Zondag 7 feb (vliegtuig)</div>
+          <div class="tl-title">🚀 Vertrek!</div>
+          <div class="tl-desc">Auto: vertrek ~06:00 vanuit Breda, aankomst ~15:00–16:00. Vliegtuig: aanwezig op RTM/EIN ~07:00, aankomst resort ~14:00–15:00.</div>
+          <div class="tl-tags">
+            <span class="tl-tag green">🎉 Enjoy!</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MEENEMEN: ALGEMEEN -->
+    <div class="act-title">🎒 Meenemen — algemeen (iedereen)</div>
+    <div class="check-algemeen-grid">
+
+      <div class="check-card general">
+        <h4>🪪 Documenten</h4>
+        <ul class="check-list">
+          <li>Paspoort of ID-kaart (geldig)</li>
+          <li>Reisverzekeringspolis (app/print)</li>
+          <li>EHIC / Europese zorgpas</li>
+          <li>Skipas bevestiging (GOPASS)</li>
+          <li>Skiles bevestiging (CheckYeti)</li>
+          <li>Accommodatie bevestiging</li>
+        </ul>
+      </div>
+
+      <div class="check-card general">
+        <h4>🎿 Ski-uitrusting</h4>
+        <ul class="check-list">
+          <li>Skihelm (verplicht voor kinderen)</li>
+          <li>Skibril / zonnebril</li>
+          <li>Skihandschoenen (extra paar)</li>
+          <li>Skisokken (wol, meerder paar)</li>
+          <li>Thermisch ondergoed</li>
+          <li>Skijack + skibroek</li>
+        </ul>
+      </div>
+
+      <div class="check-card general">
+        <h4>👟 Kleding &amp; overig</h4>
+        <ul class="check-list">
+          <li>Après-ski laarzen of warme schoenen</li>
+          <li>Muts + nekwarmer / buff</li>
+          <li>Fleece of wollen trui</li>
+          <li>Zonnebrandcrème min SPF30</li>
+          <li>Lippenbalsem</li>
+          <li>Zonnebril (UV400)</li>
+        </ul>
+      </div>
+
+      <div class="check-card general">
+        <h4>💊 Gezondheid &amp; veiligheid</h4>
+        <ul class="check-list">
+          <li>EHBO-kit (pleisters, verband)</li>
+          <li>Pijnstillers / ibuprofen</li>
+          <li>Handcreme (droge koude lucht)</li>
+          <li>Neusdruppels (hoogteverschil)</li>
+          <li>Eigen medicijnen + recept</li>
+          <li>Noodnummers opgeslagen</li>
+        </ul>
+      </div>
+
+      <div class="check-card general">
+        <h4>💶 Betalen &amp; praktisch</h4>
+        <ul class="check-list">
+          <li>Pinpas (werkt in CZ)</li>
+          <li>Cash CZK (Tsjechische kroon)</li>
+          <li>Oplader + powerbank</li>
+          <li>Offline kaarten app (Maps.me)</li>
+          <li>Snacks voor de reis</li>
+          <li>Flesje water</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- MEENEMEN: PER VERVOER -->
+    <div class="act-title">🚗✈️ Meenemen — specifiek per vervoeroptie</div>
+    <div class="check-transport-grid">
+
+      <div class="check-card auto">
+        <h4>🚗 Optie 1 — Iedereen per auto</h4>
+        <ul class="check-list">
+          <li>Winterbanden (verplicht in CZ)</li>
+          <li>Sneeuwkettingen (verplicht op bergwegen)</li>
+          <li>Dakkoffer + skibeugels (ski's + stokken)</li>
+          <li>Skischoenen in auto (niet in dakkoffer)</li>
+          <li>Vignet CZ geprint of in app (edalnice.cz)</li>
+          <li>Veiligheidsvest (verplicht in CZ)</li>
+          <li>Gevarendriehoek</li>
+          <li>Reservelamp set</li>
+          <li>Navigatie met offline kaarten</li>
+          <li>Trekband / uittreksels (bij sneeuw)</li>
+          <li>Ruitenkrabber + dooierspray</li>
+          <li>Autoverzekeringsbewijs</li>
+          <li>Groene kaart / internationaal verzekeringsbewijs</li>
+          <li>Parkeervergunning resort checken</li>
+        </ul>
+      </div>
+
+      <div class="check-card fly">
+        <h4>✈️ Optie 3 — Iedereen per vliegtuig</h4>
+        <ul class="check-list">
+          <li>Vliegtickets (app of print)</li>
+          <li>Transfer bevestiging PRG ↔ resort</li>
+          <li>Handbagage maten gecheckt (airline)</li>
+          <li>Skihuur bevestiging (Yellow Point / SnowMonkey)</li>
+          <li>Skischoenen in ruimbagage of carry-on</li>
+          <li>Geen eigen ski's (huur ter plekke)</li>
+          <li>Rugzak voor daguitstapjes op de piste</li>
+          <li>Gewichtslimiet ruimbagage checken</li>
+          <li>Online check-in gedaan</li>
+          <li>Geldig ID/paspoort (ook kinderen)</li>
+        </ul>
+      </div>
+
+      <div class="check-card combi">
+        <h4>🚗✈️ Optie 2 — Combi (mannen auto, rest vliegt)</h4>
+        <ul class="check-list">
+          <li><strong>Mannen (auto):</strong> zie auto-checklist hierboven</li>
+          <li>Dakkoffer met ski's voor heel gezin</li>
+          <li>Skischoenen van vrouwen + kids mee in auto</li>
+          <li>Duidelijke afspraak: wie neemt wat mee?</li>
+          <li><strong>Vrouwen + kids (vliegtuig):</strong></li>
+          <li>Vliegtickets + transfer bevestiging</li>
+          <li>Geldig ID/paspoort (ook kinderen)</li>
+          <li>Handbagage ruim genoeg voor helmets etc.</li>
+          <li>Skihuur bevestiging (vrouwen + kids)</li>
+          <li>Contact afspreken bij aankomst resort</li>
+          <li>Noodpakket: warme kleding in handbagage bij vertraging</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="aandacht">
+      <strong>💡 Tip: maak één gedeeld WhatsApp-album</strong> voor alle bevestigingen (accommodatie, vluchten, skipassen, skiles) zodat iedereen altijd toegang heeft — ook zonder internet via cache.
     </div>
 
   </div>
