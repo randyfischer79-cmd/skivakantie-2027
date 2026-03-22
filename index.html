@@ -17,6 +17,14 @@ body { background: #f0f3f8; font-family: 'Outfit', sans-serif; color: #1a2a4a; m
 
 /* Voorstellen */
 .section-label { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: #52b788; font-weight: 600; margin-bottom: 1rem; }
+
+/* Landen flags balk */
+.landen-balk { display: flex; gap: 1.5rem; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; }
+.land-item { display: flex; align-items: center; gap: .6rem; font-size: .85rem; font-weight: 500; color: #1a2a4a; }
+.land-item img { border-radius: 3px; box-shadow: 0 1px 4px rgba(0,0,0,.2); }
+
+/* Flag image in cards */
+.card-flag-img { border-radius: 3px; box-shadow: 0 1px 4px rgba(0,0,0,.15); height: 28px; width: auto; }
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.1rem; margin-bottom: 3rem; }
 
 a.card {
@@ -89,12 +97,27 @@ a.card.overzicht .card-arrow { color: #666; }
 
 <div class="main">
 
+  <div class="landen-balk">
+    <div class="land-item">
+      <img src="https://flagcdn.com/w40/cz.png" srcset="https://flagcdn.com/w80/cz.png 2x" width="40" alt="Tsjechië">
+      Tsjechië
+    </div>
+    <div class="land-item">
+      <img src="https://flagcdn.com/w40/at.png" srcset="https://flagcdn.com/w80/at.png 2x" width="40" alt="Oostenrijk">
+      Oostenrijk
+    </div>
+    <div class="land-item">
+      <img src="https://flagcdn.com/w40/fr.png" srcset="https://flagcdn.com/w80/fr.png 2x" width="40" alt="Frankrijk">
+      Frankrijk
+    </div>
+  </div>
+
   <div class="section-label">Voorstellen</div>
   <div class="cards">
 
     <a class="card cz" href="2027-02_tsjechie-carnaval-2027_4.html">
       <div class="card-top">
-        <span class="card-flag">🇨🇿</span>
+        <img class="card-flag-img" src="https://flagcdn.com/w40/cz.png" srcset="https://flagcdn.com/w80/cz.png 2x" width="40" alt="🇨🇿 Tsjechië">
         <span class="card-transport transport-auto">🚗 Auto ~7u</span>
       </div>
       <div class="card-title">Špindlerův Mlýn</div>
@@ -109,7 +132,7 @@ a.card.overzicht .card-arrow { color: #666; }
 
     <a class="card oo-auto" href="2027-02_oostenrijk-auto-2027.html">
       <div class="card-top">
-        <span class="card-flag">🇦🇹</span>
+        <img class="card-flag-img" src="https://flagcdn.com/w40/at.png" srcset="https://flagcdn.com/w80/at.png 2x" width="40" alt="🇦🇹 Oostenrijk">
         <span class="card-transport transport-auto">🚗 Auto ~9u</span>
       </div>
       <div class="card-title">SkiWelt Wilder Kaiser</div>
@@ -124,7 +147,7 @@ a.card.overzicht .card-arrow { color: #666; }
 
     <a class="card oo-fly" href="2027-02_oostenrijk-vliegtuig-2027.html">
       <div class="card-top">
-        <span class="card-flag">🇦🇹</span>
+        <img class="card-flag-img" src="https://flagcdn.com/w40/at.png" srcset="https://flagcdn.com/w80/at.png 2x" width="40" alt="🇦🇹 Oostenrijk">
         <span class="card-transport transport-fly">✈️ Vlucht ~1,5u</span>
       </div>
       <div class="card-title">Sölden</div>
