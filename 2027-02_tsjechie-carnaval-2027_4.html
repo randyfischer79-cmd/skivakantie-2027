@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Špindlerův Mlýn — Carnaval 2027 Uitgewerkt Voorstel</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest: #1a3d2b;
+  --moss: #2d6a4f;
+  --sage: #52b788;
+  --mint: #b7e4c7;
+  --cream: #f8f5f0;
+  --sand: #ede8df;
+  --bark: #3d2b1a;
+  --stone: #6b7c70;
+  --white: #ffffff;
+  --amber: #d4820a;
+  --red: #c0392b;
+  --warning: #fff3cd;
+  --warning-border: #d4820a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--bark);
+  line-height: 1.6;
+}
+
+/* ─── HERO ─── */
+.hero {
+  background: var(--forest);
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+}
+.hero-texture {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(82,183,136,.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(45,106,79,.3) 0%, transparent 50%);
+}
+.hero-mountains {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 120px;
+  opacity: .07;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 3rem 2rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+.hero-flag { font-size: 3rem; margin-bottom: .75rem; }
+.hero-eyebrow {
+  font-size: .68rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: .6rem;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.05;
+  margin-bottom: .5rem;
+}
+.hero-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,.65);
+  margin-bottom: 1.5rem;
+}
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.chip {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.85);
+  border-radius: 50px;
+  padding: .3rem .9rem;
+  font-size: .75rem;
+  font-weight: 500;
+}
+
+/* ─── SUMMARY BAR ─── */
+.summary-bar {
+  background: var(--moss);
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: .5rem;
+  padding: 1.2rem 2rem;
+}
+.sb-item { text-align: center; color: white; }
+.sb-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--mint);
+}
+.sb-lbl {
+  font-size: .64rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: .7;
+  margin-top: .15rem;
+}
+
+/* ─── MAIN LAYOUT ─── */
+.container { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+/* ─── SECTION TITLE ─── */
+.sec-title {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  margin: 2.5rem 0 1.1rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--forest);
+}
+.sec-title .icon { font-size: 1.4rem; }
+.sec-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(45,106,79,.3), transparent);
+}
+
+/* ─── CARDS ─── */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; }
+
+.card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 1.3rem;
+  box-shadow: 0 2px 12px rgba(26,61,43,.07);
+  border: 1px solid rgba(26,61,43,.06);
+}
+.card-icon { font-size: 1.6rem; margin-bottom: .6rem; }
+.card-lbl {
+  font-size: .63rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: .3rem;
+}
+.card-val { font-size: .98rem; font-weight: 600; color: var(--bark); }
+.card-sub { font-size: .77rem; color: var(--stone); margin-top: .3rem; line-height: 1.5; }
+.card-link {
+  display: inline-block;
+  margin-top: .5rem;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--moss);
+  text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+  padding-bottom: 1px;
+}
+.card-link:hover { color: var(--forest); }
+
+/* ─── NOTICE ─── */
+.notice {
+  border-radius: 12px;
+  padding: 1rem 1.3rem;
+  margin-bottom: 1rem;
+  font-size: .84rem;
+  line-height: 1.6;
+  display: flex;
+  gap: .8rem;
+  align-items: flex-start;
+}
+.notice-green { background: #e8f5ee; border-left: 4px solid var(--sage); }
+.notice-amber { background: var(--warning); border-left: 4px solid var(--warning-border); }
+.notice-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: .05rem; }
+.notice strong { color: var(--forest); }
+
+/* ─── ACCOMMODATION BLOCK ─── */
+.accom-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+.accom-card {
+  background: var(--white);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(26,61,43,.07);
+  border: 1px solid rgba(26,61,43,.06);
+  position: relative;
+}
+.accom-card.recommended::before {
+  content: '⭐ Aanbevolen';
+  position: absolute;
+  top: .8rem; right: .8rem;
+  background: var(--moss);
+  color: white;
+  font-size: .64rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: .2rem .6rem;
+  border-radius: 50px;
+  z-index: 1;
+}
+.accom-thumb {
+  height: 100px;
+  background: linear-gradient(135deg, #c8e8d4, #7ec89a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+.accom-body { padding: 1.2rem; }
+.accom-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: .3rem;
+  color: var(--forest);
+}
+.accom-body p { font-size: .8rem; color: var(--stone); line-height: 1.55; margin-bottom: .5rem; }
+.accom-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--moss);
+}
+.accom-price small { font-family: 'DM Sans', sans-serif; font-size: .72rem; color: var(--stone); font-weight: 400; }
+.accom-pros { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .35rem; }
+.pro-tag {
+  background: #e8f5ee;
+  color: var(--forest);
+  border-radius: 50px;
+  padding: .18rem .65rem;
+  font-size: .68rem;
+  font-weight: 600;
+}
+.accom-link {
+  display: inline-block;
+  margin-top: .8rem;
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--moss);
+  text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+
+/* ─── SKIPAS BLOCK ─── */
+.skipas-card {
+  background: var(--white);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(26,61,43,.07);
+  border: 1px solid rgba(26,61,43,.06);
+  margin-bottom: 1rem;
+}
+.skipas-head {
+  background: var(--forest);
+  color: white;
+  padding: 1rem 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.skipas-head h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+.skipas-head .source {
+  font-size: .7rem;
+  opacity: .65;
+  font-weight: 400;
+}
+.skipas-body { padding: 1.2rem 1.4rem; }
+.skipas-row {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  padding: .6rem 0;
+  border-bottom: 1px solid #f0f2f0;
+  font-size: .82rem;
+  align-items: center;
+}
+.skipas-row:last-child { border-bottom: none; }
+.skipas-hd {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  font-size: .67rem;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--stone);
+  font-weight: 600;
+  padding-bottom: .5rem;
+  border-bottom: 2px solid var(--sand);
+  margin-bottom: .3rem;
+}
+.skipas-hd div:not(:first-child), .skipas-row div:not(:first-child) { text-align: right; }
+.price-online { color: var(--moss); font-weight: 700; }
+.price-box { color: var(--stone); font-size: .78rem; }
+.price-best { color: var(--amber); font-weight: 700; font-size: .82rem; }
+.skipas-note {
+  background: #e8f5ee;
+  border-radius: 8px;
+  padding: .7rem 1rem;
+  margin-top: .8rem;
+  font-size: .77rem;
+  color: var(--forest);
+  line-height: 1.5;
+}
+
+/* ─── SKISCHOOL BLOCK ─── */
+.school-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.school-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 1.3rem;
+  box-shadow: 0 2px 12px rgba(26,61,43,.07);
+  border: 1px solid rgba(26,61,43,.06);
+  position: relative;
+}
+.school-card.top::before {
+  content: '🏆 Best beoordeeld';
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: var(--amber);
+  color: white;
+  font-size: .63rem;
+  font-weight: 700;
+  padding: .18rem .6rem;
+  border-radius: 50px;
+}
+.school-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: .1rem;
+}
+.school-rating { font-size: .78rem; color: var(--stone); margin-bottom: .6rem; }
+.school-offers { margin-top: .5rem; }
+.school-offer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: .45rem 0;
+  border-bottom: 1px solid #f0f2f0;
+  font-size: .8rem;
+  gap: .5rem;
+}
+.school-offer:last-child { border-bottom: none; }
+.offer-name { flex: 1; color: var(--bark); }
+.offer-name small { display: block; font-size: .7rem; color: var(--stone); margin-top: .1rem; }
+.offer-price {
+  font-weight: 700;
+  color: var(--moss);
+  white-space: nowrap;
+  font-size: .85rem;
+}
+.school-link {
+  display: inline-block;
+  margin-top: .9rem;
+  font-size: .74rem;
+  font-weight: 600;
+  color: var(--moss);
+  text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+
+/* ─── BUDGET TABLE ─── */
+.budget-wrap {
+  background: var(--white);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(26,61,43,.07);
+  border: 1px solid rgba(26,61,43,.06);
+  margin-bottom: 1.2rem;
+}
+.bt-head {
+  display: grid;
+  grid-template-columns: 2.2fr repeat(4, 1fr);
+  background: var(--forest);
+  color: white;
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .4px;
+  padding: .85rem 1.3rem;
+}
+.bt-row {
+  display: grid;
+  grid-template-columns: 2.2fr repeat(4, 1fr);
+  padding: .65rem 1.3rem;
+  font-size: .81rem;
+  border-bottom: 1px solid #f0f2f0;
+  align-items: center;
+}
+.bt-row:nth-child(even) { background: #fafcfa; }
+.bt-total {
+  display: grid;
+  grid-template-columns: 2.2fr repeat(4, 1fr);
+  padding: .9rem 1.3rem;
+  font-weight: 700;
+  font-size: .85rem;
+  background: var(--sand);
+  border-top: 2px solid rgba(26,61,43,.15);
+}
+.bt-pp {
+  display: grid;
+  grid-template-columns: 2.2fr repeat(4, 1fr);
+  padding: .65rem 1.3rem;
+  font-size: .77rem;
+  color: var(--stone);
+  background: #edf2ed;
+}
+.bt-note {
+  padding: .7rem 1.3rem;
+  font-size: .73rem;
+  color: var(--stone);
+  background: #f5f8f5;
+  border-top: 1px solid #e8ece8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  line-height: 1.5;
+}
+.r { text-align: right; }
+.bold { font-weight: 700; }
+.green { color: #27ae60; font-weight: 700; }
+.ch { text-align: right; }
+.ch:first-child { text-align: left; }
+
+/* ─── PROGRAMME ─── */
+.prog-wrap {
+  background: var(--white);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(26,61,43,.07);
+  border: 1px solid rgba(26,61,43,.06);
+}
+.prog-head {
+  background: var(--forest);
+  color: white;
+  padding: 1rem 1.4rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.prog-item {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 1rem;
+  padding: .85rem 1.4rem;
+  border-bottom: 1px solid #f0f2f0;
+  font-size: .83rem;
+  align-items: start;
+}
+.prog-item:last-child { border-bottom: none; }
+.prog-day {
+  font-weight: 700;
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--moss);
+  padding-top: .15rem;
+  line-height: 1.4;
+}
+.prog-item strong { display: block; font-weight: 600; color: var(--bark); margin-bottom: .15rem; }
+.prog-item span { color: var(--stone); line-height: 1.5; }
+.prog-item .tag {
+  display: inline-block;
+  background: #e8f5ee;
+  color: var(--forest);
+  border-radius: 50px;
+  padding: .1rem .55rem;
+  font-size: .65rem;
+  font-weight: 600;
+  margin-left: .3rem;
+  vertical-align: middle;
+}
+
+/* ─── SNOW ALTERNATIVE ─── */
+.alt-header {
+  background: linear-gradient(130deg, #2d1a0a, #6b3d1a, #9c5c2a);
+  border-radius: 14px;
+  padding: 1.8rem 2rem;
+  color: white;
+  margin-bottom: 1.2rem;
+  position: relative;
+  overflow: hidden;
+}
+.alt-header::before {
+  content: '🌧';
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 4rem;
+  opacity: .15;
+}
+.alt-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: .3rem;
+}
+.alt-header p { font-size: .84rem; opacity: .8; max-width: 600px; }
+
+.alt-day {
+  background: var(--white);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: .8rem;
+  box-shadow: 0 2px 12px rgba(26,61,43,.07);
+  border: 1px solid rgba(26,61,43,.06);
+}
+.alt-day-head {
+  background: var(--bark);
+  color: white;
+  padding: .75rem 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.alt-day-head .day-num {
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: .6;
+}
+.alt-day-head .day-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.alt-day-head .day-dist {
+  font-size: .72rem;
+  opacity: .65;
+  background: rgba(255,255,255,.12);
+  padding: .18rem .55rem;
+  border-radius: 50px;
+}
+.alt-acts {
+  padding: 1rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+.alt-act {
+  display: flex;
+  gap: .9rem;
+  align-items: flex-start;
+  font-size: .81rem;
+}
+.act-icon { font-size: 1.2rem; flex-shrink: 0; width: 28px; }
+.act-body strong { display: block; color: var(--bark); font-weight: 600; margin-bottom: .1rem; }
+.act-body span { color: var(--stone); line-height: 1.5; }
+.act-price {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--moss);
+  white-space: nowrap;
+}
+
+/* ─── TIPS ─── */
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .85rem; }
+.tip-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.1rem;
+  box-shadow: 0 2px 10px rgba(26,61,43,.06);
+  border: 1px solid rgba(26,61,43,.05);
+}
+.tip-icon { font-size: 1.4rem; margin-bottom: .4rem; }
+.tip-card strong { display: block; font-size: .84rem; color: var(--forest); margin-bottom: .2rem; }
+.tip-card p { font-size: .77rem; color: var(--stone); line-height: 1.5; }
+
+/* ─── FOOTER ─── */
+.footer-bar {
+  background: var(--forest);
+  color: rgba(255,255,255,.5);
+  font-size: .72rem;
+  text-align: center;
+  padding: 1.2rem;
+}
+
+@media(max-width:700px){
+  .bt-head,.bt-row,.bt-total,.bt-pp { grid-template-columns: 1.5fr repeat(4,.85fr); font-size:.64rem; padding:.6rem .8rem; }
+  .skipas-hd,.skipas-row { grid-template-columns: 1.5fr repeat(3,.9fr); font-size:.72rem; }
+  .hero-content { padding: 2rem 1.2rem 1.5rem; }
+  .prog-item { grid-template-columns: 60px 1fr; font-size:.79rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="hero-texture"></div>
+  <svg class="hero-mountains" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="white">
+    <path d="M0,80 L100,20 L200,60 L320,0 L440,50 L560,10 L680,55 L800,5 L920,45 L1040,15 L1150,50 L1200,30 L1200,120 L0,120Z"/>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-flag">🇨🇿</div>
+    <p class="hero-eyebrow">Volledig uitgewerkt voorstel · Carnavalsvakantie 2027</p>
+    <h1 class="hero-title">Špindlerův Mlýn</h1>
+    <p class="hero-sub">Reuzengebergte · Tsjechië · 3 gezinnen · 13 personen · 7 dagen</p>
+    <div class="hero-chips">
+      <span class="chip">🗓 Za 13 – Za 20 feb 2027</span>
+      <span class="chip">🏠 Concreet appartement</span>
+      <span class="chip">📚 Skischool met prijzen</span>
+      <span class="chip">🎿 Skipas via GOPASS</span>
+      <span class="chip">🌧 Alternatief programma bij geen sneeuw</span>
+      <span class="chip">💶 ~€573 p.p. totaal</span>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <div class="sb-item"><div class="sb-val">7 dagen</div><div class="sb-lbl">Duur</div></div>
+    <div class="sb-item"><div class="sb-val">6 nachten</div><div class="sb-lbl">Verblijf</div></div>
+    <div class="sb-item"><div class="sb-val">~7 uur</div><div class="sb-lbl">Reistijd NL</div></div>
+    <div class="sb-item"><div class="sb-val">€573 p.p.</div><div class="sb-lbl">Gem. kosten</div></div>
+    <div class="sb-item"><div class="sb-val">€677 p.p.</div><div class="sb-lbl">Restbudget</div></div>
+    <div class="sb-item"><div class="sb-val">28 km</div><div class="sb-lbl">Piste</div></div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ═══ BESTEMMING ═══ -->
+  <div class="sec-title"><span class="icon">🏔</span> Bestemming &amp; terrein</div>
+
+  <div class="notice notice-green">
+    <span class="notice-icon">💡</span>
+    <div><strong>Waarom Špindlerův Mlýn voor beginners?</strong><br>
+    Het grootste skigebied van Tsjechië (28 km, 17 liften) in het prachtige Reuzengebergte. Overzichtelijk terrein — kinderen raken niet kwijt. Moderne sneeuwkanonnen op alle pistes zodat ook bij weinig natuursneeuw het skiën doorgaat. In 2027/2028 worden de twee gebieden Medvědín en Svatý Petr met elkaar verbonden. <strong>Skiles in het Engels beschikbaar</strong> — er zijn zelfs skischolen met Nederlandstalige instructeurs aanwezig.</div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🏔</div>
+      <div class="card-lbl">Hoogte</div>
+      <div class="card-val">702 – 1.235 m</div>
+      <div class="card-sub">Kouder dan de Alpen door ligging ver in het oosten — goede sneeuwkansen in februari</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎿</div>
+      <div class="card-lbl">Skigebied</div>
+      <div class="card-val">28 km · 17 liften</div>
+      <div class="card-sub">5 skicentra: Svatý Petr, Medvědín, Hromovka, Labská &amp; Horní Mísečky — 1 pas voor alles</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚗</div>
+      <div class="card-lbl">Reistijd vanuit NL</div>
+      <div class="card-val">~7 – 7,5 uur</div>
+      <div class="card-sub">Via Duitsland · geen tol of vignet nodig · kortste rit van alle 3 opties</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">❄️</div>
+      <div class="card-lbl">Sneeuwzekerheid</div>
+      <div class="card-val">Gemiddeld + kunstsneeuw</div>
+      <div class="card-sub">Sneeuwkanonnen op alle pistes. Februari historisch goede maand. Backupplan bij geen sneeuw: zie alternatief programma</div>
+    </div>
+  </div>
+
+
+  <!-- ═══ ACCOMMODATIE ═══ -->
+  <div class="sec-title"><span class="icon">🏠</span> Accommodatie — concreet advies voor 13 personen</div>
+
+  <div class="notice notice-amber">
+    <span class="notice-icon">⚠️</span>
+    <div><strong>Boek zo vroeg mogelijk!</strong> Carnavalsvakantie is het drukste moment. Appartementen voor 13 personen zijn populair. Reserveer bij voorkeur in de zomer van 2026.</div>
+  </div>
+
+  <div class="accom-grid">
+
+    <div class="accom-card recommended">
+      <div class="accom-thumb">🏔</div>
+      <div class="accom-body">
+        <h3>Aldrov Resort — Vítkovice</h3>
+        <p>Luxe bergcomplex van 8 gebouwen in het hart van het Reuzengebergte, 4,5 km van Špindlerův Mlýn. Family Apartments en Executive Suites met volledig uitgeruste keuken, balkon, eigen parkeerplaats. Wellness &amp; Spa, restaurant Aldrovka met open haard, Kids Club, binnenzwembad. Mogelijkheid om 3 aangrenzende units te boeken voor privacy per gezin + gedeelde ontmoetingsruimte.</p>
+        <div class="accom-price">€ 110 – 165 / nacht <small>per unit (2-person studio · winter)</small></div>
+        <div class="accom-pros">
+          <span class="pro-tag">Wellness &amp; sauna</span>
+          <span class="pro-tag">Kids Club</span>
+          <span class="pro-tag">Restaurant</span>
+          <span class="pro-tag">Binnenzwembad</span>
+          <span class="pro-tag">Ski-naar-deur</span>
+        </div>
+        <a href="https://www.booking.com/hotel/cz/aldrov-resort.html" target="_blank" class="accom-link">🔗 Bekijk op Booking.com</a>
+      </div>
+    </div>
+
+    <div class="accom-card">
+      <div class="accom-thumb">🏡</div>
+      <div class="accom-body">
+        <h3>Aparthotel Residence Grand — Špindlerův Mlýn centrum</h3>
+        <p>Het best beoordeelde appartementencomplex in Špindlerův Mlýn (#1 op TripAdvisor). Modern ingericht, stijlvol, met stoomkamer en spa. Centrumlocatie op loopafstand van liften en restaurants. Meerdere aangrenzende suites beschikbaar voor een groep. Skibus-halte op 3 min. loopafstand.</p>
+        <div class="accom-price">€ 128 – 180 / nacht <small>per suite (winter)</small></div>
+        <div class="accom-pros">
+          <span class="pro-tag">#1 TripAdvisor</span>
+          <span class="pro-tag">Stoomkamer</span>
+          <span class="pro-tag">Centrum</span>
+          <span class="pro-tag">Skibus</span>
+        </div>
+        <a href="https://www.booking.com/hotel/cz/aldrov-resort.html" target="_blank" class="accom-link">🔗 Bekijk op Booking.com</a>
+      </div>
+    </div>
+
+    <div class="accom-card">
+      <div class="accom-thumb">🏠</div>
+      <div class="accom-body">
+        <h3>Groot vakantiehuis via Airbnb / HomeToGo</h3>
+        <p>Huur één groot chalet of vakantiehuis voor alle 13 personen. Gemeenschappelijke woon- en eetkamer, aparte slaapkamers per gezin. Budgetvriendelijkste optie — delt kosten maximaal. Prijzen winterseizoen variëren sterk; vul groepsgrootte in voor actueel aanbod. Zoek op: "Špindlerův Mlýn 12+ personen" of nabijgelegen Vítkovice / Horní Mísečky.</p>
+        <div class="accom-price">€ 150 – 220 / nacht <small>totaal huis (13 pers.)</small></div>
+        <div class="accom-pros">
+          <span class="pro-tag">Meest budgetvriendelijk</span>
+          <span class="pro-tag">Eigen keuken</span>
+          <span class="pro-tag">Privacy per gezin</span>
+        </div>
+        <a href="https://www.airbnb.com/spindleruv-mlyn-czechia/stays" target="_blank" class="accom-link">🔗 Zoek op Airbnb</a>&nbsp;&nbsp;
+        <a href="https://www.hometogo.nl/spindleruv-mlyn/" target="_blank" class="accom-link">🔗 HomeToGo</a>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ═══ SKIPAS ═══ -->
+  <div class="sec-title"><span class="icon">🎿</span> Skipas — officiële prijzen &amp; waar te kopen</div>
+
+  <div class="skipas-card">
+    <div class="skipas-head">
+      <div>
+        <h3>Skiareál Špindlerův Mlýn — Officiële skipas tarieven</h3>
+        <div class="source">Bron: skiareal.cz/en/price-list · gopass.travel · Prijzen dynamisch — online altijd goedkoper dan kassa</div>
+      </div>
+    </div>
+    <div class="skipas-body">
+      <div class="skipas-hd">
+        <div>Categorie</div>
+        <div>Online (GOPASS)</div>
+        <div>Kassa</div>
+        <div>Aanbevolen</div>
+      </div>
+      <!-- Volwassenen -->
+      <div class="skipas-row">
+        <div><strong>Volwassene</strong> (18–59j) · 1 dag</div>
+        <div class="r price-online">~€ 27–38</div>
+        <div class="r price-box">~€ 42–55</div>
+        <div class="r price-best">Online vroegboek</div>
+      </div>
+      <div class="skipas-row">
+        <div><strong>Volwassene</strong> (18–59j) · 5 dagen</div>
+        <div class="r price-online">~€ 115–145</div>
+        <div class="r price-box">~€ 175–210</div>
+        <div class="r price-best">Vroegboek = ±€120</div>
+      </div>
+      <!-- Junior -->
+      <div class="skipas-row">
+        <div><strong>Junior</strong> (12–17j) · 1 dag</div>
+        <div class="r price-online">~€ 20–30</div>
+        <div class="r price-box">~€ 32–45</div>
+        <div class="r price-best">Online vroegboek</div>
+      </div>
+      <div class="skipas-row">
+        <div><strong>Junior</strong> (12–17j) · 5 dagen</div>
+        <div class="r price-online">~€ 88–110</div>
+        <div class="r price-box">~€ 130–165</div>
+        <div class="r price-best">Vroegboek = ±€90</div>
+      </div>
+      <!-- Kind -->
+      <div class="skipas-row">
+        <div><strong>Kind</strong> (6–11j) · 5 dagen</div>
+        <div class="r price-online">~€ 60–80</div>
+        <div class="r price-box">~€ 95–120</div>
+        <div class="r price-best">Eigen kassa kind</div>
+      </div>
+      <div class="skipas-row">
+        <div><strong>Kind t/m 5 jaar</strong></div>
+        <div class="r price-online">Gratis</div>
+        <div class="r price-box">Gratis</div>
+        <div class="r price-best">—</div>
+      </div>
+      <div class="skipas-note">
+        <strong>💡 Hoe kopen?</strong> Koop via <strong>gopass.travel</strong> (goedkoopste online prijs — dynamisch, wie vroeg boekt betaalt minder). Haal de GOPASS-chipkaart op aan de SKIPAS POINT-automaat (24/7 open bij Hromovka, Svatý Petr, Medvědín, Horní Mísečky). Kosten chipkaart: 75 CZK (±€3) éénmalig via GOPASS Tickets; kaart herbruikbaar volgend bezoek.<br><br>
+        <strong>📌 Bron:</strong> <a href="https://www.skiareal.cz/en/price-list/ticket-pricelists/skipass-pricelist" target="_blank" style="color:var(--moss)">skiareal.cz/en/price-list</a> — Prijzen zijn dynamisch en worden jaarlijks licht bijgesteld. Bovenstaande prijzen zijn gebaseerd op sezoen 2025/26 en dienen als richtlijn voor 2026/27. Controleer actuele prijs via gopass.travel zodra de verkoop voor carnaval 2027 opent (verwacht: najaar 2026).
+      </div>
+    </div>
+  </div>
+
+  <div class="cards" style="margin-bottom:1rem;">
+    <div class="card">
+      <div class="card-icon">💶</div>
+      <div class="card-lbl">Skipas 5 dagen — groepstotaal</div>
+      <div class="card-val">~€ 1.510 voor 13 pers.</div>
+      <div class="card-sub">6 volw. × ~€120 + 7 juniors × ~€95 = gem. vroegboekprijs online via GOPASS</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌙</div>
+      <div class="card-lbl">Avondskiën</div>
+      <div class="card-val">Hromovka — gratis!</div>
+      <div class="card-sub">Langste avondskiën van Tsjechië, elke dag. Inclusief bij reguliere skipas. Geweldig voor tieners!</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">⏰</div>
+      <div class="card-lbl">Wanneer kopen?</div>
+      <div class="card-val">Najaar 2026</div>
+      <div class="card-sub">Zodra de verkoop carnaval 2027 opent — direct kopen voor laagste dynamische prijs</div>
+      <a href="https://www.gopass.travel" target="_blank" class="card-link">🔗 gopass.travel</a>
+    </div>
+  </div>
+
+
+  <!-- ═══ SKISCHOOL ═══ -->
+  <div class="sec-title"><span class="icon">📚</span> Skischool — concreet aanbod kinderen (12–17j)</div>
+
+  <div class="notice notice-green">
+    <span class="notice-icon">✅</span>
+    <div>Onze kinderen zijn 12–17 jaar, dus de <strong>"Teens/Adults"</strong> groepslessen zijn de meest geschikte categorie. Alle drie onderstaande scholen bieden Engelstalige instructeurs en <strong>free cancellation</strong> tot 24u van tevoren (via CheckYeti). <a href="https://www.checkyeti.com/en/winter/czech-republic/spindleruv-mlyn/ski-lessons" target="_blank" style="color:var(--moss);font-weight:600">Boek via checkyeti.com</a> voor beste vergelijking &amp; overzicht.</div>
+  </div>
+
+  <div class="school-grid">
+
+    <div class="school-card top">
+      <div class="school-name">⭐ SnowMonkey Ski School</div>
+      <div class="school-rating">4.9 / 5 · TripAdvisor Travelers' Choice</div>
+      <div class="school-offers">
+        <div class="school-offer">
+          <div class="offer-name">Groepsles beginners (4 uur)
+            <small>10:00–12:00 + 14:00–16:00 · max 12 per groep · Engels</small>
+          </div>
+          <div class="offer-price">vanaf €32</div>
+        </div>
+        <div class="school-offer">
+          <div class="offer-name">Privéles 1 uur (kids &amp; teens)
+            <small>Snelste resultaat · 1-4 personen · Engels/NL</small>
+          </div>
+          <div class="offer-price">€55/uur</div>
+        </div>
+        <div class="school-offer">
+          <div class="offer-name">Privéles hele dag (teens)
+            <small>Beste optie voor snel leren · Engels</small>
+          </div>
+          <div class="offer-price">€201/dag</div>
+        </div>
+      </div>
+      <a href="https://www.checkyeti.com/en/p/1958/snowmonkey-spindleruv-mlyn" target="_blank" class="school-link">🔗 Boek via CheckYeti</a>&nbsp;&nbsp;
+      <a href="https://www.skischoolspindleruvmlyn.com" target="_blank" class="school-link">🔗 Website</a>
+    </div>
+
+    <div class="school-card">
+      <div class="school-name">🎿 Skischool VIP Špindlerův Mlýn</div>
+      <div class="school-rating">4.9 / 5 · CheckYeti · 26+ beoordelingen</div>
+      <div class="school-offers">
+        <div class="school-offer">
+          <div class="offer-name">Groepsles beginners (4 uur)
+            <small>10:00–12:00 · 14:00–16:00 · max 12 per groep</small>
+          </div>
+          <div class="offer-price">€45/dag</div>
+        </div>
+        <div class="school-offer">
+          <div class="offer-name">Groepsles + skihuur pakket
+            <small>Inclusief ski, schoenen &amp; stokken</small>
+          </div>
+          <div class="offer-price">€47/dag</div>
+        </div>
+        <div class="school-offer">
+          <div class="offer-name">Privéles kinderen/teens
+            <small>Alle niveaus · Engels · vanaf 3 jaar</small>
+          </div>
+          <div class="offer-price">€51/uur</div>
+        </div>
+      </div>
+      <a href="https://www.checkyeti.com/en/p/1219/ski-snowboard-school-vip-spindleruv-mlyn" target="_blank" class="school-link">🔗 Boek via CheckYeti</a>&nbsp;&nbsp;
+      <a href="https://www.skischoolvip.cz/en/" target="_blank" class="school-link">🔗 Website</a>
+    </div>
+
+    <div class="school-card">
+      <div class="school-name">🌟 Yellow Point Ski School</div>
+      <div class="school-rating">4.9 / 5 · CheckYeti · 30+ beoordelingen · Bestseller</div>
+      <div class="school-offers">
+        <div class="school-offer">
+          <div class="offer-name">Groepsles beginners ½ dag (2 uur)
+            <small>Meest betaalbare instap</small>
+          </div>
+          <div class="offer-price">€32/dag</div>
+        </div>
+        <div class="school-offer">
+          <div class="offer-name">Groepsles beginners hele dag (4 uur)
+            <small>Beste prijs-kwaliteit voor teens</small>
+          </div>
+          <div class="offer-price">€53/dag</div>
+        </div>
+        <div class="school-offer">
+          <div class="offer-name">Privéles kids &amp; teens (alle leeftijden)
+            <small>Święty Petr locatie · Engels</small>
+          </div>
+          <div class="offer-price">€59/uur</div>
+        </div>
+      </div>
+      <a href="https://www.checkyeti.com/en/p/1275/yellow-point-spindleruv-mlyn" target="_blank" class="school-link">🔗 Boek via CheckYeti</a>&nbsp;&nbsp;
+      <a href="https://www.yellow-point.cz/en/" target="_blank" class="school-link">🔗 Website</a>
+    </div>
+
+  </div>
+
+  <div class="notice notice-green" style="margin-top:1rem;">
+    <span class="notice-icon">📋</span>
+    <div><strong>Aanbeveling voor 7 kinderen (12–17j):</strong> Boek <strong>5 dagen groepslessen</strong> bij Yellow Point of SnowMonkey (€32–45/dag per kind). Groepen van 4–12 deelnemers verdeeld naar niveau. Lessen 10:00–12:00 en 14:00–16:00 — tussendoor vrij skiën met volwassenen. Totaalkosten skiles 5 dagen voor alle 7 kinderen: <strong>±€840–€1.575</strong> (afhankelijk van school en groep vs. privé). Boek vroeg via CheckYeti voor garantie van plaatsing in de goede groep — gratis annulering tot 24u voor aanvang.</div>
+  </div>
+
+
+  <!-- ═══ BEGROTING ═══ -->
+  <div class="sec-title"><span class="icon">💰</span> Begroting — carnavalsvakantie 13–20 februari 2027</div>
+
+  <div class="budget-wrap">
+    <div class="bt-head">
+      <div>Kostenpost</div>
+      <div class="ch">Gezin A<br><small>2v+2k</small></div>
+      <div class="ch">Gezin B<br><small>2v+3k</small></div>
+      <div class="ch">Gezin C<br><small>2v+2k</small></div>
+      <div class="ch">Groepstotaal</div>
+    </div>
+    <div class="bt-row"><div>🚗 Benzine + eventuele tol (geen vignet)</div><div class="r">€ 240</div><div class="r">€ 240</div><div class="r">€ 240</div><div class="r bold">€ 720</div></div>
+    <div class="bt-row"><div>🏠 Appartement 6 nachten (Aldrov-stijl, 3 units)</div><div class="r">€ 580</div><div class="r">€ 700</div><div class="r">€ 580</div><div class="r bold">€ 1.860</div></div>
+    <div class="bt-row"><div>🎿 Skipas 5 dagen (volw. ~€120 · junior ~€95) via GOPASS</div><div class="r">€ 430</div><div class="r">€ 525</div><div class="r">€ 430</div><div class="r bold">€ 1.385</div></div>
+    <div class="bt-row"><div>📚 Skiles 7 kinderen · 5 dagen groep (Yellow Point €32/dag)</div><div class="r">€ 224</div><div class="r">€ 336</div><div class="r">€ 224</div><div class="r bold">€ 784</div></div>
+    <div class="bt-row"><div>👟 Skihuur compleet 5 dagen (ski+sch.+stokken) ~€40/pp/d</div><div class="r">€ 200</div><div class="r">€ 250</div><div class="r">€ 200</div><div class="r bold">€ 650</div></div>
+    <div class="bt-row"><div>🍽 Eten &amp; drinken zelfverzorgd + 1× berglunch/dag</div><div class="r">€ 360</div><div class="r">€ 440</div><div class="r">€ 360</div><div class="r bold">€ 1.160</div></div>
+    <div class="bt-row"><div>🛡 Reisverzekering incl. wintersport</div><div class="r">€ 100</div><div class="r">€ 120</div><div class="r">€ 100</div><div class="r bold">€ 320</div></div>
+    <div class="bt-row"><div>💡 Reserve / activiteiten / diversen</div><div class="r">€ 80</div><div class="r">€ 100</div><div class="r">€ 80</div><div class="r bold">€ 260</div></div>
+    <div class="bt-total">
+      <div class="bold">TOTAAL per gezin</div>
+      <div class="r bold">€ 2.214</div>
+      <div class="r bold">€ 2.711</div>
+      <div class="r bold">€ 2.214</div>
+      <div class="r bold">€ 7.139</div>
+    </div>
+    <div class="bt-pp">
+      <div>Per persoon</div>
+      <div class="r green">€ 554</div>
+      <div class="r green">€ 542</div>
+      <div class="r green">€ 554</div>
+      <div class="r bold green">gem. € 549</div>
+    </div>
+    <div class="bt-note">
+      <span>✅ Alle gezinnen ruim binnen €1.250 p.p. — restbudget ~€700 p.p.!</span>
+      <span>🎿 Skipas via gopass.travel (vroegboek online = goedkoopst)</span>
+      <span>📚 Skiles via checkyeti.com (gratis annulering)</span>
+      <span>💡 Skihuur via Yellow Point + skiverhuur of eigen reservering ter plaatse</span>
+    </div>
+  </div>
+
+
+  <!-- ═══ WEEKPROGRAMMA (sneeuw) ═══ -->
+  <div class="sec-title"><span class="icon">📅</span> Weekprogramma ☀️ — bij voldoende sneeuw</div>
+
+  <div class="prog-wrap">
+    <div class="prog-head">🗓 Zaterdag 13 – Zaterdag 20 februari 2027 · 7 dagen · 6 nachten</div>
+
+    <div class="prog-item">
+      <div class="prog-day">Za<br>13/2</div>
+      <div>
+        <strong>🚗 Vertrek vroeg · Aankomst · Eerste verkenning</strong>
+        <span>Vertrek 6:00u vanuit NL. Aankomst ~13:00u. Inchecken, skihuur ophalen (via Yellow Point of SnowMonkey — ook skiverhuur). Rustige middag: wandeling in het dorp langs de Elbe. Avond: gezamenlijk welkomstdiner in het appartement.</span>
+      </div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Zo<br>14/2</div>
+      <div>
+        <strong>🎿 Dag 1 op de piste — Skiles kinderen start</strong>
+        <span>Ochtend: eerste groepsles kinderen (10:00–12:00). Volwassenen verkennen Medvědín — kindvriendelijk en overzichtelijk. Middag: tweede les (14:00–16:00), daarna samen oefenen op blauwe pistes. Avond: avondskiën op Hromovka gratis!</span>
+      </div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Ma<br>15/2</div>
+      <div>
+        <strong>📚 Dag 2 skiles + eerste zelfstandige ritten</strong>
+        <span>Groepsles ochtend + middag. Kids beginnen al zelfstandig te rijden op de beginner-helling. Volwassenen verkennen Svatý Petr — meer uitdagende pistes. Na de les: gezamenlijk afdalen. Avond: Tsjechisch diner in het dorp <span class="tag">svíčková!</span></span>
+      </div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Di<br>16/2</div>
+      <div>
+        <strong>⛷ Dag 3 — Hele dag vrij skiën</strong>
+        <span>Kinderen rijden nu zelfstandig blauwe pistes. Gezinnen vrij door het hele gebied. Tip: Medvědín panoramarestaurant op 1.235m voor lunch met uitzicht. 's Avonds: bobsleebaan in Špindlerův Mlýn — 1,4 km · 22 bochten · tot 65 km/u!</span>
+      </div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Wo<br>17/2</div>
+      <div>
+        <strong>🏔 Dag 4 — Grote tochten + avontuur</strong>
+        <span>Langste blauwe afdalingen verkennen. Meest gevorderde kids kunnen aan een rode piste beginnen. Tip: FreshTrack op vrijdag/zat/zo (7:30–9:30u, verse pistevoorbereiding, inclusief ontbijt). Middag: vrij. Avond: gezamenlijk afsluiten.</span>
+      </div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Do<br>18/2</div>
+      <div>
+        <strong>🛷 Dag 5 skiles + rodelen</strong>
+        <span>Ochtend: laatste groepsles. Middag: vrij skiën of rodelbaan — Špindlerův Mlýn heeft de langste verlichte rodelbaan van Tsjechië (4 km). Avond: après-ski bij Hromovka bar of sauna in het appartementencomplex.</span>
+      </div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Vr<br>19/2</div>
+      <div>
+        <strong>🎿 Dag 6 — Laatste dag op de piste</strong>
+        <span>Halve dag skiën (ochtend). Kids laten zien wat ze geleerd hebben! Middag: inpakken, skihuur terugbrengen, laatste wandeling in het dorp. Avond: vroeg naar bed voor terugreis.</span>
+      </div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Za<br>20/2</div>
+      <div>
+        <strong>🚗 Terugreis · Vertrek 7:00u · Thuis ~14:00u</strong>
+        <span>Vroegste thuiskomst van alle 3 opties. Zondag 21 feb. uitrusten — maandag back to school!</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══ ALTERNATIEF PROGRAMMA ═══ -->
+  <div class="sec-title"><span class="icon">🌧</span> Alternatief programma — bij weinig of geen sneeuw</div>
+
+  <div class="alt-header">
+    <h2>🌧 Plan B — geen sneeuw?</h2>
+    <p>Špindlerův Mlýn beschikt over sneeuwkanonnen op alle pistes en is in februari bijna altijd operationeel. Maar voor het geval dat: het Reuzengebergte en de omgeving bieden genoeg alternatieven voor een geweldig familieweek zónder ski's.</p>
+  </div>
+
+  <div class="alt-day">
+    <div class="alt-day-head">
+      <div>
+        <div class="day-num">Alternatief dag 1</div>
+        <div class="day-title">🛷 Bobsleebaan + MonkeyPark · Špindlerův Mlýn</div>
+      </div>
+      <div class="day-dist">Ter plaatse · 0 km</div>
+    </div>
+    <div class="alt-acts">
+      <div class="alt-act">
+        <span class="act-icon">🛷</span>
+        <div class="act-body">
+          <strong>Bobsleebaan Špindlerův Mlýn</strong>
+          <span>De eerste stalen bobsleebaan van Tsjechië (1997). 1,4 km · 22 bochten · 5 duiken · 3 tunnels · tot 65 km/u. Eén- en tweepersoons karretjes, geschikt voor alle leeftijden. Het hele jaar open, ook 's avonds. Gelegen naast MonkeyPark.</span>
+        </div>
+        <div class="act-price">~€6 p.p./rit</div>
+      </div>
+      <div class="alt-act">
+        <span class="act-icon">🐒</span>
+        <div class="act-body">
+          <strong>MonkeyPark Touwbaan</strong>
+          <span>Klimpark recht onder de bobsleebaan. Meerdere moeilijkheidsgraden. Perfect voor tieners van 12–17 jaar. Challenges, ziplines en klimwanden.</span>
+        </div>
+        <div class="act-price">~€12–15 p.p.</div>
+      </div>
+      <div class="alt-act">
+        <span class="act-icon">🌲</span>
+        <div class="act-body">
+          <strong>Sneeuwschoenwandelen / winterwandeling Elbe-vallei</strong>
+          <span>Magische winterwandeling langs de Elbe-rivier door het dorp. 5 km route. Eventueel met sneeuwschoenhuur. Eindig bij hut Bílá Labe voor warme chocolademelk.</span>
+        </div>
+        <div class="act-price">Gratis / ~€8 huur</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alt-day">
+    <div class="alt-day-head">
+      <div>
+        <div class="day-num">Alternatief dag 2</div>
+        <div class="day-title">🏙 Praag — Historische hoofdstad</div>
+      </div>
+      <div class="day-dist">~2 uur rijden</div>
+    </div>
+    <div class="alt-acts">
+      <div class="alt-act">
+        <span class="act-icon">🏰</span>
+        <div class="act-body">
+          <strong>Praagse Burcht + Karelsbrug</strong>
+          <span>UNESCO-werelderfgoed. De Karelsbrug met 30 barokke beelden, de Burcht met kathedraal, Gouden Steeg. Indrukwekkend voor tieners. Plan 3–4 uur.</span>
+        </div>
+        <div class="act-price">€ 0–15 p.p.</div>
+      </div>
+      <div class="alt-act">
+        <span class="act-icon">🎪</span>
+        <div class="act-body">
+          <strong>Wenceslasplein + Oude Stad + Astronomisch uurwerk</strong>
+          <span>Elke uur klopt het beroemde Orloj-uurwerk (14e eeuw). Omgeving vol restaurants, winkels en sfeer. Tip: trdelník kopen op het plein.</span>
+        </div>
+        <div class="act-price">Gratis</div>
+      </div>
+      <div class="alt-act">
+        <span class="act-icon">🍺</span>
+        <div class="act-body">
+          <strong>Lokaal Tsjechisch diner in Praag</strong>
+          <span>Zwijnsvlees, knedlíky, svíčková en het lekkerste bier van Europa — voor een fractie van de prijs in NL. Biefstuk van de grill voor €8–12 per persoon.</span>
+        </div>
+        <div class="act-price">~€15–20 p.p.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alt-day">
+    <div class="alt-day-head">
+      <div>
+        <div class="day-num">Alternatief dag 3</div>
+        <div class="day-title">🏊 Aquapark Špindl + LEGO Museum</div>
+      </div>
+      <div class="day-dist">Ter plaatse · 0–5 km</div>
+    </div>
+    <div class="alt-acts">
+      <div class="alt-act">
+        <span class="act-icon">🏊</span>
+        <div class="act-body">
+          <strong>Aquapark Špindl — waterparadijs</strong>
+          <span>Modern binnenzwembad met glijbanen, bubbelbaden en sportbad in Špindlerův Mlýn. Ideaal voor een regenachtige dag. Tieners en volwassenen spenderen hier makkelijk 3–4 uur.</span>
+        </div>
+        <div class="act-price">~€12–18 p.p.</div>
+      </div>
+      <div class="alt-act">
+        <span class="act-icon">🧱</span>
+        <div class="act-body">
+          <strong>LEGO Museum Špindlerův Mlýn</strong>
+          <span>Uniek LEGO museum direct in het dorp — honderden modellen en bouwinstallaties. Verrassend leuk ook voor 12–17-jarigen (nostalgie + creativiteit). 1–2 uur.</span>
+        </div>
+        <div class="act-price">~€5–8 p.p.</div>
+      </div>
+      <div class="alt-act">
+        <span class="act-icon">🛁</span>
+        <div class="act-body">
+          <strong>Wellness / sauna in het appartement of hotel</strong>
+          <span>Als het verblijf wellness heeft (Aldrov Resort: stoomkamer, sauna, binnenzwembad): gebruik dan de faciliteiten. Ideale hersteldag na intensieve skidagen.</span>
+        </div>
+        <div class="act-price">Inbegrepen / ~€15</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alt-day">
+    <div class="alt-day-head">
+      <div>
+        <div class="day-num">Alternatief dag 4</div>
+        <div class="day-title">🏭 Harrachov Glasfabriek + Bierspa + Reuzengebergte verkennen</div>
+      </div>
+      <div class="day-dist">~20 km rijden</div>
+    </div>
+    <div class="alt-acts">
+      <div class="alt-act">
+        <span class="act-icon">🔬</span>
+        <div class="act-body">
+          <strong>Glasfabriek Novosad Harrachov</strong>
+          <span>Eeuwenoude glasfabriek met live demonstraties van glasblazen, glasmuseum én een minibrouwerij met restaurant. Unieke combinatie — ook voor tieners een verrassende ervaring. Indrukwekkend handwerk.</span>
+        </div>
+        <div class="act-price">~€5–8 p.p.</div>
+      </div>
+      <div class="alt-act">
+        <span class="act-icon">🍺</span>
+        <div class="act-body">
+          <strong>Bierspa in Harrachov (voor volwassenen)</strong>
+          <span>Baden in warm bier — een Tsjechische specialiteit! Hotel Novosad in Harrachov biedt dit aan. Terwijl de kids iets anders doen — een unieke belevenis voor de ouders.</span>
+        </div>
+        <div class="act-price">~€45–60 p.p.</div>
+      </div>
+      <div class="alt-act">
+        <span class="act-icon">🚡</span>
+        <div class="act-body">
+          <strong>Ski-jumping toren Harrachov (bekijken/beklimmen)</strong>
+          <span>Harrachov heeft een van de grootste skisprong-aanloopbanen ter wereld. De toren is te beklimmen voor een spectaculair uitzicht over het Reuzengebergte. Indrukwekkend voor de kids.</span>
+        </div>
+        <div class="act-price">~€4–6 p.p.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alt-day">
+    <div class="alt-day-head">
+      <div>
+        <div class="day-num">Alternatief dag 5</div>
+        <div class="day-title">🦒 Dvůr Králové Safaridierentuin + Vrchlabí</div>
+      </div>
+      <div class="day-dist">~30–40 km rijden</div>
+    </div>
+    <div class="alt-acts">
+      <div class="alt-act">
+        <span class="act-icon">🦁</span>
+        <div class="act-body">
+          <strong>Safari Park Dvůr Králové</strong>
+          <span>Een van de meest bijzondere dierentuinen van Europa — rijden met de auto door het Afrikaanse savannedeel. Neushoorns, zebra's, giraffen, olifanten in een open landschap. De kinderen (12–17j) zullen dit echt bijzonder vinden. Let op: controleer openingstijden in de winter.</span>
+        </div>
+        <div class="act-price">~€18–22 p.p.</div>
+      </div>
+      <div class="alt-act">
+        <span class="act-icon">🏛</span>
+        <div class="act-body">
+          <strong>Aquacentrum Vrchlabí</strong>
+          <span>Modern zwem- en recreatiecentrum in het nabijgelegen stadje Vrchlabí. Alternatief als de Safari Park te lang is. Lekker opwarmen na een koude dag.</span>
+        </div>
+        <div class="act-price">~€8–12 p.p.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notice notice-green" style="margin-top:.5rem;">
+    <span class="notice-icon">💡</span>
+    <div><strong>Slimme sneeuwstrategie:</strong> Controleer <a href="https://www.skiareal.cz/en/ski-resort/live-from-spindl/webcams" target="_blank" style="color:var(--moss)">de webcams van skiareal.cz</a> en de sneeuwprognose via <a href="https://www.snow-forecast.com/resorts/Spindleruv-Mlyn" target="_blank" style="color:var(--moss)">snow-forecast.com</a> een week van tevoren. Als er kunstsneeuw op de pistes ligt is skiën nog steeds prima mogelijk — reserveer de alternatieven voor één echte regendag.</div>
+  </div>
+
+
+  <!-- ═══ PRAKTISCHE TIPS ═══ -->
+  <div class="sec-title"><span class="icon">💡</span> Praktische tips &amp; checklist</div>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-icon">📅</div>
+      <strong>Boekingstijdlijn</strong>
+      <p>Zomer 2026: accommodatie boeken. Najaar 2026: skipassen via GOPASS (dynamisch — vroeg = goedkoop). 1 maand voor: skiles via CheckYeti reserveren.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🎿</div>
+      <strong>Skipas = GOPASS online</strong>
+      <p>Koop via gopass.travel — altijd goedkoper dan de kassa. Haal de chipkaart op aan de SKIPAS POINT automaat (24/7 open). Sla een screenshot van de bevestiging op.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">📚</div>
+      <strong>Skiles = CheckYeti</strong>
+      <p>Vergelijk alle 3 scholen op checkyeti.com. Gratis annulering tot 24u van tevoren. Vermeld bij boeking dat de kinderen 12–17 jaar zijn (teens-categorie). Engels zeker beschikbaar.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🚗</div>
+      <strong>Reisplanning</strong>
+      <p>Geen vignet of tol via Duitsland nodig. Winterbanden of sneeuwkettingen meenemen (verplicht in Tsjechië). Parkeren: betaald parkeren bij de pistes (~€5–8/dag).</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🌨</div>
+      <strong>Sneeuwzekerheid</strong>
+      <p>Alle pistes zijn voorzien van sneeuwkanonnen. Controleer skiareal.cz/webcams en snow-forecast.com een week voor vertrek. Bij twijfel: alternatief programma standby houden.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🍳</div>
+      <strong>Zelf koken = besparen</strong>
+      <p>Appartement met keuken + lokale supermarkt in Špindlerův Mlýn. Bier, eten en vlees zijn 40–50% goedkoper dan in NL. Eén gezamenlijk diner per dag brengt de sociale gezelligheid.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🌙</div>
+      <strong>Avondskiën gratis!</strong>
+      <p>Hromovka piste elke avond open — inclusief bij de reguliere skipas. Langste avondskiën van Tsjechië. Ideaal voor de tieners die niet genoeg kunnen krijgen.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🛡</div>
+      <strong>Verzekering</strong>
+      <p>Neem wintersportverzekering inclusief reddingshelikopter! Annuleringsdekkking voor hele groep is slim. Check of je zorgverzekering voldoende dekt in Tsjechië (EU).</p>
+    </div>
+  </div>
+
+
+</div><!-- /container -->
+
+<div class="footer-bar">
+  Špindlerův Mlýn Carnaval 2027 · Prijzen indicatief op basis van sezoen 2025/26 · Skipas: <a href="https://gopass.travel" style="color:rgba(255,255,255,.5)">gopass.travel</a> · Skiles: <a href="https://checkyeti.com" style="color:rgba(255,255,255,.5)">checkyeti.com</a> · Accommodatie: <a href="https://booking.com" style="color:rgba(255,255,255,.5)">booking.com</a> / <a href="https://airbnb.com" style="color:rgba(255,255,255,.5)">airbnb.com</a>
+</div>
+
+</body>
+</html>

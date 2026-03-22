@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skivakantie 2027 — 3 Opties</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f0f3f8;
+  --white: #ffffff;
+  --dark: #0d1a2b;
+  --muted: #6b7d8f;
+  --border: #dce3ec;
+  --ost-h: #1b4f72; --ost-a: #f0a500; --ost-light: #e8f0f8;
+  --tch-h: #1a3d2b; --tch-a: #3ec97a; --tch-light: #e8f4ee;
+  --fra-h: #3b1f5e; --fra-a: #e05c8a; --fra-light: #f4eef8;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Outfit',sans-serif; background:var(--bg); color:var(--dark); }
+
+/* HEADER */
+.site-header { background:var(--dark); color:white; padding:2.8rem 1.5rem 0; text-align:center; position:relative; overflow:hidden; }
+.site-header::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% -20%,rgba(240,165,0,.18) 0%,transparent 65%); pointer-events:none; }
+.hi { position:relative; z-index:1; }
+.eyebrow { font-size:.68rem; letter-spacing:4px; text-transform:uppercase; color:var(--ost-a); margin-bottom:.55rem; }
+.h-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,5vw,3.8rem); font-weight:700; line-height:1.05; }
+.h-meta { display:flex; justify-content:center; gap:1.6rem; flex-wrap:wrap; padding:1.2rem 0 0; font-size:.82rem; color:rgba(255,255,255,.6); }
+.h-meta span { display:flex; align-items:center; gap:.35rem; }
+
+/* TAB NAV */
+.tab-nav { background:var(--dark); display:flex; justify-content:center; padding:0 1rem; position:sticky; top:0; z-index:200; border-top:1px solid rgba(255,255,255,.08); }
+.tab-btn { background:transparent; border:none; color:rgba(255,255,255,.4); font-family:'Outfit',sans-serif; font-size:.82rem; font-weight:600; padding:.95rem 1.8rem; cursor:pointer; position:relative; transition:color .2s; white-space:nowrap; }
+.tab-btn::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; border-radius:3px 3px 0 0; transition:background .2s; }
+.tab-btn.active { color:white; }
+.tab-btn[data-tab="1"].active::after { background:var(--ost-a); }
+.tab-btn[data-tab="2"].active::after { background:var(--tch-a); }
+.tab-btn[data-tab="3"].active::after { background:var(--fra-a); }
+
+/* PANELS */
+.tab-panel { display:none; padding:2rem 1.2rem 5rem; }
+.tab-panel.active { display:block; }
+.inner { max-width:1060px; margin:0 auto; }
+
+/* PERIOD TOGGLE */
+.period-wrap { display:flex; align-items:center; gap:1rem; margin-bottom:1.8rem; flex-wrap:wrap; }
+.period-label { font-size:.75rem; color:var(--muted); font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+.period-toggle { display:flex; background:var(--border); border-radius:10px; padding:3px; gap:3px; }
+.per-btn { background:transparent; border:none; font-family:'Outfit',sans-serif; font-size:.8rem; font-weight:600; padding:.55rem 1.2rem; border-radius:8px; color:var(--muted); cursor:pointer; transition:all .2s; white-space:nowrap; }
+.per-btn.active { background:white; color:var(--dark); box-shadow:0 2px 8px rgba(0,0,0,.1); }
+.period-content { display:none; }
+.period-content.active { display:block; }
+
+/* BANNER */
+.opt-banner { border-radius:18px; padding:2.2rem 2.2rem 1.8rem; color:white; margin-bottom:1.8rem; position:relative; overflow:hidden; }
+.opt1 .opt-banner { background:linear-gradient(130deg,#06182e,#1b4f72 55%,#2471a3); }
+.opt2 .opt-banner { background:linear-gradient(130deg,#061209,#1a3d2b 55%,#1e8449); }
+.opt3 .opt-banner { background:linear-gradient(130deg,#17002e,#3b1f5e 55%,#7d3c98); }
+.opt-banner::before,.opt-banner::after { content:''; position:absolute; border-radius:50%; background:rgba(255,255,255,.05); }
+.opt-banner::before { width:320px;height:320px;right:-80px;top:-80px; }
+.opt-banner::after  { width:160px;height:160px;right:60px;top:30px; }
+.ban-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem; position:relative; z-index:1; }
+.ban-flag { font-size:3.2rem; line-height:1; }
+.ban-tag { font-size:.68rem; letter-spacing:3px; text-transform:uppercase; opacity:.7; margin-bottom:.3rem; }
+.ban-name { font-family:'Cormorant Garamond',serif; font-size:clamp(1.6rem,3.5vw,2.6rem); font-weight:700; line-height:1.1; }
+.ban-sub { font-size:.88rem; opacity:.78; margin-top:.3rem; }
+.ban-pills { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:1.4rem; position:relative; z-index:1; }
+.pill { background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.2); border-radius:50px; padding:.28rem .8rem; font-size:.74rem; font-weight:500; }
+
+/* SUMMARY STRIP */
+.sum-strip { border-radius:12px; padding:1.2rem 1.8rem; display:flex; justify-content:space-around; flex-wrap:wrap; gap:1rem; color:white; margin-bottom:1.8rem; }
+.opt1 .sum-strip { background:linear-gradient(90deg,var(--ost-h),#2471a3); }
+.opt2 .sum-strip { background:linear-gradient(90deg,var(--tch-h),#1e8449); }
+.opt3 .sum-strip { background:linear-gradient(90deg,var(--fra-h),#7d3c98); }
+.ss-item { text-align:center; }
+.ss-val { font-family:'Cormorant Garamond',serif; font-size:1.7rem; font-weight:700; line-height:1; }
+.ss-lbl { font-size:.68rem; opacity:.7; letter-spacing:1px; text-transform:uppercase; margin-top:.15rem; }
+
+/* SECTION LABEL */
+.sec-lbl { font-size:.68rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin:1.8rem 0 .8rem; display:flex; align-items:center; gap:.6rem; }
+.sec-lbl::after { content:''; flex:1; height:1px; background:var(--border); }
+
+/* INFO CARDS */
+.cards-3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin-bottom:1rem; }
+.icard { background:white; border-radius:12px; padding:1.2rem; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+.icard-icon { font-size:1.5rem; margin-bottom:.55rem; }
+.icard-lbl { font-size:.68rem; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:.25rem; }
+.icard-val { font-size:1rem; font-weight:600; }
+.icard-sub { font-size:.78rem; color:var(--muted); margin-top:.2rem; line-height:1.4; }
+.icard.notice { border-left:4px solid; margin-bottom:1rem; }
+.opt1 .icard.notice { border-left-color:var(--ost-a); }
+.opt2 .icard.notice { border-left-color:var(--tch-a); }
+.opt3 .icard.notice { border-left-color:var(--fra-a); }
+
+/* PISTE */
+.piste-card { background:white; border-radius:12px; padding:1.3rem; box-shadow:0 2px 10px rgba(0,0,0,.05); margin-bottom:1rem; }
+.piste-card h4 { font-weight:600; margin-bottom:1rem; font-size:.9rem; }
+.p-row { display:flex; align-items:center; gap:.75rem; margin-bottom:.5rem; }
+.p-dot { width:11px;height:11px;border-radius:50%;flex-shrink:0; }
+.p-blue{background:#2980b9;} .p-red{background:#c0392b;} .p-black{background:#111;}
+.p-track { flex:1; background:#eef0f3; border-radius:4px; height:7px; overflow:hidden; }
+.p-fill { height:100%; border-radius:4px; }
+.p-km { font-size:.75rem; color:var(--muted); width:60px; text-align:right; }
+
+/* ACCOM */
+.accom-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1rem; margin-bottom:1rem; }
+.accom-card { background:white; border-radius:12px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+.accom-img { height:100px; display:flex; align-items:center; justify-content:center; font-size:3rem; }
+.opt1 .accom-img { background:linear-gradient(135deg,#d4e8f5,#a8ccdf); }
+.opt2 .accom-img { background:linear-gradient(135deg,#c8e8d4,#90c8a8); }
+.opt3 .accom-img { background:linear-gradient(135deg,#e4d4f0,#c4a4d8); }
+.accom-body { padding:1rem; }
+.accom-body h4 { font-weight:600; font-size:.9rem; margin-bottom:.3rem; }
+.accom-body p { font-size:.78rem; color:var(--muted); line-height:1.5; }
+.accom-price { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:700; margin-top:.4rem; }
+.opt1 .accom-price{color:var(--ost-h);} .opt2 .accom-price{color:var(--tch-h);} .opt3 .accom-price{color:var(--fra-h);}
+
+/* BUDGET TABLE */
+.budget-table { background:white; border-radius:12px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.05); margin-bottom:1rem; }
+.bt-head { display:grid; grid-template-columns:2fr repeat(4,1fr); background:var(--dark); color:white; font-size:.7rem; font-weight:700; letter-spacing:.4px; padding:.85rem 1.2rem; }
+.bt-row { display:grid; grid-template-columns:2fr repeat(4,1fr); padding:.65rem 1.2rem; font-size:.82rem; border-bottom:1px solid #f0f2f5; align-items:center; }
+.bt-row:nth-child(odd){background:#fafbfc;} .bt-row:last-child{border-bottom:none;}
+.bt-total { display:grid; grid-template-columns:2fr repeat(4,1fr); padding:.9rem 1.2rem; font-weight:700; font-size:.86rem; background:#f2f4f8; border-top:2px solid var(--border); }
+.bt-pp { display:grid; grid-template-columns:2fr repeat(4,1fr); padding:.7rem 1.2rem; font-size:.78rem; color:var(--muted); background:#eaecf0; }
+.bt-note { padding:.6rem 1.2rem; font-size:.74rem; color:var(--muted); background:#f7f8fa; border-top:1px solid var(--border); display:flex; gap:1.5rem; flex-wrap:wrap; }
+.r{text-align:right;} .bold{font-weight:700;} .green{color:#27ae60;font-weight:700;} .amber{color:#e67e22;font-weight:700;}
+.col-head{text-align:right;} .col-head:first-child{text-align:left;}
+
+/* PROGRAMME */
+.prog-card { background:white; border-radius:12px; padding:1.3rem; box-shadow:0 2px 10px rgba(0,0,0,.05); margin-bottom:1rem; }
+.prog-card h4 { font-weight:600; margin-bottom:1rem; }
+.prog-item { display:flex; gap:1rem; padding:.6rem 0; border-bottom:1px solid #f0f2f5; font-size:.82rem; }
+.prog-item:last-child{border-bottom:none;}
+.prog-day { width:60px; flex-shrink:0; font-weight:700; font-size:.7rem; text-transform:uppercase; letter-spacing:.5px; color:var(--muted); padding-top:.1rem; }
+.prog-txt strong{display:block;margin-bottom:.1rem;} .prog-txt span{color:var(--muted);}
+
+/* TIPS */
+.tips-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:.8rem; margin-bottom:1.5rem; }
+.tip-card { background:white; border-radius:10px; padding:1rem; box-shadow:0 2px 8px rgba(0,0,0,.04); font-size:.8rem; }
+.tip-card .ti{font-size:1.3rem;margin-bottom:.3rem;} .tip-card strong{display:block;margin-bottom:.2rem;font-size:.82rem;} .tip-card p{color:var(--muted);line-height:1.5;}
+
+/* COMPARISON */
+.cmp-section { background:var(--dark); padding:3rem 1.5rem; }
+.cmp-inner { max-width:1060px; margin:0 auto; }
+.cmp-table { width:100%; border-collapse:collapse; color:white; font-size:.83rem; }
+.cmp-table th { text-align:left; padding:.8rem 1rem; color:rgba(255,255,255,.5); font-weight:600; font-size:.72rem; letter-spacing:.5px; border-bottom:1px solid rgba(255,255,255,.15); }
+.cmp-table th:not(:first-child){text-align:center;}
+.cmp-table td { padding:.75rem 1rem; border-bottom:1px solid rgba(255,255,255,.07); }
+.cmp-table td:not(:first-child){text-align:center;}
+.cmp-table tr:nth-child(even){background:rgba(255,255,255,.03);}
+.cmp-table .lbl{color:rgba(255,255,255,.7);}
+
+@media(max-width:680px){
+  .bt-head,.bt-row,.bt-total,.bt-pp{grid-template-columns:1.6fr repeat(4,.8fr);font-size:.67rem;padding:.6rem .7rem;}
+  .tab-btn{padding:.85rem 1rem;font-size:.75rem;}
+  .ss-val{font-size:1.3rem;}
+}
+@media(max-width:480px){
+  .bt-head,.bt-row,.bt-total,.bt-pp{grid-template-columns:1.3fr repeat(4,.85fr);font-size:.61rem;}
+  .tab-btn{padding:.8rem .7rem;font-size:.72rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="hi">
+    <p class="eyebrow">⛷ Skivakantie Voorstel 2026–2027</p>
+    <h1 class="h-title">3 Opties voor 3 Gezinnen</h1>
+    <div class="h-meta">
+      <span>👨‍👩‍👧‍👦 6 volw. + 7 kinderen (12–17j) = 13 pers.</span>
+      <span>⏱ 7 dagen per optie</span>
+      <span>🗓 Carnaval 13–21 feb 2027 · Kerst 19 dec–3 jan</span>
+      <span>💶 Max €1.250 p.p.</span>
+      <span>🚗 Eigen auto</span>
+      <span>📚 Skiles alle kinderen</span>
+    </div>
+  </div>
+</header>
+
+<!-- TAB NAV -->
+<nav class="tab-nav">
+  <button class="tab-btn active" data-tab="1">🇦🇹 Optie 1 · Oostenrijk</button>
+  <button class="tab-btn" data-tab="2">🇨🇿 Optie 2 · Tsjechië</button>
+  <button class="tab-btn" data-tab="3">🇫🇷 Optie 3 · Frankrijk</button>
+</nav>
+
+
+<!-- ══ OPTIE 1: SAALBACH-HINTERGLEMM, OOSTENRIJK ══ -->
+<div class="tab-panel active opt1" id="panel-1">
+<div class="inner">
+
+  <div class="opt-banner">
+    <div class="ban-top">
+      <div>
+        <p class="ban-tag">Optie 1 · Oostenrijk</p>
+        <h2 class="ban-name">Saalbach-Hinterglemm</h2>
+        <p class="ban-sub">Salzburgerland · Skicircus · 270 km piste · Beste balans prijs/kwaliteit</p>
+      </div>
+      <div class="ban-flag">🇦🇹</div>
+    </div>
+    <div class="ban-pills">
+      <span class="pill">⭐ Favoriet NL-gezinnen</span>
+      <span class="pill">🔵 140 km blauwe pistes</span>
+      <span class="pill">🇳🇱 NL-talige skileraren</span>
+      <span class="pill">🚗 ~9u rijden</span>
+      <span class="pill">❄️ Sneeuwzeker</span>
+      <span class="pill">🍻 Gezellige après-ski</span>
+    </div>
+  </div>
+
+  <div class="period-wrap">
+    <span class="period-label">Kies periode:</span>
+    <div class="period-toggle">
+      <button class="per-btn active" data-opt="1" data-period="c">🎭 Carnaval · 13–21 feb 2027</button>
+      <button class="per-btn" data-opt="1" data-period="k">🎄 Kerst · 26 dec–2 jan</button>
+    </div>
+  </div>
+
+  <!-- CARNAVAL -->
+  <div class="period-content active" id="p1c">
+    <div class="sum-strip">
+      <div class="ss-item"><div class="ss-val">7 dagen</div><div class="ss-lbl">Duur</div></div>
+      <div class="ss-item"><div class="ss-val">Za 13 – Za 20 feb</div><div class="ss-lbl">Data (6 nachten)</div></div>
+      <div class="ss-item"><div class="ss-val">~9 uur</div><div class="ss-lbl">Reistijd</div></div>
+      <div class="ss-item"><div class="ss-val green">€969 p.p.</div><div class="ss-lbl">Gem. kosten</div></div>
+      <div class="ss-item"><div class="ss-val green">✓ Ruim binnen budget</div><div class="ss-lbl">Max €1.250 p.p.</div></div>
+    </div>
+
+    <p class="sec-lbl">Bestemming & info</p>
+    <div class="cards-3">
+      <div class="icard"><div class="icard-icon">🏔</div><div class="icard-lbl">Hoogte</div><div class="icard-val">1.003 – 2.096 m</div><div class="icard-sub">Goede sneeuwzekerheid in februari</div></div>
+      <div class="icard"><div class="icard-icon">🎿</div><div class="icard-lbl">Piste</div><div class="icard-val">270 km · 70 liften</div><div class="icard-sub">Grootste skigebied Salzburgerland</div></div>
+      <div class="icard"><div class="icard-icon">🚗</div><div class="icard-lbl">Reistijd</div><div class="icard-val">~8,5 – 9,5 uur</div><div class="icard-sub">Via München · vignet + winterbanden vereist</div></div>
+      <div class="icard"><div class="icard-icon">📚</div><div class="icard-lbl">Skischool</div><div class="icard-val">NL-talige instructeurs</div><div class="icard-sub">Skischule Saalbach, Rote Teufel – groepslessen</div></div>
+    </div>
+
+    <div class="piste-card">
+      <h4>🎿 Pisteverdeling — ideaal voor beginners</h4>
+      <div class="p-row"><div class="p-dot p-blue"></div><div class="p-track"><div class="p-fill" style="width:52%;background:#2980b9"></div></div><span class="p-km">🔵 140 km</span></div>
+      <div class="p-row"><div class="p-dot p-red"></div><div class="p-track"><div class="p-fill" style="width:37%;background:#c0392b"></div></div><span class="p-km">🔴 100 km</span></div>
+      <div class="p-row"><div class="p-dot p-black"></div><div class="p-track"><div class="p-fill" style="width:11%;background:#222"></div></div><span class="p-km">⚫ 30 km</span></div>
+    </div>
+
+    <p class="sec-lbl">Accommodatie — privacy per gezin + gezamenlijke ruimte</p>
+    <div class="accom-grid">
+      <div class="accom-card">
+        <div class="accom-img">🏠</div>
+        <div class="accom-body">
+          <h4>Appartementencomplex Saalbach</h4>
+          <p>3 aangrenzende units (4+4+5 pers) + gedeelde woonkamer. Ski-in/ski-out. Privacy per gezin, gezelligheid gedeeld.</p>
+          <p class="accom-price">€ 210 – 260 / nacht per app.</p>
+        </div>
+      </div>
+      <div class="accom-card">
+        <div class="accom-img">🏡</div>
+        <div class="accom-body">
+          <h4>Vakantiepark Viehhofen (Landal)</h4>
+          <p>Aangrenzende cottages per gezin + gedeeld zwembad/sauna. Perfecte mix privacy en groepssfeer.</p>
+          <p class="accom-price">€ 180 – 220 / nacht per unit</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="sec-lbl">💰 Begroting — carnavalsvakantie 13–20 feb 2027 (6 nachten)</p>
+    <div class="budget-table">
+      <div class="bt-head">
+        <div>Kostenpost</div>
+        <div class="col-head">Gezin A<br><small>2v+2k</small></div>
+        <div class="col-head">Gezin B<br><small>2v+3k</small></div>
+        <div class="col-head">Gezin C<br><small>2v+2k</small></div>
+        <div class="col-head">Groepstotaal</div>
+      </div>
+      <div class="bt-row"><div>🚗 Reiskosten (benzine + tol + vignet)</div><div class="r">€ 340</div><div class="r">€ 340</div><div class="r">€ 340</div><div class="r bold">€ 1.020</div></div>
+      <div class="bt-row"><div>🏠 Appartement 6 nachten</div><div class="r">€ 1.260</div><div class="r">€ 1.380</div><div class="r">€ 1.260</div><div class="r bold">€ 3.900</div></div>
+      <div class="bt-row"><div>🎿 Skipas 5 dagen (volw €255 · kind €210)</div><div class="r">€ 930</div><div class="r">€ 1.140</div><div class="r">€ 930</div><div class="r bold">€ 3.000</div></div>
+      <div class="bt-row"><div>📚 Skiles kinderen — 5 ochtenden groep</div><div class="r">€ 340</div><div class="r">€ 510</div><div class="r">€ 340</div><div class="r bold">€ 1.190</div></div>
+      <div class="bt-row"><div>👟 Skihuur compleet 5 dagen (pp ~€70–85)</div><div class="r">€ 360</div><div class="r">€ 450</div><div class="r">€ 360</div><div class="r bold">€ 1.170</div></div>
+      <div class="bt-row"><div>🍽 Eten & drinken (zelf koken + 1 berglunch)</div><div class="r">€ 500</div><div class="r">€ 600</div><div class="r">€ 500</div><div class="r bold">€ 1.600</div></div>
+      <div class="bt-row"><div>🛡 Reisverzekering incl. wintersport</div><div class="r">€ 120</div><div class="r">€ 150</div><div class="r">€ 120</div><div class="r bold">€ 390</div></div>
+      <div class="bt-row"><div>💡 Reserve / diversen</div><div class="r">€ 100</div><div class="r">€ 120</div><div class="r">€ 100</div><div class="r bold">€ 320</div></div>
+      <div class="bt-total"><div class="bold">TOTAAL per gezin</div><div class="r bold">€ 3.950</div><div class="r bold">€ 4.690</div><div class="r bold">€ 3.950</div><div class="r bold">€ 12.590</div></div>
+      <div class="bt-pp"><div>Per persoon</div><div class="r green">€ 988</div><div class="r green">€ 938</div><div class="r green">€ 988</div><div class="r bold">gem. € 969</div></div>
+      <div class="bt-note"><span>✅ Alle gezinnen ruim binnen €1.250 p.p.</span><span>🔵 Skipas kind 12–17j: ~€210/5d · Skiles groep kinderen: ~€170/5 ochtenden</span></div>
+    </div>
+
+    <p class="sec-lbl">📅 Weekprogramma · Za 13 – Za 20 februari 2027</p>
+    <div class="prog-card">
+      <div class="prog-item"><div class="prog-day">Za 13/2</div><div class="prog-txt"><strong>🚗 Vertrek 5:00u · Aankomst ~14:30u</strong><span>Inchecken, skihuur ophalen. Carnavalsfeest in Saalbach 's avonds!</span></div></div>
+      <div class="prog-item"><div class="prog-day">Zo 14/2</div><div class="prog-txt"><strong>🎿 Dag 1 piste · Skiles kinderen start</strong><span>Groepsles ochtend. Middag: blauwe pistes verkennen met volwassenen.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Ma 15/2</div><div class="prog-txt"><strong>📚 Dag 2 skiles + oefenpistes</strong><span>Voortgang op blauwe pistes. Berghutten verkennen. Avond: après-ski dorp.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Di 16/2</div><div class="prog-txt"><strong>⛷ Dag 3 · Hele dag vrij skiën</strong><span>Jausernabfahrt (7 km!) proberen. Kinderen beginnen al zelfstandig te rijden.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Wo 17/2</div><div class="prog-txt"><strong>🏔 Dag 4 · Panoramatocht</strong><span>Langste blauwe routes, mooiste uitzichten. Gezamenlijk diner 's avonds.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Do 18/2</div><div class="prog-txt"><strong>🛷 Dag 5 · Keuzedag: ski of fun</strong><span>Skiën, rodelen of spa/sauna. Laatste avond gezellig samen.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Vr 19/2</div><div class="prog-txt"><strong>🎿 Dag 6 · Laatste dag op piste</strong><span>Halve dag skiën, middag inpakken. Vroeg naar bed voor terugreis.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Za 20/2</div><div class="prog-txt"><strong>🚗 Terugreis · Vertrek 7:00u · Thuis ~17:00u</strong><span>Thuis op zaterdag — zondag 21 feb uitrusten!</span></div></div>
+    </div>
+
+    <p class="sec-lbl">💡 Tips</p>
+    <div class="tips-grid">
+      <div class="tip-card"><div class="ti">📅</div><strong>Boek nú!</strong><p>Carnaval is hoogseizoen. Appartementen voor 13 personen in 2027 al snel volgeboekt. Reserveer vóór zomer 2026.</p></div>
+      <div class="tip-card"><div class="ti">🇳🇱</div><strong>NL-talige les</strong><p>Meerdere skischolen met Nederlandse instructeurs. Kinderen leren sneller in eigen taal.</p></div>
+      <div class="tip-card"><div class="ti">🎿</div><strong>Skipas online</strong><p>Koop Skicircus-pas online van tevoren. Tot 10% korting t.o.v. kassa. Vraag naar gezinspassen.</p></div>
+      <div class="tip-card"><div class="ti">🚗</div><strong>Vignet verplicht</strong><p>Oostenrijks vignet (~€10) verplicht op snelweg. Winterbanden of kettingen meenemen.</p></div>
+      <div class="tip-card"><div class="ti">🍳</div><strong>Zelf koken</strong><p>Appartement met keuken bespaart €400–600 per gezin t.o.v. halfpension. Zelfverzorgend is de sleutel.</p></div>
+    </div>
+  </div><!-- /carnaval -->
+
+  <!-- KERST -->
+  <div class="period-content" id="p1k">
+    <div class="sum-strip">
+      <div class="ss-item"><div class="ss-val">7 dagen</div><div class="ss-lbl">Duur</div></div>
+      <div class="ss-item"><div class="ss-val">Za 26 dec – Za 2 jan</div><div class="ss-lbl">Data (6 nachten)</div></div>
+      <div class="ss-item"><div class="ss-val">~9 uur</div><div class="ss-lbl">Reistijd</div></div>
+      <div class="ss-item"><div class="ss-val amber">€1.048 p.p.</div><div class="ss-lbl">Gem. kosten</div></div>
+      <div class="ss-item"><div class="ss-val amber">⚠ Krap — kerststoeslag</div><div class="ss-lbl">Max €1.250 p.p.</div></div>
+    </div>
+    <div class="icard notice"><div class="icard-lbl">Kerststoeslag</div><div class="icard-val">Kerst = +30–40% op accommodatie</div><div class="icard-sub">Aanbevolen window: 26 dec – 2 jan 2027. Vermijd 24/25 dec (reisdrukte). Budget is krap maar haalbaar bij zelfverzorging en vroeg boeken. Gezin B totaal komt uit boven €5.000 — tip: sla 1 skipijdag over of kies goedkoper appartement.</div></div>
+
+    <p class="sec-lbl">💰 Begroting — kerstvakantie 26 dec 2026 – 2 jan 2027 (6 nachten)</p>
+    <div class="budget-table">
+      <div class="bt-head">
+        <div>Kostenpost</div>
+        <div class="col-head">Gezin A<br><small>2v+2k</small></div>
+        <div class="col-head">Gezin B<br><small>2v+3k</small></div>
+        <div class="col-head">Gezin C<br><small>2v+2k</small></div>
+        <div class="col-head">Groepstotaal</div>
+      </div>
+      <div class="bt-row"><div>🚗 Reiskosten</div><div class="r">€ 340</div><div class="r">€ 340</div><div class="r">€ 340</div><div class="r bold">€ 1.020</div></div>
+      <div class="bt-row"><div>🏠 Appartement 6 nachten (kerststoeslag +35%)</div><div class="r">€ 1.700</div><div class="r">€ 1.860</div><div class="r">€ 1.700</div><div class="r bold">€ 5.260</div></div>
+      <div class="bt-row"><div>🎿 Skipas 5 dagen</div><div class="r">€ 930</div><div class="r">€ 1.140</div><div class="r">€ 930</div><div class="r bold">€ 3.000</div></div>
+      <div class="bt-row"><div>📚 Skiles kinderen</div><div class="r">€ 340</div><div class="r">€ 510</div><div class="r">€ 340</div><div class="r bold">€ 1.190</div></div>
+      <div class="bt-row"><div>👟 Skihuur compleet 5 dagen</div><div class="r">€ 360</div><div class="r">€ 450</div><div class="r">€ 360</div><div class="r bold">€ 1.170</div></div>
+      <div class="bt-row"><div>🍽 Eten & drinken + oud&nieuw maaltijd</div><div class="r">€ 540</div><div class="r">€ 650</div><div class="r">€ 540</div><div class="r bold">€ 1.730</div></div>
+      <div class="bt-row"><div>🛡 Reisverzekering</div><div class="r">€ 120</div><div class="r">€ 150</div><div class="r">€ 120</div><div class="r bold">€ 390</div></div>
+      <div class="bt-row"><div>💡 Reserve</div><div class="r">€ 80</div><div class="r">€ 100</div><div class="r">€ 80</div><div class="r bold">€ 260</div></div>
+      <div class="bt-total"><div class="bold">TOTAAL per gezin</div><div class="r bold">€ 4.410</div><div class="r amber">€ 5.200</div><div class="r bold">€ 4.410</div><div class="r bold">€ 14.020</div></div>
+      <div class="bt-pp"><div>Per persoon</div><div class="r amber">€ 1.103</div><div class="r green">€ 1.040</div><div class="r amber">€ 1.103</div><div class="r bold">gem. €1.079</div></div>
+      <div class="bt-note"><span>⚠️ Gezin B totaal boven €5.000 bij kerst — bespaar op appartement of skip 1 skipijdag</span><span>✅ Per persoon alle gezinnen binnen €1.250 max</span></div>
+    </div>
+
+    <p class="sec-lbl">📅 Weekprogramma · Za 26 dec 2026 – Za 2 jan 2027</p>
+    <div class="prog-card">
+      <div class="prog-item"><div class="prog-day">Za 26/12</div><div class="prog-txt"><strong>🚗 Vertrek 5:00u · Aankomst ~14:30u</strong><span>Inchecken, skihuur, eerste avond samen dineren. Kerstsfeer in Saalbach!</span></div></div>
+      <div class="prog-item"><div class="prog-day">Zo 27/12</div><div class="prog-txt"><strong>🎿 Dag 1 piste · Skiles kinderen</strong><span>Groepsles ochtend. Middag verkennen. Avond: glühwein bij open haard.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Ma 28/12</div><div class="prog-txt"><strong>📚 Dag 2 skiles + vrij skiën</strong><span>Blauwe pistes. Berghutten bezoeken. Après-ski.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Di 29/12</div><div class="prog-txt"><strong>⛷ Dag 3 · Panoramatochten</strong><span>Jausernabfahrt (7 km!). Gezamenlijk diner avond.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Wo 30/12</div><div class="prog-txt"><strong>🛷 Dag 4 · Keuzedag</strong><span>Skiën, rodelen of spa. Groepswandeling in de sneeuw.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Do 31/12</div><div class="prog-txt"><strong>🎆 OUDJAARSAVOND!</strong><span>Halve dag skiën. Avond: spectaculair vuurwerk + feest in Saalbach!</span></div></div>
+      <div class="prog-item"><div class="prog-day">Vr 1/1</div><div class="prog-txt"><strong>🥂 Nieuwjaarsdag</strong><span>Uitslapen, korte skitocht, inpakken.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Za 2/1</div><div class="prog-txt"><strong>🚗 Terugreis · Thuis ~17:00u</strong><span>Gelukkig nieuwjaar 2027!</span></div></div>
+    </div>
+  </div><!-- /kerst -->
+
+</div>
+</div><!-- /panel 1 -->
+
+
+<!-- ══ OPTIE 2: ŠPINDLERŮV MLÝN, TSJECHIË ══ -->
+<div class="tab-panel opt2" id="panel-2">
+<div class="inner">
+
+  <div class="opt-banner">
+    <div class="ban-top">
+      <div>
+        <p class="ban-tag">Optie 2 · Tsjechië</p>
+        <h2 class="ban-name">Špindlerův Mlýn</h2>
+        <p class="ban-sub">Reuzengebergte (Krkonoše) · 25 km piste · Budgetkampioen</p>
+      </div>
+      <div class="ban-flag">🇨🇿</div>
+    </div>
+    <div class="ban-pills">
+      <span class="pill">💶 Goedkoopste optie: ~50% minder</span>
+      <span class="pill">🔵 Veel blauwe pistes</span>
+      <span class="pill">🚗 ~7u rijden</span>
+      <span class="pill">🏙 Praag op 2u</span>
+      <span class="pill">👨‍👩‍👧 Kindvriendelijk</span>
+      <span class="pill">🍺 Goedkoop eten & bier</span>
+    </div>
+  </div>
+
+  <div class="period-wrap">
+    <span class="period-label">Kies periode:</span>
+    <div class="period-toggle">
+      <button class="per-btn active" data-opt="2" data-period="c">🎭 Carnaval · 13–21 feb 2027</button>
+      <button class="per-btn" data-opt="2" data-period="k">🎄 Kerst · 26 dec–2 jan</button>
+    </div>
+  </div>
+
+  <!-- CARNAVAL -->
+  <div class="period-content active" id="p2c">
+    <div class="sum-strip">
+      <div class="ss-item"><div class="ss-val">7 dagen</div><div class="ss-lbl">Duur</div></div>
+      <div class="ss-item"><div class="ss-val">Za 13 – Za 20 feb</div><div class="ss-lbl">Data (6 nachten)</div></div>
+      <div class="ss-item"><div class="ss-val">~7 uur</div><div class="ss-lbl">Reistijd</div></div>
+      <div class="ss-item"><div class="ss-val green">€573 p.p.</div><div class="ss-lbl">Gem. kosten</div></div>
+      <div class="ss-item"><div class="ss-val green">✓ €677 restbudget p.p.!</div><div class="ss-lbl">Ver onder max</div></div>
+    </div>
+
+    <div class="icard notice"><div class="icard-lbl">Waarom Tsjechië?</div><div class="icard-val">Zelfde wintersportlol voor de helft van de prijs</div><div class="icard-sub">Špindlerův Mlýn is het grootste skigebied van Tsjechië in het prachtige Reuzengebergte. Klein maar overzichtelijk — ideaal voor beginners. Skipassen, eten, huur en accommodatie zijn 40–50% goedkoper dan Oostenrijk. Restbudget per persoon: ~€677!</div></div>
+
+    <p class="sec-lbl">Bestemming & info</p>
+    <div class="cards-3">
+      <div class="icard"><div class="icard-icon">🏔</div><div class="icard-lbl">Hoogte</div><div class="icard-val">700 – 1.235 m</div><div class="icard-sub">Lager dan Alpen — februari is de beste maand</div></div>
+      <div class="icard"><div class="icard-icon">🎿</div><div class="icard-lbl">Piste</div><div class="icard-val">25 km · 14 liften</div><div class="icard-sub">Klein & overzichtelijk — perfect voor beginners</div></div>
+      <div class="icard"><div class="icard-icon">🚗</div><div class="icard-lbl">Reistijd</div><div class="icard-val">~7 – 7,5 uur</div><div class="icard-sub">Via Duitsland · geen tol of vignet nodig</div></div>
+      <div class="icard"><div class="icard-icon">📚</div><div class="icard-lbl">Skischool</div><div class="icard-val">Engelstalige leraren</div><div class="icard-sub">Meerdere skischolen · groepslessen kinderen</div></div>
+    </div>
+
+    <div class="piste-card">
+      <h4>🎿 Pisteverdeling — compact beginnersterrein</h4>
+      <div class="p-row"><div class="p-dot p-blue"></div><div class="p-track"><div class="p-fill" style="width:56%;background:#2980b9"></div></div><span class="p-km">🔵 14 km</span></div>
+      <div class="p-row"><div class="p-dot p-red"></div><div class="p-track"><div class="p-fill" style="width:36%;background:#c0392b"></div></div><span class="p-km">🔴 9 km</span></div>
+      <div class="p-row"><div class="p-dot p-black"></div><div class="p-track"><div class="p-fill" style="width:8%;background:#222"></div></div><span class="p-km">⚫ 2 km</span></div>
+    </div>
+
+    <p class="sec-lbl">Accommodatie</p>
+    <div class="accom-grid">
+      <div class="accom-card"><div class="accom-img">🏡</div><div class="accom-body"><h4>Pension / Appartementencomplex</h4><p>Pension of aparthotel met 3 aangrenzende units + gedeelde eetkamer/woonkamer. Zeer betaalbaar. 4+4+5 pers.</p><p class="accom-price">€ 80 – 120 / nacht per unit</p></div></div>
+      <div class="accom-card"><div class="accom-img">🏠</div><div class="accom-body"><h4>Vakantiewoning voor 13 pers.</h4><p>Groot vakantiehuis met gemeenschappelijke woonkamer + aparte slaapkamers. Budgetvriendelijkste keuze.</p><p class="accom-price">€ 150 – 200 / nacht totaal</p></div></div>
+    </div>
+
+    <p class="sec-lbl">💰 Begroting — carnavalsvakantie 13–20 feb 2027 (6 nachten)</p>
+    <div class="budget-table">
+      <div class="bt-head">
+        <div>Kostenpost</div>
+        <div class="col-head">Gezin A<br><small>2v+2k</small></div>
+        <div class="col-head">Gezin B<br><small>2v+3k</small></div>
+        <div class="col-head">Gezin C<br><small>2v+2k</small></div>
+        <div class="col-head">Groepstotaal</div>
+      </div>
+      <div class="bt-row"><div>🚗 Reiskosten (benzine · geen vignet)</div><div class="r">€ 240</div><div class="r">€ 240</div><div class="r">€ 240</div><div class="r bold">€ 720</div></div>
+      <div class="bt-row"><div>🏠 Appartement 6 nachten</div><div class="r">€ 580</div><div class="r">€ 700</div><div class="r">€ 580</div><div class="r bold">€ 1.860</div></div>
+      <div class="bt-row"><div>🎿 Skipas 5 dagen (volw ~€135 · kind ~€100)</div><div class="r">€ 470</div><div class="r">€ 570</div><div class="r">€ 470</div><div class="r bold">€ 1.510</div></div>
+      <div class="bt-row"><div>📚 Skiles kinderen — 5 ochtenden groep</div><div class="r">€ 240</div><div class="r">€ 360</div><div class="r">€ 240</div><div class="r bold">€ 840</div></div>
+      <div class="bt-row"><div>👟 Skihuur compleet 5 dagen (~€48/pp/d)</div><div class="r">€ 240</div><div class="r">€ 300</div><div class="r">€ 240</div><div class="r bold">€ 780</div></div>
+      <div class="bt-row"><div>🍽 Eten & drinken (zeer betaalbaar)</div><div class="r">€ 360</div><div class="r">€ 440</div><div class="r">€ 360</div><div class="r bold">€ 1.160</div></div>
+      <div class="bt-row"><div>🛡 Reisverzekering incl. wintersport</div><div class="r">€ 100</div><div class="r">€ 120</div><div class="r">€ 100</div><div class="r bold">€ 320</div></div>
+      <div class="bt-row"><div>💡 Reserve / diversen</div><div class="r">€ 80</div><div class="r">€ 100</div><div class="r">€ 80</div><div class="r bold">€ 260</div></div>
+      <div class="bt-total"><div class="bold">TOTAAL per gezin</div><div class="r bold">€ 2.310</div><div class="r bold">€ 2.830</div><div class="r bold">€ 2.310</div><div class="r bold">€ 7.450</div></div>
+      <div class="bt-pp"><div>Per persoon</div><div class="r green">€ 578</div><div class="r green">€ 566</div><div class="r green">€ 578</div><div class="r bold">gem. € 573</div></div>
+      <div class="bt-note"><span>💚 Besparing vs. Oostenrijk: ~€5.000 voor de groep!</span><span>💡 Restbudget per persoon: ~€677 — tweede trip of extra luxe!</span></div>
+    </div>
+
+    <p class="sec-lbl">📅 Weekprogramma · Za 13 – Za 20 februari 2027</p>
+    <div class="prog-card">
+      <div class="prog-item"><div class="prog-day">Za 13/2</div><div class="prog-txt"><strong>🚗 Vertrek 6:00u · Aankomst ~13:00u</strong><span>Kortste rit! Inchecken, skihuur. Middag al eerste ronde op de piste.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Zo 14/2</div><div class="prog-txt"><strong>🎿 Dag 1 · Skiles kinderen start</strong><span>Groepsles ochtend. Klein overzichtelijk gebied — snel wegwijs.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Ma 15/2</div><div class="prog-txt"><strong>📚 Dag 2 skiles + verkennen</strong><span>Alle blauwe pistes in kaart. Avond: Tsjechisch diner — svíčková en knedlíky!</span></div></div>
+      <div class="prog-item"><div class="prog-day">Di 16/2</div><div class="prog-txt"><strong>⛷ Dag 3 · Hele dag skiën</strong><span>Gevorderden beginnen rode pistes te proberen. Après-ski bij open haard.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Wo 17/2</div><div class="prog-txt"><strong>🏙 Optioneel: daguitje Praag (2u)</strong><span>Prachtige historische binnenstad, goedkoop eten — een geweldige bonus!</span></div></div>
+      <div class="prog-item"><div class="prog-day">Do 18/2</div><div class="prog-txt"><strong>🛷 Dag 5 · Rodelen + skiën</strong><span>Langste rodelbaan proberen. Avond: gezamenlijk afsluitingsdiner.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Vr 19/2</div><div class="prog-txt"><strong>🎿 Dag 6 · Laatste dag piste</strong><span>Inpakken, halve dag skiën. Vroeg klaar voor terugreis morgen.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Za 20/2</div><div class="prog-txt"><strong>🚗 Terugreis · Vertrek 7:00u · Thuis ~14:00u</strong><span>Vroegst thuis van alle 3 opties!</span></div></div>
+    </div>
+
+    <p class="sec-lbl">💡 Tips</p>
+    <div class="tips-grid">
+      <div class="tip-card"><div class="ti">💰</div><strong>Extreem budget-vriendelijk</strong><p>Eten, drinken, huur en skipassen kosten 40–50% minder dan Alpen.</p></div>
+      <div class="tip-card"><div class="ti">🌨</div><strong>Check sneeuw!</strong><p>Lager gelegen dan Alpen. Februari is beste maand. Kies accommodatie met sneeuwgarantie.</p></div>
+      <div class="tip-card"><div class="ti">🏙</div><strong>Praag als bonus</strong><p>Op 2 uur rijden: Praag bezoeken is een geweldige extra voor de kids.</p></div>
+      <div class="tip-card"><div class="ti">🚗</div><strong>Kortste rit</strong><p>Geen vignet nodig. Kortste reistijd van alle 3 opties. Gemakkelijkst bereikbaar.</p></div>
+      <div class="tip-card"><div class="ti">🎿</div><strong>Klein maar fijn</strong><p>Overzichtelijk terrein voor beginners. Kids raken niet kwijt. Persoonlijkere sfeer.</p></div>
+    </div>
+  </div><!-- /carnaval -->
+
+  <!-- KERST -->
+  <div class="period-content" id="p2k">
+    <div class="sum-strip">
+      <div class="ss-item"><div class="ss-val">7 dagen</div><div class="ss-lbl">Duur</div></div>
+      <div class="ss-item"><div class="ss-val">Za 26 dec – Za 2 jan</div><div class="ss-lbl">Data (6 nachten)</div></div>
+      <div class="ss-item"><div class="ss-val">~7 uur</div><div class="ss-lbl">Reistijd</div></div>
+      <div class="ss-item"><div class="ss-val green">€626 p.p.</div><div class="ss-lbl">Gem. kosten</div></div>
+      <div class="ss-item"><div class="ss-val green">✓ €624 restbudget p.p.</div><div class="ss-lbl">Ver onder max</div></div>
+    </div>
+
+    <p class="sec-lbl">💰 Begroting — kerstvakantie 26 dec – 2 jan (6 nachten)</p>
+    <div class="budget-table">
+      <div class="bt-head">
+        <div>Kostenpost</div>
+        <div class="col-head">Gezin A<br><small>2v+2k</small></div>
+        <div class="col-head">Gezin B<br><small>2v+3k</small></div>
+        <div class="col-head">Gezin C<br><small>2v+2k</small></div>
+        <div class="col-head">Groepstotaal</div>
+      </div>
+      <div class="bt-row"><div>🚗 Reiskosten</div><div class="r">€ 240</div><div class="r">€ 240</div><div class="r">€ 240</div><div class="r bold">€ 720</div></div>
+      <div class="bt-row"><div>🏠 Appartement 6 nachten (kerststoeslag +30%)</div><div class="r">€ 755</div><div class="r">€ 910</div><div class="r">€ 755</div><div class="r bold">€ 2.420</div></div>
+      <div class="bt-row"><div>🎿 Skipas 5 dagen</div><div class="r">€ 470</div><div class="r">€ 570</div><div class="r">€ 470</div><div class="r bold">€ 1.510</div></div>
+      <div class="bt-row"><div>📚 Skiles kinderen</div><div class="r">€ 240</div><div class="r">€ 360</div><div class="r">€ 240</div><div class="r bold">€ 840</div></div>
+      <div class="bt-row"><div>👟 Skihuur 5 dagen</div><div class="r">€ 240</div><div class="r">€ 300</div><div class="r">€ 240</div><div class="r bold">€ 780</div></div>
+      <div class="bt-row"><div>🍽 Eten & drinken + oud&nieuw</div><div class="r">€ 400</div><div class="r">€ 490</div><div class="r">€ 400</div><div class="r bold">€ 1.290</div></div>
+      <div class="bt-row"><div>🛡 Reisverzekering</div><div class="r">€ 100</div><div class="r">€ 120</div><div class="r">€ 100</div><div class="r bold">€ 320</div></div>
+      <div class="bt-row"><div>💡 Reserve</div><div class="r">€ 100</div><div class="r">€ 120</div><div class="r">€ 100</div><div class="r bold">€ 320</div></div>
+      <div class="bt-total"><div class="bold">TOTAAL per gezin</div><div class="r bold">€ 2.545</div><div class="r bold">€ 3.110</div><div class="r bold">€ 2.545</div><div class="r bold">€ 8.200</div></div>
+      <div class="bt-pp"><div>Per persoon</div><div class="r green">€ 636</div><div class="r green">€ 622</div><div class="r green">€ 636</div><div class="r bold">gem. € 631</div></div>
+      <div class="bt-note"><span>🎄 Oud & Nieuw in Tsjechië: bekende vuurwerktraditie!</span><span>💚 Nog ~€620 per persoon onder max. budget — meest budgetvriendelijk in kerst</span></div>
+    </div>
+
+    <p class="sec-lbl">📅 Weekprogramma · Za 26 dec 2026 – Za 2 jan 2027</p>
+    <div class="prog-card">
+      <div class="prog-item"><div class="prog-day">Za 26/12</div><div class="prog-txt"><strong>🚗 Vertrek 6:00u · Aankomst ~13:00u</strong><span>Inchecken, skihuur ophalen, eerste wandeling in dorp.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Zo 27/12</div><div class="prog-txt"><strong>🎿 Dag 1 · Skiles kinderen start</strong><span>Groepsles. Volwassenen zelfstandig verkennen.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Ma 28/12</div><div class="prog-txt"><strong>📚 Dag 2 · Pistes verkennen</strong><span>Avond: lokaal restaurant — Tsjechisch eten is heerlijk en goedkoop.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Di 29/12</div><div class="prog-txt"><strong>⛷ Dag 3 · Vrij skiën</strong><span>Kinderen beginnen zelfstandig te rijden — trots moment!</span></div></div>
+      <div class="prog-item"><div class="prog-day">Wo 30/12</div><div class="prog-txt"><strong>🏙 Daguitje Praag (optioneel)</strong><span>Kerstmarkten nog open! Magisch voor de kids. Of extra skitag.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Do 31/12</div><div class="prog-txt"><strong>🎆 OUDJAARSAVOND!</strong><span>Halve dag skiën. Avond: Tsjechisch vuurwerk + feest in pension.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Vr 1/1</div><div class="prog-txt"><strong>🥂 Nieuwjaarsdag</strong><span>Uitslapen, korte skitocht, inpakken.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Za 2/1</div><div class="prog-txt"><strong>🚗 Terugreis · Thuis ~14:00u</strong><span>Makkelijkste rit terug van alle opties.</span></div></div>
+    </div>
+  </div><!-- /kerst -->
+
+</div>
+</div><!-- /panel 2 -->
+
+
+<!-- ══ OPTIE 3: LES ARCS, FRANKRIJK ══ -->
+<div class="tab-panel opt3" id="panel-3">
+<div class="inner">
+
+  <div class="opt-banner">
+    <div class="ban-top">
+      <div>
+        <p class="ban-tag">Optie 3 · Frankrijk</p>
+        <h2 class="ban-name">Les Arcs — Paradiski</h2>
+        <p class="ban-sub">Savoie · 425 km piste · Grootste & meest spectaculair</p>
+      </div>
+      <div class="ban-flag">🇫🇷</div>
+    </div>
+    <div class="ban-pills">
+      <span class="pill">🏔 425 km piste</span>
+      <span class="pill">🔵 Groene + blauwe pistes beginners</span>
+      <span class="pill">❄️ Sneeuwzeker (2.000m+)</span>
+      <span class="pill">🚗 ~11u rijden</span>
+      <span class="pill">🚡 Vanoise Express naar La Plagne</span>
+      <span class="pill">🍷 Frans bergdorp charme</span>
+    </div>
+  </div>
+
+  <div class="period-wrap">
+    <span class="period-label">Kies periode:</span>
+    <div class="period-toggle">
+      <button class="per-btn active" data-opt="3" data-period="c">🎭 Carnaval · 13–21 feb 2027</button>
+      <button class="per-btn" data-opt="3" data-period="k">🎄 Kerst · 26 dec–2 jan</button>
+    </div>
+  </div>
+
+  <!-- CARNAVAL -->
+  <div class="period-content active" id="p3c">
+    <div class="sum-strip">
+      <div class="ss-item"><div class="ss-val">7 dagen</div><div class="ss-lbl">Duur</div></div>
+      <div class="ss-item"><div class="ss-val">Za 13 – Za 20 feb</div><div class="ss-lbl">Data (6 nachten)</div></div>
+      <div class="ss-item"><div class="ss-val">~11 uur</div><div class="ss-lbl">Reistijd</div></div>
+      <div class="ss-item"><div class="ss-val green">€1.066 p.p.</div><div class="ss-lbl">Gem. kosten</div></div>
+      <div class="ss-item"><div class="ss-val green">✓ Binnen budget</div><div class="ss-lbl">Max €1.250 p.p.</div></div>
+    </div>
+
+    <div class="icard notice"><div class="icard-lbl">Waarom Les Arcs?</div><div class="icard-val">Meest spectaculaire skivakantie van de 3 opties</div><div class="icard-sub">Les Arcs is deel van Paradiski: 425 km piste op grote hoogte, uitstekend sneeuwzeker, moderne liften en de unieke Vanoise Express naar La Plagne. Voor beginners zijn er volop groene en blauwe pistes. Langste reistijd maar absoluut de meest memorabele omgeving.</div></div>
+
+    <p class="sec-lbl">Bestemming & info</p>
+    <div class="cards-3">
+      <div class="icard"><div class="icard-icon">🏔</div><div class="icard-lbl">Hoogte</div><div class="icard-val">1.200 – 3.250 m</div><div class="icard-sub">Beste sneeuwzekerheid van de 3 opties</div></div>
+      <div class="icard"><div class="icard-icon">🎿</div><div class="icard-lbl">Piste</div><div class="icard-val">425 km · 141 liften</div><div class="icard-sub">Incl. La Plagne via Vanoise Express kabel</div></div>
+      <div class="icard"><div class="icard-icon">🚗</div><div class="icard-lbl">Reistijd</div><div class="icard-val">~11 – 12 uur</div><div class="icard-sub">Via Genève of Grenoble · tolwegen ~€80 p.a.</div></div>
+      <div class="icard"><div class="icard-icon">📚</div><div class="icard-lbl">Skischool</div><div class="icard-val">ESF + privé-scholen</div><div class="icard-sub">Groot aanbod beginnerslessen · groepen mogelijk</div></div>
+    </div>
+
+    <div class="piste-card">
+      <h4>🎿 Pisteverdeling Paradiski — voor elk niveau</h4>
+      <div class="p-row"><div class="p-dot p-blue"></div><div class="p-track"><div class="p-fill" style="width:55%;background:#2980b9"></div></div><span class="p-km">🔵 ~160 km</span></div>
+      <div class="p-row"><div class="p-dot p-red"></div><div class="p-track"><div class="p-fill" style="width:32%;background:#c0392b"></div></div><span class="p-km">🔴 ~120 km</span></div>
+      <div class="p-row"><div class="p-dot p-black"></div><div class="p-track"><div class="p-fill" style="width:13%;background:#222"></div></div><span class="p-km">⚫ ~60 km</span></div>
+    </div>
+
+    <p class="sec-lbl">Accommodatie</p>
+    <div class="accom-grid">
+      <div class="accom-card"><div class="accom-img">🏔</div><div class="accom-body"><h4>Résidence Les Arcs 1800</h4><p>Résidences de tourisme: 3 units naast elkaar op 1800m. Ski-in/ski-out. Gedeelde faciliteiten. Beste prijs-kwaliteit.</p><p class="accom-price">€ 220 – 280 / nacht per app.</p></div></div>
+      <div class="accom-card"><div class="accom-img">🏡</div><div class="accom-body"><h4>Chalet Arc 1600</h4><p>Traditioneel Frans chalet voor alle 13 pers. Gemeenschappelijke woonkamer + aparte slaapkamers per gezin. Meest karakteristiek.</p><p class="accom-price">€ 320 – 420 / nacht totaal</p></div></div>
+    </div>
+
+    <p class="sec-lbl">💰 Begroting — carnavalsvakantie 13–20 feb 2027 (6 nachten)</p>
+    <div class="budget-table">
+      <div class="bt-head">
+        <div>Kostenpost</div>
+        <div class="col-head">Gezin A<br><small>2v+2k</small></div>
+        <div class="col-head">Gezin B<br><small>2v+3k</small></div>
+        <div class="col-head">Gezin C<br><small>2v+2k</small></div>
+        <div class="col-head">Groepstotaal</div>
+      </div>
+      <div class="bt-row"><div>🚗 Reiskosten (benzine + tol + tunnel ~€80)</div><div class="r">€ 480</div><div class="r">€ 480</div><div class="r">€ 480</div><div class="r bold">€ 1.440</div></div>
+      <div class="bt-row"><div>🏠 Appartement 6 nachten</div><div class="r">€ 1.380</div><div class="r">€ 1.560</div><div class="r">€ 1.380</div><div class="r bold">€ 4.320</div></div>
+      <div class="bt-row"><div>🎿 Skipas 5 dagen (volw ~€280 · kind ~€220)</div><div class="r">€ 1.000</div><div class="r">€ 1.220</div><div class="r">€ 1.000</div><div class="r bold">€ 3.220</div></div>
+      <div class="bt-row"><div>📚 Skiles kinderen — ESF groep 5 ochtenden</div><div class="r">€ 360</div><div class="r">€ 540</div><div class="r">€ 360</div><div class="r bold">€ 1.260</div></div>
+      <div class="bt-row"><div>👟 Skihuur compleet 5 dagen</div><div class="r">€ 400</div><div class="r">€ 500</div><div class="r">€ 400</div><div class="r bold">€ 1.300</div></div>
+      <div class="bt-row"><div>🍽 Eten & drinken (zelf + 1x restaurant)</div><div class="r">€ 520</div><div class="r">€ 630</div><div class="r">€ 520</div><div class="r bold">€ 1.670</div></div>
+      <div class="bt-row"><div>🛡 Reisverzekering incl. wintersport</div><div class="r">€ 120</div><div class="r">€ 150</div><div class="r">€ 120</div><div class="r bold">€ 390</div></div>
+      <div class="bt-row"><div>💡 Reserve / diversen</div><div class="r">€ 80</div><div class="r">€ 100</div><div class="r">€ 80</div><div class="r bold">€ 260</div></div>
+      <div class="bt-total"><div class="bold">TOTAAL per gezin</div><div class="r bold">€ 4.340</div><div class="r bold">€ 5.180</div><div class="r bold">€ 4.340</div><div class="r bold">€ 13.860</div></div>
+      <div class="bt-pp"><div>Per persoon</div><div class="r green">€ 1.085</div><div class="r green">€ 1.036</div><div class="r green">€ 1.085</div><div class="r bold">gem. €1.066</div></div>
+      <div class="bt-note"><span>⚠️ Gezin B totaal licht boven €5.000 — tip: 4 i.p.v. 5 skipijdagen, of iets goedkoper appartement</span><span>✅ Per persoon alle gezinnen binnen €1.250 max</span><span>🔵 FR tol: ~€80 p.a. enkele reis (Lyon–Albertville)</span></div>
+    </div>
+
+    <p class="sec-lbl">📅 Weekprogramma · Za 13 – Za 20 februari 2027</p>
+    <div class="prog-card">
+      <div class="prog-item"><div class="prog-day">Za 13/2</div><div class="prog-txt"><strong>🚗 Vertrek 4:30u · Aankomst ~17:00u</strong><span>Langste rit — via Genève/Grenoble. Stop in Lyon voor lunch. Inchecken, avondeten samen.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Zo 14/2</div><div class="prog-txt"><strong>🎿 Dag 1 · Skiles kinderen ESF start</strong><span>Ski-in/ski-out vanuit appartement op 1800m. Volwassenen vrij verkennen.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Ma 15/2</div><div class="prog-txt"><strong>📚 Dag 2 skiles + pistes Les Arcs</strong><span>Blauwe pistes van Arc 1800. Avond: Frans restaurant in dorp.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Di 16/2</div><div class="prog-txt"><strong>🚡 Dag 3 · Vanoise Express naar La Plagne!</strong><span>Spectaculaire kabelbaan. Groot avontuur voor de hele groep. Indrukwekkend.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Wo 17/2</div><div class="prog-txt"><strong>⛷ Dag 4 · Grote blauwe tochten</strong><span>Langste afdalingen van Paradiski. Picknick op de piste. Panorama op 3.250m.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Do 18/2</div><div class="prog-txt"><strong>🏔 Dag 5 · Hoogste punt: 3.250m!</strong><span>Lift naar top. Uitzicht bij helder weer onbeschrijfelijk. Alle kids supertrots.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Vr 19/2</div><div class="prog-txt"><strong>🎿 Dag 6 · Laatste dag skiën</strong><span>Favoriete pistes nogmaals. Avond: raclette & fondue — the full French Alps experience!</span></div></div>
+      <div class="prog-item"><div class="prog-day">Za 20/2</div><div class="prog-txt"><strong>🚗 Terugreis · Vertrek 7:00u · Thuis ~19:00u</strong><span>Langste rit terug — maar de mooiste herinneringen van alle opties!</span></div></div>
+    </div>
+
+    <p class="sec-lbl">💡 Tips</p>
+    <div class="tips-grid">
+      <div class="tip-card"><div class="ti">🚗</div><strong>Langste rit (~11u)</strong><p>Vertrek 4:30u, rij in convoy met 3 auto's. Stop in Lyon voor lunch (~5u na vertrek).</p></div>
+      <div class="tip-card"><div class="ti">💳</div><strong>Tolkosten</strong><p>~€80 per auto enkele reis. ICS-kaart of creditcard handig aan tolpoortjes.</p></div>
+      <div class="tip-card"><div class="ti">🎿</div><strong>Paradiski-pas</strong><p>Kies de Paradiski skipas (niet alleen Les Arcs) voor toegang tot La Plagne via Vanoise Express.</p></div>
+      <div class="tip-card"><div class="ti">❄️</div><strong>Beste sneeuwgarantie</strong><p>Hoogste ligging van alle 3 opties (pistes boven 2.000m). Altijd goed in februari.</p></div>
+      <div class="tip-card"><div class="ti">🏠</div><strong>Résidence = beste deal</strong><p>Résidence de tourisme is goedkoper dan chalet maar biedt nog steeds eigen keuken per unit.</p></div>
+    </div>
+  </div><!-- /carnaval -->
+
+  <!-- KERST -->
+  <div class="period-content" id="p3k">
+    <div class="sum-strip">
+      <div class="ss-item"><div class="ss-val">7 dagen</div><div class="ss-lbl">Duur</div></div>
+      <div class="ss-item"><div class="ss-val">Za 26 dec – Za 2 jan</div><div class="ss-lbl">Data (6 nachten)</div></div>
+      <div class="ss-item"><div class="ss-val">~11 uur</div><div class="ss-lbl">Reistijd</div></div>
+      <div class="ss-item"><div class="ss-val amber">€1.192 p.p.</div><div class="ss-lbl">Gem. kosten</div></div>
+      <div class="ss-item"><div class="ss-val amber">⚠ Krap — kerst is duur</div><div class="ss-lbl">Max €1.250 p.p.</div></div>
+    </div>
+
+    <div class="icard notice"><div class="icard-lbl">Let op — Kerst in de Franse Alpen</div><div class="icard-val">Kerst in Les Arcs is het drukste én duurste moment van het jaar</div><div class="icard-sub">Aanbevolen: 26 dec – 2 jan. Accommodatie kost 30–50% meer dan carnaval. Budget p.p. is nét haalbaar, maar vereist zelfverzorging en vroeg boeken. Gezin B komt boven €5.000 totaal uit — overweeg 4 skipijdagen of goedkoper appartement.</div></div>
+
+    <p class="sec-lbl">💰 Begroting — kerstvakantie 26 dec – 2 jan (6 nachten)</p>
+    <div class="budget-table">
+      <div class="bt-head">
+        <div>Kostenpost</div>
+        <div class="col-head">Gezin A<br><small>2v+2k</small></div>
+        <div class="col-head">Gezin B<br><small>2v+3k</small></div>
+        <div class="col-head">Gezin C<br><small>2v+2k</small></div>
+        <div class="col-head">Groepstotaal</div>
+      </div>
+      <div class="bt-row"><div>🚗 Reiskosten</div><div class="r">€ 480</div><div class="r">€ 480</div><div class="r">€ 480</div><div class="r bold">€ 1.440</div></div>
+      <div class="bt-row"><div>🏠 Appartement 6 nachten (+40% kerststoeslag)</div><div class="r">€ 1.930</div><div class="r">€ 2.180</div><div class="r">€ 1.930</div><div class="r bold">€ 6.040</div></div>
+      <div class="bt-row"><div>🎿 Skipas 5 dagen</div><div class="r">€ 1.000</div><div class="r">€ 1.220</div><div class="r">€ 1.000</div><div class="r bold">€ 3.220</div></div>
+      <div class="bt-row"><div>📚 Skiles kinderen</div><div class="r">€ 360</div><div class="r">€ 540</div><div class="r">€ 360</div><div class="r bold">€ 1.260</div></div>
+      <div class="bt-row"><div>👟 Skihuur 5 dagen</div><div class="r">€ 400</div><div class="r">€ 500</div><div class="r">€ 400</div><div class="r bold">€ 1.300</div></div>
+      <div class="bt-row"><div>🍽 Eten & drinken + oud&nieuw</div><div class="r">€ 560</div><div class="r">€ 680</div><div class="r">€ 560</div><div class="r bold">€ 1.800</div></div>
+      <div class="bt-row"><div>🛡 Reisverzekering</div><div class="r">€ 120</div><div class="r">€ 150</div><div class="r">€ 120</div><div class="r bold">€ 390</div></div>
+      <div class="bt-row"><div>💡 Reserve</div><div class="r">€ 80</div><div class="r">€ 100</div><div class="r">€ 80</div><div class="r bold">€ 260</div></div>
+      <div class="bt-total"><div class="bold">TOTAAL per gezin</div><div class="r bold">€ 4.930</div><div class="r amber">€ 5.850</div><div class="r bold">€ 4.930</div><div class="r bold">€ 15.710</div></div>
+      <div class="bt-pp"><div>Per persoon</div><div class="r amber">€ 1.233</div><div class="r amber">€ 1.170</div><div class="r amber">€ 1.233</div><div class="r bold">gem. €1.209</div></div>
+      <div class="bt-note"><span>⚠️ Gezin A+C: per persoon net binnen €1.250 max</span><span>⚠️ Gezin B totaal boven €5.000 — tip: kies goedkoper appartement of 4 skipijdagen</span></div>
+    </div>
+
+    <p class="sec-lbl">📅 Weekprogramma · Za 26 dec 2026 – Za 2 jan 2027</p>
+    <div class="prog-card">
+      <div class="prog-item"><div class="prog-day">Za 26/12</div><div class="prog-txt"><strong>🚗 Vertrek 4:30u · Aankomst ~17:00u</strong><span>Inchecken, avondeten samen. Kerstsfeer in Frans bergdorp!</span></div></div>
+      <div class="prog-item"><div class="prog-day">Zo 27/12</div><div class="prog-txt"><strong>🎿 Dag 1 · Skiles kinderen start</strong><span>ESF groepslessen. Ski-in/ski-out maakt de dag supersimpel.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Ma 28/12</div><div class="prog-txt"><strong>📚 Dag 2 skiles + pistes</strong><span>Blauwe pistes. Avond: fondue bij open haard.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Di 29/12</div><div class="prog-txt"><strong>🚡 Dag 3 · Vanoise Express!</strong><span>Naar La Plagne — unieke ervaring voor de groep.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Wo 30/12</div><div class="prog-txt"><strong>⛷ Dag 4 · Grote tochten</strong><span>Panorama op 3.250m. Kids zijn ondertussen vaste skiërs.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Do 31/12</div><div class="prog-txt"><strong>🎆 OUDJAARSAVOND op 1.800m!</strong><span>Halve dag skiën. Avond: fakkeltocht op piste + spectaculair vuurwerk!</span></div></div>
+      <div class="prog-item"><div class="prog-day">Vr 1/1</div><div class="prog-txt"><strong>🥂 Nieuwjaarsdag</strong><span>Rustige ochtend, laatste skitocht, inpakken.</span></div></div>
+      <div class="prog-item"><div class="prog-day">Za 2/1</div><div class="prog-txt"><strong>🚗 Terugreis · Vertrek 7:00u · Thuis ~19:00u</strong><span>Nieuwjaar 2027 gevierd op 1.800 meter — onvergetelijk!</span></div></div>
+    </div>
+  </div><!-- /kerst -->
+
+</div>
+</div><!-- /panel 3 -->
+
+
+<!-- VERGELIJKING -->
+<div class="cmp-section">
+  <div class="cmp-inner">
+    <p style="font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--ost-a);margin-bottom:.6rem;">Overzicht</p>
+    <h2 style="font-family:'Cormorant Garamond',serif;color:white;font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:1.5rem;">De 3 opties vergeleken</h2>
+    <div style="overflow-x:auto;">
+      <table class="cmp-table">
+        <thead>
+          <tr>
+            <th>Criterium</th>
+            <th style="color:var(--ost-a);">🇦🇹 Oostenrijk</th>
+            <th style="color:var(--tch-a);">🇨🇿 Tsjechië</th>
+            <th style="color:var(--fra-a);">🇫🇷 Frankrijk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="lbl">Reistijd</td><td>~9 uur</td><td style="color:var(--tch-a);font-weight:700;">~7 uur ✅</td><td>~11 uur</td></tr>
+          <tr><td class="lbl">Kosten p.p. (carnaval)</td><td>gem. €969</td><td style="color:var(--tch-a);font-weight:700;">gem. €573 ✅</td><td>gem. €1.066</td></tr>
+          <tr><td class="lbl">Kosten p.p. (kerst)</td><td>gem. €1.079</td><td style="color:var(--tch-a);font-weight:700;">gem. €631 ✅</td><td>gem. €1.209</td></tr>
+          <tr><td class="lbl">Pisteaanbod</td><td>270 km ⭐⭐⭐⭐</td><td>25 km ⭐⭐</td><td style="color:var(--fra-a);font-weight:700;">425 km ⭐⭐⭐⭐⭐</td></tr>
+          <tr><td class="lbl">Sneeuwzekerheid</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐</td><td style="color:var(--fra-a);font-weight:700;">⭐⭐⭐⭐⭐</td></tr>
+          <tr><td class="lbl">Beginnersvriendelijk</td><td style="color:var(--ost-a);font-weight:700;">⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td></tr>
+          <tr><td class="lbl">NL-talige skiles</td><td style="color:var(--ost-a);font-weight:700;">✅ Ja</td><td>Engels</td><td>Frans / Engels</td></tr>
+          <tr><td class="lbl">Bijzonderheid</td><td>Après-ski + NL sfeer</td><td>Praag op 2u + budget</td><td>Vanoise Express + hoogte</td></tr>
+          <tr><td class="lbl">Beste voor</td><td style="color:var(--ost-a);">Beste balans</td><td style="color:var(--tch-a);">Maximaal budget sparen</td><td style="color:var(--fra-a);">Meest onvergetelijke trip</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:rgba(255,255,255,.35);font-size:.73rem;margin-top:1rem;">* Prijzen zijn indicatief op basis van marktprijzen 2025–2026. Boek vroeg voor de beste tarieven. Carnavalsweek is hoogseizoen — accommodaties snel volgeboekt.</p>
+  </div>
+</div>
+
+<script>
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    window.scrollTo({ top: document.querySelector('.tab-nav').offsetTop - 1, behavior: 'smooth' });
+  });
+});
+
+// Period toggle
+document.querySelectorAll('.per-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const opt = btn.dataset.opt;
+    const period = btn.dataset.period;
+    btn.closest('.period-toggle').querySelectorAll('.per-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll(`[id^="p${opt}"]`).forEach(el => el.classList.remove('active'));
+    document.getElementById(`p${opt}${period}`).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
