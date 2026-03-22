@@ -606,9 +606,109 @@ body {
   .hero-content { padding: 2rem 1.2rem 1.5rem; }
   .prog-item { grid-template-columns: 60px 1fr; font-size:.79rem; }
 }
+
+/* ─── STICKY NAV ─── */
+html { scroll-behavior: smooth; }
+body { padding-top: 52px; }
+.sticky-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--forest);
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .55rem 1.2rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.sticky-nav::-webkit-scrollbar { display: none; }
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  white-space: nowrap;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.85);
+  border-radius: 50px;
+  padding: .28rem .85rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .74rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+  flex-shrink: 0;
+}
+.nav-btn:hover, .nav-btn.active {
+  background: var(--sage);
+  border-color: var(--sage);
+  color: var(--forest);
+  font-weight: 700;
+}
+
+/* ─── UITGANGSPUNTEN SECTIE ─── */
+.uitg-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(26,61,43,.07);
+  border: 1px solid rgba(26,61,43,.06);
+  margin-bottom: 1rem;
+}
+.uitg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+.uitg-item { display: flex; gap: .75rem; align-items: flex-start; font-size: .85rem; }
+.uitg-item .ui-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: .05rem; }
+.uitg-item .ui-body strong { display: block; color: var(--forest); font-weight: 600; margin-bottom: .1rem; }
+.uitg-item .ui-body span { color: var(--stone); line-height: 1.5; }
+.uitg-aandacht {
+  background: var(--warning);
+  border-left: 4px solid var(--warning-border);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  font-size: .83rem;
+  line-height: 1.6;
+}
+.uitg-aandacht strong { color: var(--bark); }
+.uitg-aandacht ul { margin: .4rem 0 0 1.2rem; }
 </style>
 </head>
 <body>
+
+<!-- ═══ STICKY NAV ═══ -->
+<nav class="sticky-nav" id="sticky-nav">
+  <a class="nav-btn" href="#uitgangspunten">📋 Uitgangspunten</a>
+  <a class="nav-btn" href="#bestemming">🏔 Bestemming</a>
+  <a class="nav-btn" href="#accommodatie">🏠 Accommodatie</a>
+  <a class="nav-btn" href="#skipas">🎿 Skipas via GOPASS</a>
+  <a class="nav-btn" href="#skischool">📚 Skischool</a>
+  <a class="nav-btn" href="#budget">💰 Budget ~€573 p.p.</a>
+  <a class="nav-btn" href="#programma">📅 Weekprogramma</a>
+  <a class="nav-btn" href="#alternatief">🌧 Geen sneeuw?</a>
+  <a class="nav-btn" href="#tips">💡 Tips</a>
+</nav>
+
+<script>
+// Highlight active nav button on scroll
+(function(){
+  const btns = document.querySelectorAll('.nav-btn[href^="#"]');
+  const ids = Array.from(btns).map(b => b.getAttribute('href').slice(1));
+  function onScroll(){
+    const offset = 70;
+    let active = ids[0];
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if(el && window.scrollY >= el.getBoundingClientRect().top + window.scrollY - offset) active = id;
+    });
+    btns.forEach(b => b.classList.toggle('active', b.getAttribute('href') === '#' + active));
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
 
 <!-- ═══ HERO ═══ -->
 <header class="hero">
@@ -623,11 +723,11 @@ body {
     <p class="hero-sub">Reuzengebergte · Tsjechië · 3 gezinnen · 13 personen · 7 dagen</p>
     <div class="hero-chips">
       <span class="chip">🗓 Za 13 – Za 20 feb 2027</span>
-      <span class="chip">🏠 Concreet appartement</span>
-      <span class="chip">📚 Skischool met prijzen</span>
-      <span class="chip">🎿 Skipas via GOPASS</span>
-      <span class="chip">🌧 Alternatief programma bij geen sneeuw</span>
-      <span class="chip">💶 ~€573 p.p. totaal</span>
+      <a class="chip" href="#accommodatie" style="text-decoration:none">🏠 Concreet appartement</a>
+      <a class="chip" href="#skischool" style="text-decoration:none">📚 Skischool met prijzen</a>
+      <a class="chip" href="#skipas" style="text-decoration:none">🎿 Skipas via GOPASS</a>
+      <a class="chip" href="#alternatief" style="text-decoration:none">🌧 Alternatief programma bij geen sneeuw</a>
+      <a class="chip" href="#budget" style="text-decoration:none">💶 ~€573 p.p. totaal</a>
     </div>
   </div>
   <div class="summary-bar">
@@ -643,7 +743,7 @@ body {
 <div class="container">
 
   <!-- ═══ BESTEMMING ═══ -->
-  <div class="sec-title"><span class="icon">🏔</span> Bestemming &amp; terrein</div>
+  <div class="sec-title" id="bestemming"><span class="icon">🏔</span> Bestemming &amp; terrein</div>
 
   <div class="notice notice-green">
     <span class="notice-icon">💡</span>
@@ -680,7 +780,7 @@ body {
 
 
   <!-- ═══ ACCOMMODATIE ═══ -->
-  <div class="sec-title"><span class="icon">🏠</span> Accommodatie — concreet advies voor 13 personen</div>
+  <div class="sec-title" id="accommodatie"><span class="icon">🏠</span> Accommodatie — concreet advies voor 13 personen</div>
 
   <div class="notice notice-amber">
     <span class="notice-icon">⚠️</span>
@@ -742,7 +842,7 @@ body {
 
 
   <!-- ═══ SKIPAS ═══ -->
-  <div class="sec-title"><span class="icon">🎿</span> Skipas — officiële prijzen &amp; waar te kopen</div>
+  <div class="sec-title" id="skipas"><span class="icon">🎿</span> Skipas — officiële prijzen &amp; waar te kopen</div>
 
   <div class="skipas-card">
     <div class="skipas-head">
@@ -828,7 +928,7 @@ body {
 
 
   <!-- ═══ SKISCHOOL ═══ -->
-  <div class="sec-title"><span class="icon">📚</span> Skischool — concreet aanbod kinderen (12–17j)</div>
+  <div class="sec-title" id="skischool"><span class="icon">📚</span> Skischool — concreet aanbod kinderen (12–17j)</div>
 
   <div class="notice notice-green">
     <span class="notice-icon">✅</span>
@@ -927,7 +1027,7 @@ body {
 
 
   <!-- ═══ BEGROTING ═══ -->
-  <div class="sec-title"><span class="icon">💰</span> Begroting — carnavalsvakantie 13–20 februari 2027</div>
+  <div class="sec-title" id="budget"><span class="icon">💰</span> Begroting — carnavalsvakantie 13–20 februari 2027</div>
 
   <div class="budget-wrap">
     <div class="bt-head">
@@ -969,7 +1069,7 @@ body {
 
 
   <!-- ═══ WEEKPROGRAMMA (sneeuw) ═══ -->
-  <div class="sec-title"><span class="icon">📅</span> Weekprogramma ☀️ — bij voldoende sneeuw</div>
+  <div class="sec-title" id="programma"><span class="icon">📅</span> Weekprogramma ☀️ — bij voldoende sneeuw</div>
 
   <div class="prog-wrap">
     <div class="prog-head">🗓 Zaterdag 13 – Zaterdag 20 februari 2027 · 7 dagen · 6 nachten</div>
@@ -1034,7 +1134,7 @@ body {
 
 
   <!-- ═══ ALTERNATIEF PROGRAMMA ═══ -->
-  <div class="sec-title"><span class="icon">🌧</span> Alternatief programma — bij weinig of geen sneeuw</div>
+  <div class="sec-title" id="alternatief"><span class="icon">🌧</span> Alternatief programma — bij weinig of geen sneeuw</div>
 
   <div class="alt-header">
     <h2>🌧 Plan B — geen sneeuw?</h2>
@@ -1220,7 +1320,7 @@ body {
 
 
   <!-- ═══ PRAKTISCHE TIPS ═══ -->
-  <div class="sec-title"><span class="icon">💡</span> Praktische tips &amp; checklist</div>
+  <div class="sec-title" id="tips"><span class="icon">💡</span> Praktische tips &amp; checklist</div>
 
   <div class="tips-grid">
     <div class="tip-card">
@@ -1265,6 +1365,94 @@ body {
     </div>
   </div>
 
+
+
+  <!-- ═══ UITGANGSPUNTEN ═══ -->
+  <div class="sec-title" id="uitgangspunten"><span class="icon">📋</span> Uitgangspunten skivakantie</div>
+
+  <div class="uitg-grid">
+    <div class="uitg-card">
+      <div class="uitg-item">
+        <span class="ui-icon">👨‍👩‍👧‍👦</span>
+        <div class="ui-body">
+          <strong>Gezelschap</strong>
+          <span>3 gezinnen · 13 personen totaal<br>6 volwassenen (2 per gezin)<br>7 kinderen: 1 gezin 3 kinderen, 2 gezinnen 2 kinderen<br>Kinderleeftijden: 12 t/m 17 jaar</span>
+        </div>
+      </div>
+    </div>
+    <div class="uitg-card">
+      <div class="uitg-item">
+        <span class="ui-icon">🗓</span>
+        <div class="ui-body">
+          <strong>Periode</strong>
+          <span>Carnavalsvakantie: za 13 t/m vr 20 feb 2027<br>Alternatief kerstvakantie: za 19 dec 2026 t/m zo 3 jan 2027<br>Duur: ca. 7 dagen</span>
+        </div>
+      </div>
+    </div>
+    <div class="uitg-card">
+      <div class="uitg-item">
+        <span class="ui-icon">💶</span>
+        <div class="ui-body">
+          <strong>Budget</strong>
+          <span>Max. €1.250,- per persoon totaal</span>
+        </div>
+      </div>
+    </div>
+    <div class="uitg-card">
+      <div class="uitg-item">
+        <span class="ui-icon">🏠</span>
+        <div class="ui-body">
+          <strong>Accommodatie</strong>
+          <span>Appartement of hotel<br>Gezamenlijke ruimte + privacy per gezin</span>
+        </div>
+      </div>
+    </div>
+    <div class="uitg-card">
+      <div class="uitg-item">
+        <span class="ui-icon">🚗</span>
+        <div class="ui-body">
+          <strong>Vervoer</strong>
+          <span>Auto</span>
+        </div>
+      </div>
+    </div>
+    <div class="uitg-card">
+      <div class="uitg-item">
+        <span class="ui-icon">🎿</span>
+        <div class="ui-body">
+          <strong>Skilessen</strong>
+          <span>Alle kinderen volgen skilessen</span>
+        </div>
+      </div>
+    </div>
+    <div class="uitg-card">
+      <div class="uitg-item">
+        <span class="ui-icon">🌍</span>
+        <div class="ui-body">
+          <strong>Voorkeurslanden</strong>
+          <span>Oostenrijk · Tsjechië · Frankrijk</span>
+        </div>
+      </div>
+    </div>
+    <div class="uitg-card">
+      <div class="uitg-item">
+        <span class="ui-icon">🧖</span>
+        <div class="ui-body">
+          <strong>Overig</strong>
+          <span>Wellness gewenst</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="uitg-aandacht">
+    <strong>⚠️ Aandachtspunten voor de reis</strong>
+    <ul>
+      <li>Winterbanden verplicht in Tsjechië en Oostenrijk</li>
+      <li>Sneeuwkettingen meenemen (verplicht op sommige wegen)</li>
+      <li>Vignet controleren per land (Tsjechië: digitaal vignet verplicht)</li>
+    </ul>
+  </div>
 
 </div><!-- /container -->
 
