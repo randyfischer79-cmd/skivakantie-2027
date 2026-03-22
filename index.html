@@ -101,13 +101,57 @@ a.card.cz-fly .card-arrow { color: #1a2a4d; }
 .aandacht strong { color: #8a5200; }
 .aandacht ul { margin: .4rem 0 0 1.1rem; }
 
-/* Skigebied placeholder */
-.ski-placeholder {
-  background: white; border-radius: 14px; padding: 4rem 2rem; text-align: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.07); color: #aaa;
+/* Skigebied */
+.ski-sec { margin-bottom: 2.5rem; }
+.ski-sec-title {
+  display: flex; align-items: center; gap: .7rem;
+  font-size: 1.05rem; font-weight: 600; color: #1a3d2b;
+  margin-bottom: 1.1rem; margin-top: 2rem;
 }
-.ski-placeholder .ph-icon { font-size: 3.5rem; margin-bottom: 1rem; display: block; }
-.ski-placeholder p { font-size: .9rem; line-height: 1.6; }
+.ski-sec-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, rgba(45,106,79,.25), transparent); }
+
+/* Website card */
+.ski-website-card {
+  display: flex; gap: 1.4rem; align-items: flex-start;
+  background: white; border-radius: 14px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07); border: 1px solid rgba(26,61,43,.06);
+  text-decoration: none; color: #1a2a4a;
+  transition: box-shadow .2s, transform .2s;
+  margin-bottom: 2rem;
+}
+.ski-website-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+.ski-website-thumb {
+  flex-shrink: 0; width: 220px; min-height: 140px;
+  background: linear-gradient(135deg, #1a3d2b 0%, #2d6a4f 60%, #52b788 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: white; padding: 1.5rem 1rem; text-align: center;
+}
+.ski-website-thumb .thumb-icon { font-size: 2.8rem; margin-bottom: .4rem; }
+.ski-website-thumb .thumb-domain { font-size: .7rem; opacity: .7; letter-spacing: 1px; }
+.ski-website-body { padding: 1.4rem 1.4rem 1.4rem 0; flex: 1; }
+.ski-website-body h3 { font-size: 1rem; font-weight: 600; color: #1a3d2b; margin-bottom: .5rem; }
+.ski-website-body p { font-size: .82rem; color: #555; line-height: 1.65; margin-bottom: .9rem; }
+.ski-website-btn {
+  display: inline-block; background: #2d6a4f; color: white;
+  border-radius: 50px; padding: .35rem 1rem; font-size: .76rem; font-weight: 600;
+}
+
+/* Photo grid */
+.ski-photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.ski-photo-grid img { width: 100%; border-radius: 12px; object-fit: cover; max-height: 240px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+
+/* Skiles tekst */
+.ski-leraar-notice {
+  background: #fff8e8; border-left: 4px solid #d4820a; border-radius: 10px;
+  padding: 1rem 1.3rem; font-size: .84rem; line-height: 1.7; color: #3d2b1a;
+  margin-bottom: 1.2rem;
+}
+
+@media(max-width:600px){
+  .ski-website-card { flex-direction: column; }
+  .ski-website-thumb { width: 100%; min-height: 100px; }
+  .ski-website-body { padding: 1.2rem; }
+}
 </style>
 </head>
 <body>
@@ -266,10 +310,39 @@ a.card.cz-fly .card-arrow { color: #1a2a4d; }
 
   <!-- TAB: SKIGEBIED -->
   <div id="skigebied" class="tab-content">
-    <div class="ski-placeholder">
-      <span class="ph-icon">🏔</span>
-      <p>Informatie over het skigebied Špindlerův Mlýn wordt hier toegevoegd.<br>Pistes, liften, après-ski en meer.</p>
+
+    <!-- Website -->
+    <a href="https://www.spindleruv-mlyn.com/nl/" target="_blank" class="ski-website-card">
+      <div class="ski-website-thumb">
+        <div class="thumb-icon">🏔</div>
+        <div style="font-size:.85rem;font-weight:600;margin-bottom:.25rem;">Špindlerův Mlýn</div>
+        <div class="thumb-domain">spindleruv-mlyn.com</div>
+      </div>
+      <div class="ski-website-body">
+        <h3>Špindlerův Mlýn — Officiële website</h3>
+        <p>Špindlerův Mlýn is het grootste skigebied van Tsjechië, gelegen in het Reuzengebergte op 714 meter hoogte. Het gebied beschikt over 28 km aan pistes, 17 moderne liften en 5 skicentra die allemaal met één skipas bereikbaar zijn. Dankzij een uitgebreid systeem van sneeuwkanonnen is er sneeuwzekerheid tijdens de carnavalsvakantie in februari. Een gezellig bergdorp met restaurants, wellness en après-ski op loopafstand van de pistes.</p>
+        <span class="ski-website-btn">Bekijk website →</span>
+      </div>
+    </a>
+
+    <!-- Skipistes -->
+    <div class="ski-sec-title">🎿 Skipistes</div>
+    <div class="ski-photo-grid">
+      <img src="Skigebied.jpg" alt="Pistekaart Špindlerův Mlýn">
+      <img src="Skigebied2.png" alt="Pistes Špindlerův Mlýn">
     </div>
+
+    <!-- Skiles -->
+    <div class="ski-sec-title">📚 Skiles</div>
+    <div class="ski-leraar-notice">
+      Onze ervaren skileraren staan al decennialang op de piste. De dames krijgen les van onze doorgewinterde heren, wiens techniek net zo klassiek is als hun skipak uit 1987. Voor de heren hebben we echter een iets frisser leerprogramma samengesteld. Onze skileraressen geven les in de meest optimale outfit voor aerodynamiek — want wie zegt dat veiligheid niet stijlvol kan zijn? Één ding is zeker: na een dag les bij ons wil niemand meer naar de après-ski. 🍹😏
+    </div>
+    <div class="ski-photo-grid">
+      <img src="Skileraar.jpg" alt="Skileraar">
+      <img src="Skilerares.jpg" alt="Skilerares">
+      <img src="Skilerares3.jpeg" alt="Skilerares">
+    </div>
+
   </div>
 
 </div>
