@@ -9,19 +9,36 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: #f0f3f8; font-family: 'Outfit', sans-serif; color: #1a2a4a; min-height: 100vh; }
 
-.hero { background: #1a3d2b; padding: 3rem 2rem 2.5rem; text-align: center; }
-.hero h1 { font-size: 2rem; font-weight: 600; color: white; margin-bottom: 0.4rem; }
+.hero { background: #1a3d2b; padding: 3rem 2rem 1.8rem; text-align: center; }
+.hero h1 { font-size: 2rem; font-weight: 600; color: white; margin-bottom: 0.65rem; }
+.hero-dest {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50px; padding: .3rem .95rem;
+  font-size: .85rem; color: rgba(255,255,255,.9); font-weight: 500;
+  margin-bottom: .8rem;
+}
+.hero-dest img { border-radius: 3px; box-shadow: 0 1px 4px rgba(0,0,0,.3); }
 .hero p { color: rgba(255,255,255,.6); font-size: 0.95rem; }
 
+/* Tab nav */
+.tab-nav {
+  background: #1a3d2b;
+  display: flex; justify-content: center; gap: .5rem;
+  padding: 1rem 1.5rem 1.4rem; flex-wrap: wrap;
+}
+.tab-btn {
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.75); border-radius: 50px; padding: .45rem 1.4rem;
+  font-family: 'Outfit', sans-serif; font-size: .84rem; font-weight: 500;
+  cursor: pointer; transition: background .15s, color .15s;
+}
+.tab-btn:hover { background: rgba(255,255,255,.2); color: white; }
+.tab-btn.active { background: #52b788; border-color: #52b788; color: #1a3d2b; font-weight: 600; }
+
 .main { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
-
-/* Voorstellen */
-.section-label { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: #52b788; font-weight: 600; margin-bottom: 1rem; }
-
-/* Landen flags balk */
-.landen-balk { display: flex; gap: 1.5rem; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; }
-.land-item { display: flex; align-items: center; gap: .6rem; font-size: .85rem; font-weight: 500; color: #1a2a4a; }
-.land-item img { border-radius: 3px; box-shadow: 0 1px 4px rgba(0,0,0,.2); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
 
 /* Flag image in cards */
 .card-flag-img { border-radius: 3px; box-shadow: 0 1px 4px rgba(0,0,0,.15); height: 28px; width: auto; }
@@ -37,17 +54,11 @@ a.card {
 }
 a.card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
 
-/* Kleur per kaart */
 a.card.cz { border-top-color: #2d6a4f; }
 a.card.cz-combi { border-top-color: #1a5c50; }
 a.card.cz-fly { border-top-color: #1a2a4d; }
-a.card.oo-auto { border-top-color: #9b2335; }
-a.card.oo-fly { border-top-color: #1a5295; }
-a.card.oo-combi { border-top-color: #1a4d2e; }
-a.card.overzicht { border-top-color: #888; }
 
 .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: .8rem; }
-.card-flag { font-size: 2rem; line-height: 1; }
 .card-transport {
   display: inline-flex; align-items: center; gap: .3rem;
   font-size: .72rem; font-weight: 600; padding: .2rem .6rem;
@@ -56,7 +67,6 @@ a.card.overzicht { border-top-color: #888; }
 .transport-auto { background: #e8f4ee; color: #2d6a4f; }
 .transport-fly { background: #ddeef8; color: #1a5295; }
 .transport-combi { background: #d8f3dc; color: #1a4d2e; }
-.transport-none { background: #f0f0f0; color: #666; }
 
 .card-number { font-size: .65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; margin-bottom: .4rem; }
 .card-title { font-size: 1rem; font-weight: 600; margin-bottom: .25rem; }
@@ -67,10 +77,6 @@ a.card.overzicht { border-top-color: #888; }
 a.card.cz .card-arrow { color: #2d6a4f; }
 a.card.cz-combi .card-arrow { color: #1a5c50; }
 a.card.cz-fly .card-arrow { color: #1a2a4d; }
-a.card.oo-auto .card-arrow { color: #9b2335; }
-a.card.oo-fly .card-arrow { color: #1a5295; }
-a.card.oo-combi .card-arrow { color: #1a4d2e; }
-a.card.overzicht .card-arrow { color: #666; }
 
 /* Uitgangspunten */
 .uitg-title {
@@ -94,153 +100,187 @@ a.card.overzicht .card-arrow { color: #666; }
 }
 .aandacht strong { color: #8a5200; }
 .aandacht ul { margin: .4rem 0 0 1.1rem; }
+
+/* Skigebied placeholder */
+.ski-placeholder {
+  background: white; border-radius: 14px; padding: 4rem 2rem; text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07); color: #aaa;
+}
+.ski-placeholder .ph-icon { font-size: 3.5rem; margin-bottom: 1rem; display: block; }
+.ski-placeholder p { font-size: .9rem; line-height: 1.6; }
 </style>
 </head>
 <body>
 
 <div class="hero">
   <h1>⛷️ Skivakantie 2027</h1>
+  <div class="hero-dest">
+    <img src="https://flagcdn.com/w40/cz.png" srcset="https://flagcdn.com/w80/cz.png 2x" width="24" alt="🇨🇿">
+    Tsjechië · Špindlerův Mlýn
+  </div>
   <p>3 gezinnen · 14 personen · Carnavalsvakantie · zo 7 – za 13 feb 2027</p>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab(this,'voorstellen')">🗺 Voorstellen</button>
+  <button class="tab-btn" onclick="showTab(this,'uitgangspunten')">📋 Uitgangspunten</button>
+  <button class="tab-btn" onclick="showTab(this,'skigebied')">⛷️ Skigebied</button>
 </div>
 
 <div class="main">
 
-  <div class="landen-balk">
-    <div class="land-item">
-      <img src="https://flagcdn.com/w40/cz.png" srcset="https://flagcdn.com/w80/cz.png 2x" width="40" alt="Tsjechië">
-      Tsjechië · Špindlerův Mlýn
+  <!-- TAB: VOORSTELLEN -->
+  <div id="voorstellen" class="tab-content active">
+    <div class="cards">
+
+      <a class="card cz" href="2027-02_tsjechie-carnaval-2027_4.html">
+        <div class="card-top">
+          <img class="card-flag-img" src="https://flagcdn.com/w40/cz.png" srcset="https://flagcdn.com/w80/cz.png 2x" width="40" alt="🇨🇿 Tsjechië">
+          <span class="card-transport transport-auto">🚗 Auto ~7u</span>
+        </div>
+        <div class="card-number">Optie 1</div>
+        <div class="card-title">Špindlerův Mlýn</div>
+        <div class="card-sub">🇨🇿 Tsjechië · Reuzengebergte · 28 km piste</div>
+        <div class="card-meta">
+          <span class="card-tag">💶 ~€549 p.p.</span>
+          <span class="card-tag">🏠 ~€2.380 per gezin</span>
+          <span class="card-tag">❄️ Kunstsneeuw</span>
+          <span class="card-tag">👪 Familiepistes</span>
+        </div>
+        <div class="card-arrow">Bekijken →</div>
+      </a>
+
+      <a class="card cz-combi" href="2027-02_tsjechie-combi-2027.html">
+        <div class="card-top">
+          <img class="card-flag-img" src="https://flagcdn.com/w40/cz.png" srcset="https://flagcdn.com/w80/cz.png 2x" width="40" alt="🇨🇿 Tsjechië">
+          <span class="card-transport transport-combi">🚗✈️ Combi</span>
+        </div>
+        <div class="card-number">Optie 2</div>
+        <div class="card-title">Špindlerův Mlýn</div>
+        <div class="card-sub">🇨🇿 Tsjechië · Mannen rijden, rest vliegt RTM/EIN → PRG</div>
+        <div class="card-meta">
+          <span class="card-tag">💶 ~€690 p.p.</span>
+          <span class="card-tag">🏠 ~€2.990 per gezin</span>
+          <span class="card-tag">📦 Dakkoffer ski's</span>
+          <span class="card-tag">✈️ Comfortabeler</span>
+        </div>
+        <div class="card-arrow">Bekijken →</div>
+      </a>
+
+      <a class="card cz-fly" href="2027-02_tsjechie-vliegtuig-2027.html">
+        <div class="card-top">
+          <img class="card-flag-img" src="https://flagcdn.com/w40/cz.png" srcset="https://flagcdn.com/w80/cz.png 2x" width="40" alt="🇨🇿 Tsjechië">
+          <span class="card-transport transport-fly">✈️ Vlucht ~2u</span>
+        </div>
+        <div class="card-number">Optie 3</div>
+        <div class="card-title">Špindlerův Mlýn</div>
+        <div class="card-sub">🇨🇿 Tsjechië · Iedereen vliegt RTM/EIN → PRG</div>
+        <div class="card-meta">
+          <span class="card-tag">💶 ~€698 p.p.</span>
+          <span class="card-tag">🏠 ~€3.023 per gezin</span>
+          <span class="card-tag">✈️ Samen reizen</span>
+          <span class="card-tag">🎿 Skihuur inbegrepen</span>
+        </div>
+        <div class="card-arrow">Bekijken →</div>
+      </a>
+
     </div>
   </div>
 
-  <div class="section-label">Voorstellen</div>
-  <div class="cards">
+  <!-- TAB: UITGANGSPUNTEN -->
+  <div id="uitgangspunten" class="tab-content">
 
-    <a class="card cz" href="2027-02_tsjechie-carnaval-2027_4.html">
-      <div class="card-top">
-        <img class="card-flag-img" src="https://flagcdn.com/w40/cz.png" srcset="https://flagcdn.com/w80/cz.png 2x" width="40" alt="🇨🇿 Tsjechië">
-        <span class="card-transport transport-auto">🚗 Auto ~7u</span>
-      </div>
-      <div class="card-number">Optie 1</div>
-      <div class="card-title">Špindlerův Mlýn</div>
-      <div class="card-sub">🇨🇿 Tsjechië · Reuzengebergte · 28 km piste</div>
-      <div class="card-meta">
-        <span class="card-tag">💶 ~€549 p.p.</span>
-        <span class="card-tag">🏠 ~€2.380 per gezin</span>
-        <span class="card-tag">❄️ Kunstsneeuw</span>
-        <span class="card-tag">👪 Familiepistes</span>
-      </div>
-      <div class="card-arrow">Bekijken →</div>
-    </a>
+    <div class="uitg-title">📋 Uitgangspunten skivakantie</div>
 
-    <a class="card cz-combi" href="2027-02_tsjechie-combi-2027.html">
-      <div class="card-top">
-        <img class="card-flag-img" src="https://flagcdn.com/w40/cz.png" srcset="https://flagcdn.com/w80/cz.png 2x" width="40" alt="🇨🇿 Tsjechië">
-        <span class="card-transport transport-combi">🚗✈️ Combi</span>
+    <div class="uitg-grid">
+      <div class="uitg-card">
+        <span class="icon">👨‍👩‍👧‍👦</span>
+        <div>
+          <strong>Gezelschap</strong>
+          <span>3 gezinnen · 14 personen<br>Gezin 1: 4 volwassenen + 1 kind<br>Gezin 2: 2 volwassenen + 3 kinderen<br>Gezin 3: 2 volwassenen + 2 kinderen<br>Kinderleeftijden: 12–17 jaar</span>
+        </div>
       </div>
-      <div class="card-number">Optie 2</div>
-      <div class="card-title">Špindlerův Mlýn</div>
-      <div class="card-sub">🇨🇿 Tsjechië · Mannen rijden, rest vliegt RTM/EIN → PRG</div>
-      <div class="card-meta">
-        <span class="card-tag">💶 ~€690 p.p.</span>
-        <span class="card-tag">🏠 ~€2.990 per gezin</span>
-        <span class="card-tag">📦 Dakkoffer ski's</span>
-        <span class="card-tag">✈️ Comfortabeler</span>
+      <div class="uitg-card">
+        <span class="icon">🗓</span>
+        <div>
+          <strong>Periode</strong>
+          <span>Carnavalsvakantie: zo 7 – za 13 feb 2027<br>Auto vertrekt za 6 feb (rijdag)<br>Duur: 6 nachten · 5 skidagen</span>
+        </div>
       </div>
-      <div class="card-arrow">Bekijken →</div>
-    </a>
+      <div class="uitg-card">
+        <span class="icon">💶</span>
+        <div>
+          <strong>Budget</strong>
+          <span>Max. €1.250,- per persoon totaal</span>
+        </div>
+      </div>
+      <div class="uitg-card">
+        <span class="icon">🏠</span>
+        <div>
+          <strong>Accommodatie</strong>
+          <span>Appartement of hotel<br>Gezamenlijke ruimte + privacy per gezin</span>
+        </div>
+      </div>
+      <div class="uitg-card">
+        <span class="icon">🚗 ✈️</span>
+        <div>
+          <strong>Vervoer</strong>
+          <span>Optie 1: iedereen per auto (~7u)<br>Optie 2: iedereen per vliegtuig<br>Optie 3: mannen per auto, vrouwen + kids per vliegtuig<br>Vliegvelden: EIN · RTM · AMS · BRU</span>
+        </div>
+      </div>
+      <div class="uitg-card">
+        <span class="icon">🎿</span>
+        <div>
+          <strong>Skilessen</strong>
+          <span>6 kinderen · 4 dagen · 3 uur/dag<br>Privéskilleraar</span>
+        </div>
+      </div>
+      <div class="uitg-card">
+        <span class="icon">🌍</span>
+        <div>
+          <strong>Bestemming</strong>
+          <span>🇨🇿 Tsjechië · Špindlerův Mlýn · Reuzengebergte</span>
+        </div>
+      </div>
+      <div class="uitg-card">
+        <span class="icon">🧖</span>
+        <div>
+          <strong>Overig</strong>
+          <span>Wellness gewenst<br>Piste op loopafstand van de accommodatie</span>
+        </div>
+      </div>
+    </div>
 
-    <a class="card cz-fly" href="2027-02_tsjechie-vliegtuig-2027.html">
-      <div class="card-top">
-        <img class="card-flag-img" src="https://flagcdn.com/w40/cz.png" srcset="https://flagcdn.com/w80/cz.png 2x" width="40" alt="🇨🇿 Tsjechië">
-        <span class="card-transport transport-fly">✈️ Vlucht ~2u</span>
-      </div>
-      <div class="card-number">Optie 3</div>
-      <div class="card-title">Špindlerův Mlýn</div>
-      <div class="card-sub">🇨🇿 Tsjechië · Iedereen vliegt RTM/EIN → PRG</div>
-      <div class="card-meta">
-        <span class="card-tag">💶 ~€698 p.p.</span>
-        <span class="card-tag">🏠 ~€3.023 per gezin</span>
-        <span class="card-tag">✈️ Samen reizen</span>
-        <span class="card-tag">🎿 Skihuur inbegrepen</span>
-      </div>
-      <div class="card-arrow">Bekijken →</div>
-    </a>
-
+    <div class="aandacht">
+      <strong>⚠️ Aandachtspunten voor de reis</strong>
+      <ul>
+        <li>Winterbanden verplicht in Tsjechië</li>
+        <li>Sneeuwkettingen meenemen (verplicht op sommige wegen)</li>
+        <li>Tsjechisch vignet: digitaal boeken via edalnice.cz (~€14)</li>
+        <li>Bij vliegen: geldig reisdocument voor alle reizigers incl. kinderen</li>
+        <li>Vliegvelden: Eindhoven (EIN) · Rotterdam (RTM) · Schiphol (AMS) · Brussel (BRU)</li>
+      </ul>
+    </div>
 
   </div>
 
-  <div class="uitg-title">📋 Uitgangspunten skivakantie</div>
-
-  <div class="uitg-grid">
-    <div class="uitg-card">
-      <span class="icon">👨‍👩‍👧‍👦</span>
-      <div>
-        <strong>Gezelschap</strong>
-        <span>3 gezinnen · 14 personen<br>Gezin 1: 4 volwassenen + 1 kind<br>Gezin 2: 2 volwassenen + 3 kinderen<br>Gezin 3: 2 volwassenen + 2 kinderen<br>Kinderleeftijden: 12–17 jaar</span>
-      </div>
+  <!-- TAB: SKIGEBIED -->
+  <div id="skigebied" class="tab-content">
+    <div class="ski-placeholder">
+      <span class="ph-icon">🏔</span>
+      <p>Informatie over het skigebied Špindlerův Mlýn wordt hier toegevoegd.<br>Pistes, liften, après-ski en meer.</p>
     </div>
-    <div class="uitg-card">
-      <span class="icon">🗓</span>
-      <div>
-        <strong>Periode</strong>
-        <span>Carnavalsvakantie: zo 7 – za 13 feb 2027<br>Auto vertrekt za 6 feb (rijdag)<br>Duur: 6 nachten · 5 skidagen</span>
-      </div>
-    </div>
-    <div class="uitg-card">
-      <span class="icon">💶</span>
-      <div>
-        <strong>Budget</strong>
-        <span>Max. €1.250,- per persoon totaal</span>
-      </div>
-    </div>
-    <div class="uitg-card">
-      <span class="icon">🏠</span>
-      <div>
-        <strong>Accommodatie</strong>
-        <span>Appartement of hotel<br>Gezamenlijke ruimte + privacy per gezin</span>
-      </div>
-    </div>
-    <div class="uitg-card">
-      <span class="icon">🚗 ✈️</span>
-      <div>
-        <strong>Vervoer</strong>
-        <span>Optie 1: iedereen per auto (~7u)<br>Optie 2: iedereen per vliegtuig<br>Optie 3: mannen per auto, vrouwen + kids per vliegtuig<br>Vliegvelden: EIN · RTM · AMS · BRU</span>
-      </div>
-    </div>
-    <div class="uitg-card">
-      <span class="icon">🎿</span>
-      <div>
-        <strong>Skilessen</strong>
-        <span>6 kinderen · 4 dagen · 3 uur/dag<br>Privéskilleraar</span>
-      </div>
-    </div>
-    <div class="uitg-card">
-      <span class="icon">🌍</span>
-      <div>
-        <strong>Bestemming</strong>
-        <span>🇨🇿 Tsjechië · Špindlerův Mlýn · Reuzengebergte</span>
-      </div>
-    </div>
-    <div class="uitg-card">
-      <span class="icon">🧖</span>
-      <div>
-        <strong>Overig</strong>
-        <span>Wellness gewenst<br>Piste op loopafstand van de accommodatie</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="aandacht">
-    <strong>⚠️ Aandachtspunten voor de reis</strong>
-    <ul>
-      <li>Winterbanden verplicht in Tsjechië</li>
-      <li>Sneeuwkettingen meenemen (verplicht op sommige wegen)</li>
-      <li>Tsjechisch vignet: digitaal boeken via edalnice.cz (~€14)</li>
-      <li>Bij vliegen: geldig reisdocument voor alle reizigers incl. kinderen</li>
-      <li>Vliegvelden: Eindhoven (EIN) · Rotterdam (RTM) · Schiphol (AMS) · Brussel (BRU)</li>
-    </ul>
   </div>
 
 </div>
+
+<script>
+function showTab(btn, id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
 </body>
 </html>
