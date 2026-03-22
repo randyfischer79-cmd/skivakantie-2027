@@ -184,6 +184,7 @@ a.chip:hover { background: rgba(255,255,255,.2); }
 .r { text-align: right; }
 .bold { font-weight: 700; }
 .green { color: #27ae60; font-weight: 700; }
+.ch { text-align: right; }
 
 /* ─── PROGRAMMA ─── */
 .prog-wrap { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(26,61,43,.07); border: 1px solid rgba(26,61,43,.06); }
@@ -294,10 +295,10 @@ a.chip:hover { background: rgba(255,255,255,.2); }
   <div class="summary-bar">
     <div class="sb-item"><div class="sb-val">6 nachten</div><div class="sb-lbl">Duur</div></div>
     <div class="sb-item"><div class="sb-val">6 nachten</div><div class="sb-lbl">Verblijf</div></div>
-    <div class="sb-item"><div class="sb-val">~7 uur</div><div class="sb-lbl">Rijden 🚗 (mannen)</div></div>
-    <div class="sb-item"><div class="sb-val">~5 uur</div><div class="sb-lbl">Deur-tot-deur ✈️ (rest)</div></div>
-    <div class="sb-item"><div class="sb-val">€640 p.p.</div><div class="sb-lbl">Gem. kosten p.p.</div></div>
-    <div class="sb-item"><div class="sb-val">~€2.760</div><div class="sb-lbl">Gem. kosten per gezin</div></div>
+    <div class="sb-item"><div class="sb-val">~9-10 uur</div><div class="sb-lbl">Deur-tot-deur 🚗 Breda</div></div>
+    <div class="sb-item"><div class="sb-val">~7 uur</div><div class="sb-lbl">Deur-tot-deur ✈️ Breda</div></div>
+    <div class="sb-item"><div class="sb-val">€695 p.p.</div><div class="sb-lbl">Gem. kosten p.p.</div></div>
+    <div class="sb-item"><div class="sb-val">~€3.243</div><div class="sb-lbl">Gem. kosten per gezin</div></div>
     <div class="sb-item"><div class="sb-val">28 km</div><div class="sb-lbl">Piste</div></div>
   </div>
 </header>
@@ -328,15 +329,15 @@ a.chip:hover { background: rgba(255,255,255,.2); }
     </div>
     <div class="card">
       <div class="card-icon">🚗</div>
-      <div class="card-lbl">Rijden (mannen)</div>
-      <div class="card-val">~7 uur</div>
-      <div class="card-sub">Via Duitsland (A2/A12/A17) → Tsjechië · Geen tol in DE · Tsjechisch vignet ~€14</div>
+      <div class="card-lbl">Rijden (mannen) · deur-tot-deur vanuit Breda</div>
+      <div class="card-val">~9 – 10 uur</div>
+      <div class="card-sub">Breda → ~900 km via België + Duitsland (geen tol) → Tsjechisch vignet ~€14 · vertrek Za 6 ~06:00, aankomst ~15:00–16:00</div>
     </div>
     <div class="card">
       <div class="card-icon">✈️</div>
-      <div class="card-lbl">Vliegen (vrouwen + kids)</div>
-      <div class="card-val">~5 uur deur-tot-deur</div>
-      <div class="card-sub">RTM of EIN → Praag (PRG) ~1,5u · Transfer Praag → Špindlerův Mlýn ~2u</div>
+      <div class="card-lbl">Vliegen (vrouwen + kids) · deur-tot-deur vanuit Breda</div>
+      <div class="card-val">~7 uur</div>
+      <div class="card-sub">Breda → RTM ~25 min / EIN ~55 min · inchecken ~2u · vlucht ~1u25 · transfer PRG → resort ~2u · Zo 7 feb</div>
     </div>
     <div class="card">
       <div class="card-icon">💶</div>
@@ -658,49 +659,51 @@ a.chip:hover { background: rgba(255,255,255,.2); }
 
   <div class="budget-wrap">
     <div class="bt-head">
-      <div>Kostenpost</div><div class="r">Mannen 🚗 (3×)</div><div class="r">Vrouwen+kids ✈️ (11×)</div><div class="r">Totaal</div><div class="r">p.p. gem.</div>
+      <div>Kostenpost</div>
+      <div class="ch">Gezin 1<br><small>4v+1k</small></div>
+      <div class="ch">Gezin 2<br><small>2v+3k</small></div>
+      <div class="ch">Gezin 3<br><small>2v+2k</small></div>
+      <div class="ch">Groepstotaal</div>
     </div>
-    <div class="bt-row">
-      <div>🏠 Accommodatie (6 nachten, 3 units à €130/n)</div>
-      <div class="r">€ 180</div><div class="r">€ 180</div><div class="r">€ 2.340</div><div class="r bold">€ 167</div>
-    </div>
-    <div class="bt-row">
-      <div>🎿 Skipas 5 dagen GOPASS (volw. ~€120, junior ~€90)</div>
-      <div class="r">€ 120</div><div class="r">€ 100 gem.</div><div class="r">€ 1.460</div><div class="r bold">€ 104</div>
-    </div>
-    <div class="bt-row">
-      <div>📚 Skiles 6 kinderen · 4d × 3u privé (~€55/u, 2 leraren)</div>
-      <div class="r">—</div><div class="r">€ 120 gem.</div><div class="r">€ 1.320</div><div class="r bold">€ 94</div>
-    </div>
-    <div class="bt-row">
-      <div>🎿 Skihuur vrouwen + kids 5 dagen (~€20/dag, CZK-prijzen)</div>
-      <div class="r">—</div><div class="r">€ 100 gem.</div><div class="r">€ 1.100</div><div class="r bold">€ 79</div>
-    </div>
-    <div class="bt-row">
-      <div>🍽 Eten, drinken &amp; overig</div>
-      <div class="r">€ 120</div><div class="r">€ 110 gem.</div><div class="r">€ 1.570</div><div class="r bold">€ 112</div>
-    </div>
-    <div class="bt-row">
-      <div>🚗 Vervoer mannen (brandstof retour + vignet CZK ~€14)</div>
-      <div class="r">€ 72</div><div class="r">—</div><div class="r">€ 216</div><div class="r bold">€ 15</div>
-    </div>
-    <div class="bt-row">
-      <div>✈️ Vervoer rest (vlucht retour EIN/RTM/AMS/BRU + shuttle PRG)</div>
-      <div class="r">—</div><div class="r">€ 130 gem.</div><div class="r">€ 1.430</div><div class="r bold">€ 102</div>
-    </div>
+    <div class="bt-row"><div>🏠 Appartement 6 nachten (3 units à €130/n)</div><div class="r">€ 780</div><div class="r">€ 780</div><div class="r">€ 780</div><div class="r bold">€ 2.340</div></div>
+    <div class="bt-row"><div>🎿 Skipas 5 dagen GOPASS (volw. ~€120, junior ~€90)</div><div class="r">€ 570</div><div class="r">€ 510</div><div class="r">€ 420</div><div class="r bold">€ 1.500</div></div>
+    <div class="bt-row"><div>📚 Skiles 6 kinderen · 4d × 3u privé (~€55/u, 2 leraren)</div><div class="r">€ 220</div><div class="r">€ 660</div><div class="r">€ 440</div><div class="r bold">€ 1.320</div></div>
+    <div class="bt-row"><div>🎿 Skihuur vrouwen + kids 5 dagen (~€20/dag · mannen eigen ski's)</div><div class="r">€ 400</div><div class="r">€ 400</div><div class="r">€ 300</div><div class="r bold">€ 1.100</div></div>
+    <div class="bt-row"><div>🍽 Eten, drinken &amp; overig</div><div class="r">€ 550</div><div class="r">€ 550</div><div class="r">€ 440</div><div class="r bold">€ 1.540</div></div>
+    <div class="bt-row"><div>🚗 Vervoer man — brandstof retour Breda (~€230) + vignet ~€14</div><div class="r">€ 244</div><div class="r">€ 244</div><div class="r">€ 244</div><div class="r bold">€ 732</div></div>
+    <div class="bt-row"><div>✈️ Vervoer vrouwen + kids (vlucht ~€70 p.p. + shuttle ~€40 p.p.)</div><div class="r">€ 440</div><div class="r">€ 440</div><div class="r">€ 330</div><div class="r bold">€ 1.210</div></div>
     <div class="bt-total">
-      <div>💶 Totaal</div><div class="r">€ 492</div><div class="r">€ 840 gem.</div><div class="r">€ 9.436</div><div class="r green">€ 674 p.p.</div>
-    </div>
-    <div class="bt-pp" style="font-weight:600;color:#1a5c50;background:#d6eeea;">
-      <div>Gem. per gezin (4,7 pers.)</div><div class="r"></div><div class="r"></div><div class="r">€ 9.436 totaal</div><div class="r">~€ 3.145 p.gz.</div>
+      <div class="bold">TOTAAL per gezin</div>
+      <div class="r bold">€ 3.204</div>
+      <div class="r bold">€ 3.584</div>
+      <div class="r bold">€ 2.954</div>
+      <div class="r bold">€ 9.742</div>
     </div>
     <div class="bt-pp">
-      <div>Restbudget t.o.v. max €1.250 p.p.</div><div class="r">€ 758</div><div class="r">€ 410 gem.</div><div class="r"></div><div class="r green">€ 576 over</div>
+      <div>Per persoon</div>
+      <div class="r green">€ 641</div>
+      <div class="r green">€ 717</div>
+      <div class="r green">€ 739</div>
+      <div class="r bold green">gem. € 696</div>
+    </div>
+    <div class="bt-pp" style="font-weight:600;color:#1a5c50;background:#d6eeea;">
+      <div>Gem. per gezin</div>
+      <div class="r">€ 3.204</div>
+      <div class="r">€ 3.584</div>
+      <div class="r">€ 2.954</div>
+      <div class="r bold">gem. ~€ 3.247</div>
+    </div>
+    <div class="bt-pp">
+      <div>Restbudget t.o.v. max €1.250 p.p.</div>
+      <div class="r">€ 609</div>
+      <div class="r">€ 533</div>
+      <div class="r">€ 511</div>
+      <div class="r green">gem. € 554 over</div>
     </div>
     <div class="bt-note">
       <span>* Accommodatie 3 units à €130/n × 6n · GOPASS vroegboek · Privéles 6 kinderen 4 dagen</span>
-      <span>* Mannen eigen ski-uitrusting in dakkoffer → geen skihuur voor mannen</span>
-      <span>* Vlucht ~€70 p.p. retour vroegboek + shuttle ~€40 p.p. retour (groep 11) · EIN, RTM, AMS of BRU</span>
+      <span>* Mannen rijden eigen auto met dakkoffer ski's → geen skihuur voor mannen</span>
+      <span>* Vlucht ~€70 p.p. retour vroegboek + shuttle ~€40 p.p. retour · EIN, RTM, AMS of BRU</span>
       <span>* Skihuur vrouwen + kids ~€20/p/dag Tsjechische prijzen · Prijzen indicatief seizoen 2025/26</span>
     </div>
   </div>

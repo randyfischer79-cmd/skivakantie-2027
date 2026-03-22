@@ -165,6 +165,7 @@ a.chip:hover { background: rgba(255,255,255,.2); }
 .r { text-align: right; }
 .bold { font-weight: 700; }
 .green { color: #27ae60; font-weight: 700; }
+.ch { text-align: right; }
 
 /* ─── PROGRAMMA ─── */
 .prog-wrap { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(26,42,77,.07); border: 1px solid rgba(26,42,77,.06); }
@@ -273,9 +274,9 @@ a.chip:hover { background: rgba(255,255,255,.2); }
     <div class="sb-item"><div class="sb-val">6 nachten</div><div class="sb-lbl">Duur</div></div>
     <div class="sb-item"><div class="sb-val">6 nachten</div><div class="sb-lbl">Verblijf</div></div>
     <div class="sb-item"><div class="sb-val">~1u 25m</div><div class="sb-lbl">Vlucht ✈️ RTM/EIN → PRG</div></div>
-    <div class="sb-item"><div class="sb-val">~5 uur</div><div class="sb-lbl">Deur-tot-deur totaal</div></div>
-    <div class="sb-item"><div class="sb-val">€710 p.p.</div><div class="sb-lbl">Gem. kosten p.p.</div></div>
-    <div class="sb-item"><div class="sb-val">~€3.055</div><div class="sb-lbl">Gem. kosten per gezin</div></div>
+    <div class="sb-item"><div class="sb-val">~7 uur</div><div class="sb-lbl">Deur-tot-deur vanuit Breda</div></div>
+    <div class="sb-item"><div class="sb-val">€683 p.p.</div><div class="sb-lbl">Gem. kosten p.p.</div></div>
+    <div class="sb-item"><div class="sb-val">~€3.190</div><div class="sb-lbl">Gem. kosten per gezin</div></div>
     <div class="sb-item"><div class="sb-val">28 km</div><div class="sb-lbl">Piste</div></div>
   </div>
 </header>
@@ -306,9 +307,9 @@ a.chip:hover { background: rgba(255,255,255,.2); }
     </div>
     <div class="card">
       <div class="card-icon">✈️</div>
-      <div class="card-lbl">Reistijd totaal</div>
-      <div class="card-val">~5 uur deur-tot-deur</div>
-      <div class="card-sub">Vlucht ~1u25 · inchecken ~1,5u · transfer Praag → resort ~2u · kortste stressloze reis</div>
+      <div class="card-lbl">Reistijd deur-tot-deur vanuit Breda</div>
+      <div class="card-val">~7 uur</div>
+      <div class="card-sub">Breda → RTM ~25 min / EIN ~55 min · inchecken ~2u · vlucht ~1u25 · transfer PRG → resort ~2u · aankomst Zo 7 ~14:00–15:00</div>
     </div>
     <div class="card">
       <div class="card-icon">👨‍👩‍👧‍👦</div>
@@ -556,44 +557,46 @@ a.chip:hover { background: rgba(255,255,255,.2); }
 
   <div class="budget-wrap">
     <div class="bt-head">
-      <div>Kostenpost</div><div class="r">Volw. (8×)</div><div class="r">Kind 12–17 (6×)</div><div class="r">Totaal</div><div class="r">p.p. gem.</div>
+      <div>Kostenpost</div>
+      <div class="ch">Gezin 1<br><small>4v+1k</small></div>
+      <div class="ch">Gezin 2<br><small>2v+3k</small></div>
+      <div class="ch">Gezin 3<br><small>2v+2k</small></div>
+      <div class="ch">Groepstotaal</div>
     </div>
-    <div class="bt-row">
-      <div>🏠 Accommodatie (6 nachten, 3 units à €130/n)</div>
-      <div class="r">€ 180</div><div class="r">€ 180</div><div class="r">€ 2.340</div><div class="r bold">€ 167</div>
-    </div>
-    <div class="bt-row">
-      <div>✈️ Vlucht retour (vroegboek EIN/RTM/AMS/BRU → PRG)</div>
-      <div class="r">€ 70</div><div class="r">€ 70</div><div class="r">€ 980</div><div class="r bold">€ 70</div>
-    </div>
-    <div class="bt-row">
-      <div>🚌 Transfer retour (groepsshuttle PRG ↔ resort)</div>
-      <div class="r">€ 35</div><div class="r">€ 35</div><div class="r">€ 490</div><div class="r bold">€ 35</div>
-    </div>
-    <div class="bt-row">
-      <div>🎿 Skipas 5 dagen GOPASS (volw. ~€120, junior ~€90)</div>
-      <div class="r">€ 120</div><div class="r">€ 90</div><div class="r">€ 1.500</div><div class="r bold">€ 107</div>
-    </div>
-    <div class="bt-row">
-      <div>📚 Skiles 6 kinderen · 4d × 3u privé (~€55/u, 2 leraren)</div>
-      <div class="r">—</div><div class="r">€ 220</div><div class="r">€ 1.320</div><div class="r bold">€ 94</div>
-    </div>
-    <div class="bt-row">
-      <div>🎿 Skihuur all-in 5 dagen (~€20/dag · iedereen)</div>
-      <div class="r">€ 100</div><div class="r">€ 100</div><div class="r">€ 1.400</div><div class="r bold">€ 100</div>
-    </div>
-    <div class="bt-row">
-      <div>🍽 Eten, drinken &amp; overig</div>
-      <div class="r">€ 120</div><div class="r">€ 100</div><div class="r">€ 1.560</div><div class="r bold">€ 111</div>
-    </div>
+    <div class="bt-row"><div>🏠 Appartement 6 nachten (3 units à €130/n)</div><div class="r">€ 780</div><div class="r">€ 780</div><div class="r">€ 780</div><div class="r bold">€ 2.340</div></div>
+    <div class="bt-row"><div>✈️ Vlucht retour (vroegboek EIN/RTM/AMS/BRU → PRG)</div><div class="r">€ 350</div><div class="r">€ 350</div><div class="r">€ 280</div><div class="r bold">€ 980</div></div>
+    <div class="bt-row"><div>🚌 Transfer retour (groepsshuttle PRG ↔ resort)</div><div class="r">€ 175</div><div class="r">€ 175</div><div class="r">€ 140</div><div class="r bold">€ 490</div></div>
+    <div class="bt-row"><div>🎿 Skipas 5 dagen GOPASS (volw. ~€120, junior ~€90)</div><div class="r">€ 570</div><div class="r">€ 510</div><div class="r">€ 420</div><div class="r bold">€ 1.500</div></div>
+    <div class="bt-row"><div>📚 Skiles 6 kinderen · 4d × 3u privé (~€55/u, 2 leraren)</div><div class="r">€ 220</div><div class="r">€ 660</div><div class="r">€ 440</div><div class="r bold">€ 1.320</div></div>
+    <div class="bt-row"><div>🎿 Skihuur all-in 5 dagen (~€20/dag · iedereen)</div><div class="r">€ 500</div><div class="r">€ 500</div><div class="r">€ 400</div><div class="r bold">€ 1.400</div></div>
+    <div class="bt-row"><div>🍽 Eten, drinken &amp; overig</div><div class="r">€ 550</div><div class="r">€ 550</div><div class="r">€ 440</div><div class="r bold">€ 1.540</div></div>
     <div class="bt-total">
-      <div>💶 Totaal p.p.</div><div class="r">€ 625</div><div class="r">€ 795</div><div class="r">€ 9.590</div><div class="r green">€ 685 p.p.</div>
-    </div>
-    <div class="bt-pp" style="font-weight:600;color:#1a2a4d;background:#d0e4f8;">
-      <div>Gem. per gezin (4,7 pers.)</div><div class="r"></div><div class="r"></div><div class="r">€ 9.590 totaal</div><div class="r">~€ 3.197 p.gz.</div>
+      <div class="bold">TOTAAL per gezin</div>
+      <div class="r bold">€ 3.145</div>
+      <div class="r bold">€ 3.525</div>
+      <div class="r bold">€ 2.900</div>
+      <div class="r bold">€ 9.570</div>
     </div>
     <div class="bt-pp">
-      <div>Restbudget t.o.v. max €1.250 p.p.</div><div class="r">€ 625</div><div class="r">€ 455</div><div class="r"></div><div class="r green">€ 565 over</div>
+      <div>Per persoon</div>
+      <div class="r green">€ 629</div>
+      <div class="r green">€ 705</div>
+      <div class="r green">€ 725</div>
+      <div class="r bold green">gem. € 683</div>
+    </div>
+    <div class="bt-pp" style="font-weight:600;color:#1a2a4d;background:#d0e4f8;">
+      <div>Gem. per gezin</div>
+      <div class="r">€ 3.145</div>
+      <div class="r">€ 3.525</div>
+      <div class="r">€ 2.900</div>
+      <div class="r bold">gem. ~€ 3.190</div>
+    </div>
+    <div class="bt-pp">
+      <div>Restbudget t.o.v. max €1.250 p.p.</div>
+      <div class="r">€ 621</div>
+      <div class="r">€ 545</div>
+      <div class="r">€ 525</div>
+      <div class="r green">gem. € 567 over</div>
     </div>
     <div class="bt-note">
       <span>* Accommodatie 3 units à €130/n × 6n · GOPASS skipas vroegboek · Privéles 6 kinderen 4 dagen</span>
