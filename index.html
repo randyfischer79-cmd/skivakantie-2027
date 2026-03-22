@@ -4,36 +4,146 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Skivakantie 2027</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  body { margin: 0; background: #f0f3f8; font-family: 'Outfit', sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-  .container { text-align: center; padding: 2rem; }
-  h1 { font-size: 2rem; font-weight: 600; color: #1a2a4a; margin-bottom: 0.5rem; }
-  p { color: #555; margin-bottom: 2rem; }
-  .cards { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
-  a.card { display: block; background: white; border-radius: 12px; padding: 2rem 2.5rem; text-decoration: none; color: #1a2a4a; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s; min-width: 220px; }
-  a.card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.13); }
-  a.card .emoji { font-size: 2.5rem; margin-bottom: 0.75rem; }
-  a.card .title { font-size: 1.1rem; font-weight: 600; }
-  a.card .sub { font-size: 0.85rem; color: #777; margin-top: 0.3rem; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #f0f3f8; font-family: 'Outfit', sans-serif; color: #1a2a4a; min-height: 100vh; }
+
+.hero { background: #1a3d2b; padding: 3rem 2rem 2.5rem; text-align: center; }
+.hero h1 { font-size: 2rem; font-weight: 600; color: white; margin-bottom: 0.4rem; }
+.hero p { color: rgba(255,255,255,.6); font-size: 0.95rem; }
+
+.main { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+/* Voorstellen */
+.section-label { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: #52b788; font-weight: 600; margin-bottom: 1rem; }
+.cards { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 3rem; }
+a.card { display: block; background: white; border-radius: 14px; padding: 1.8rem 2rem; text-decoration: none; color: #1a2a4a; box-shadow: 0 4px 20px rgba(0,0,0,0.07); transition: transform 0.2s, box-shadow 0.2s; flex: 1; min-width: 220px; }
+a.card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+a.card .emoji { font-size: 2.2rem; margin-bottom: 0.6rem; }
+a.card .title { font-size: 1.05rem; font-weight: 600; }
+a.card .sub { font-size: 0.82rem; color: #777; margin-top: 0.25rem; }
+a.card .arrow { display: inline-block; margin-top: 1rem; font-size: 0.78rem; color: #2d6a4f; font-weight: 600; }
+
+/* Uitgangspunten */
+.uitg-title {
+  display: flex; align-items: center; gap: .7rem;
+  font-size: 1.1rem; font-weight: 600; color: #1a3d2b;
+  margin-bottom: 1.2rem;
+}
+.uitg-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, rgba(45,106,79,.25), transparent); }
+.uitg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: .85rem; margin-bottom: 1.2rem; }
+.uitg-card {
+  background: white; border-radius: 12px; padding: 1.1rem 1.2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06); border: 1px solid rgba(26,61,43,.06);
+  display: flex; gap: .7rem; align-items: flex-start;
+}
+.uitg-card .icon { font-size: 1.3rem; flex-shrink: 0; }
+.uitg-card strong { display: block; font-size: .82rem; color: #1a3d2b; margin-bottom: .2rem; }
+.uitg-card span { font-size: .79rem; color: #6b7c70; line-height: 1.55; }
+.aandacht {
+  background: #fff8e8; border-left: 4px solid #d4820a; border-radius: 10px;
+  padding: 1rem 1.3rem; font-size: .82rem; line-height: 1.65; color: #3d2b1a;
+}
+.aandacht strong { color: #8a5200; }
+.aandacht ul { margin: .4rem 0 0 1.1rem; }
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>Skivakantie 2027</h1>
-  <p>Kies een pagina om te bekijken</p>
+
+<div class="hero">
+  <h1>⛷️ Skivakantie 2027</h1>
+  <p>3 gezinnen · 13 personen · Carnavalsvakantie · Tsjechië</p>
+</div>
+
+<div class="main">
+
+  <div class="section-label">Voorstellen</div>
   <div class="cards">
     <a class="card" href="2027-02_skivakantie-3opties-2027.html">
-      <div class="emoji">⛷️</div>
-      <div class="title">Skivakantie 3 Opties</div>
+      <div class="emoji">🗺️</div>
+      <div class="title">Skivakantie — 3 Opties</div>
       <div class="sub">Vergelijking van bestemmingen</div>
+      <div class="arrow">Bekijken →</div>
     </a>
     <a class="card" href="2027-02_tsjechie-carnaval-2027_4.html">
-      <div class="emoji">🎿</div>
+      <div class="emoji">🇨🇿</div>
       <div class="title">Špindlerův Mlýn</div>
       <div class="sub">Carnaval 2027 — Uitgewerkt voorstel</div>
+      <div class="arrow">Bekijken →</div>
     </a>
   </div>
+
+  <div class="uitg-title">📋 Uitgangspunten skivakantie</div>
+
+  <div class="uitg-grid">
+    <div class="uitg-card">
+      <span class="icon">👨‍👩‍👧‍👦</span>
+      <div>
+        <strong>Gezelschap</strong>
+        <span>3 gezinnen · 13 personen<br>6 volwassenen (2 per gezin)<br>7 kinderen leeftijd 12–17 jaar<br>(1 gezin 3 kinderen, 2 gezinnen 2 kinderen)</span>
+      </div>
+    </div>
+    <div class="uitg-card">
+      <span class="icon">🗓</span>
+      <div>
+        <strong>Periode</strong>
+        <span>Carnavalsvakantie: za 13 – vr 20 feb 2027<br>Alternatief: kerstvakantie 19 dec '26 – 3 jan '27<br>Duur: ca. 7 dagen</span>
+      </div>
+    </div>
+    <div class="uitg-card">
+      <span class="icon">💶</span>
+      <div>
+        <strong>Budget</strong>
+        <span>Max. €1.250,- per persoon totaal</span>
+      </div>
+    </div>
+    <div class="uitg-card">
+      <span class="icon">🏠</span>
+      <div>
+        <strong>Accommodatie</strong>
+        <span>Appartement of hotel<br>Gezamenlijke ruimte + privacy per gezin</span>
+      </div>
+    </div>
+    <div class="uitg-card">
+      <span class="icon">🚗</span>
+      <div>
+        <strong>Vervoer</strong>
+        <span>Auto</span>
+      </div>
+    </div>
+    <div class="uitg-card">
+      <span class="icon">🎿</span>
+      <div>
+        <strong>Skilessen</strong>
+        <span>Alle kinderen volgen skilessen</span>
+      </div>
+    </div>
+    <div class="uitg-card">
+      <span class="icon">🌍</span>
+      <div>
+        <strong>Voorkeurslanden</strong>
+        <span>Oostenrijk · Tsjechië · Frankrijk</span>
+      </div>
+    </div>
+    <div class="uitg-card">
+      <span class="icon">🧖</span>
+      <div>
+        <strong>Overig</strong>
+        <span>Wellness gewenst</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="aandacht">
+    <strong>⚠️ Aandachtspunten voor de reis</strong>
+    <ul>
+      <li>Winterbanden verplicht in Tsjechië en Oostenrijk</li>
+      <li>Sneeuwkettingen meenemen (verplicht op sommige wegen)</li>
+      <li>Vignet controleren per land (Tsjechië: digitaal vignet verplicht)</li>
+    </ul>
+  </div>
+
 </div>
 </body>
 </html>

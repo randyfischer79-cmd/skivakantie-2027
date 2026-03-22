@@ -159,9 +159,32 @@ body { font-family:'Outfit',sans-serif; background:var(--bg); color:var(--dark);
   .bt-head,.bt-row,.bt-total,.bt-pp{grid-template-columns:1.3fr repeat(4,.85fr);font-size:.61rem;}
   .tab-btn{padding:.8rem .7rem;font-size:.72rem;}
 }
+
+/* ─── TERUG KNOP ─── */
+.back-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: var(--dark);
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  padding: .5rem 1.2rem;
+  display: flex; align-items: center;
+}
+.back-btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.85); border-radius: 50px;
+  padding: .28rem .9rem; font-family: 'Outfit', sans-serif;
+  font-size: .74rem; font-weight: 500; text-decoration: none;
+  transition: background .15s;
+}
+.back-btn:hover { background: rgba(255,255,255,.2); }
+body { padding-top: 44px; }
 </style>
 </head>
 <body>
+
+<div class="back-bar">
+  <a class="back-btn" href="index.html">← Startpagina</a>
+</div>
 
 <!-- HEADER -->
 <header class="site-header">
