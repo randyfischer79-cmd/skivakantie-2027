@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sölden — Carnaval 2027 · Vliegtuig</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --glacier: #0d2b52;
+  --sky: #1a5295;
+  --ice: #7ab8e0;
+  --frost: #ddeef8;
+  --cream: #f5f8fc;
+  --sand: #e8edf5;
+  --bark: #1a2a3a;
+  --stone: #5a7080;
+  --white: #ffffff;
+  --amber: #d4820a;
+  --warning: #fff3cd;
+  --warning-border: #d4820a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--bark); line-height: 1.6; padding-top: 52px; }
+html { scroll-behavior: smooth; }
+
+/* ─── STICKY NAV ─── */
+.sticky-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: var(--glacier);
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; align-items: center; gap: .35rem;
+  padding: .55rem 1.2rem; overflow-x: auto; scrollbar-width: none;
+}
+.sticky-nav::-webkit-scrollbar { display: none; }
+.nav-btn {
+  display: inline-flex; align-items: center; gap: .35rem; white-space: nowrap;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.85); border-radius: 50px; padding: .28rem .85rem;
+  font-family: 'DM Sans', sans-serif; font-size: .74rem; font-weight: 500;
+  text-decoration: none; transition: background .15s; flex-shrink: 0;
+}
+.nav-btn:hover, .nav-btn.active { background: var(--ice); border-color: var(--ice); color: var(--glacier); font-weight: 700; }
+
+/* ─── HERO ─── */
+.hero {
+  background: var(--glacier); position: relative;
+  padding: 0; overflow: hidden; min-height: 320px;
+  display: flex; flex-direction: column;
+}
+.hero-texture {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(122,184,224,.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(26,82,149,.4) 0%, transparent 50%);
+}
+.hero-mountains { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; opacity: .07; }
+.hero-content { position: relative; z-index: 2; padding: 3rem 2rem 2rem; max-width: 1100px; margin: 0 auto; width: 100%; }
+.hero-flag { font-size: 3rem; margin-bottom: .75rem; }
+.hero-eyebrow { font-size: .68rem; letter-spacing: 4px; text-transform: uppercase; color: var(--ice); margin-bottom: .6rem; }
+.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem,5vw,4rem); font-weight: 900; color: var(--white); line-height: 1.05; margin-bottom: .5rem; }
+.hero-sub { font-size: 1rem; color: rgba(255,255,255,.65); margin-bottom: 1.5rem; }
+.hero-chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.chip { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.85); border-radius: 50px; padding: .3rem .9rem; font-size: .75rem; font-weight: 500; }
+a.chip { text-decoration: none; transition: background .15s; }
+a.chip:hover { background: rgba(255,255,255,.2); }
+
+/* ─── SUMMARY BAR ─── */
+.summary-bar { background: var(--sky); display: flex; justify-content: space-around; flex-wrap: wrap; gap: .5rem; padding: 1.2rem 2rem; }
+.sb-item { text-align: center; color: white; }
+.sb-val { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1; color: var(--frost); }
+.sb-lbl { font-size: .64rem; letter-spacing: 1.5px; text-transform: uppercase; opacity: .7; margin-top: .15rem; }
+
+/* ─── LAYOUT ─── */
+.container { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+/* ─── SECTION TITLE ─── */
+.sec-title { display: flex; align-items: center; gap: .8rem; margin: 2.5rem 0 1.1rem; font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--glacier); }
+.sec-title .icon { font-size: 1.4rem; }
+.sec-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, rgba(13,43,82,.3), transparent); }
+
+/* ─── CARDS ─── */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; }
+.card { background: var(--white); border-radius: 14px; padding: 1.3rem; box-shadow: 0 2px 12px rgba(13,43,82,.07); border: 1px solid rgba(13,43,82,.06); }
+.card-icon { font-size: 1.6rem; margin-bottom: .6rem; }
+.card-lbl { font-size: .63rem; letter-spacing: 2px; text-transform: uppercase; color: var(--stone); margin-bottom: .3rem; }
+.card-val { font-size: .98rem; font-weight: 600; color: var(--bark); }
+.card-sub { font-size: .77rem; color: var(--stone); margin-top: .3rem; line-height: 1.5; }
+.card-link { display: inline-block; margin-top: .5rem; font-size: .72rem; font-weight: 600; color: var(--sky); text-decoration: none; border-bottom: 1px solid var(--ice); padding-bottom: 1px; }
+
+/* ─── NOTICE ─── */
+.notice { border-radius: 12px; padding: 1rem 1.3rem; margin-bottom: 1rem; font-size: .84rem; line-height: 1.6; display: flex; gap: .8rem; align-items: flex-start; }
+.notice-blue { background: var(--frost); border-left: 4px solid var(--ice); }
+.notice-amber { background: var(--warning); border-left: 4px solid var(--warning-border); }
+.notice-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: .05rem; }
+.notice strong { color: var(--glacier); }
+
+/* ─── VLUCHTEN ─── */
+.vlucht-card { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(13,43,82,.07); border: 1px solid rgba(13,43,82,.06); margin-bottom: 1rem; }
+.vlucht-head { background: var(--glacier); color: white; padding: 1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+.vlucht-head h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+.vlucht-head .source { font-size: .7rem; opacity: .65; }
+.vlucht-body { padding: 1.2rem 1.4rem; }
+.vlucht-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; padding: .6rem 0; border-bottom: 1px solid #edf2f8; font-size: .82rem; align-items: center; }
+.vlucht-row:last-child { border-bottom: none; }
+.vlucht-hd { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; font-size: .67rem; letter-spacing: .5px; text-transform: uppercase; color: var(--stone); font-weight: 600; padding-bottom: .5rem; border-bottom: 2px solid var(--sand); margin-bottom: .3rem; }
+.vlucht-hd div:not(:first-child), .vlucht-row div:not(:first-child) { text-align: right; }
+.price-online { color: var(--sky); font-weight: 700; }
+.price-box { color: var(--stone); font-size: .78rem; }
+.price-best { color: var(--amber); font-weight: 700; font-size: .82rem; }
+.vlucht-note { background: var(--frost); border-radius: 8px; padding: .7rem 1rem; margin-top: .8rem; font-size: .77rem; color: var(--glacier); line-height: 1.5; }
+
+/* ─── ACCOMMODATIE ─── */
+.accom-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+.accom-card { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(13,43,82,.07); border: 1px solid rgba(13,43,82,.06); position: relative; }
+.accom-card.recommended::before { content: '⭐ Aanbevolen'; position: absolute; top: .8rem; right: .8rem; background: var(--sky); color: white; font-size: .64rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: .2rem .6rem; border-radius: 50px; z-index: 1; }
+.accom-thumb { height: 100px; background: linear-gradient(135deg, #b8d8f0, #6aaad4); display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+.accom-body { padding: 1.2rem; }
+.accom-body h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: .3rem; color: var(--glacier); }
+.accom-body p { font-size: .8rem; color: var(--stone); line-height: 1.55; margin-bottom: .5rem; }
+.accom-price { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--sky); }
+.accom-price small { font-family: 'DM Sans', sans-serif; font-size: .72rem; color: var(--stone); font-weight: 400; }
+.accom-dist { display: flex; align-items: center; gap: .4rem; margin: .5rem 0 .6rem; font-size: .8rem; font-weight: 600; }
+.dist-green { color: #1a6b35; }
+.dist-amber { color: #d4820a; }
+.dist-grey { color: var(--stone); }
+.accom-pros { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .35rem; }
+.pro-tag { background: var(--frost); color: var(--glacier); border-radius: 50px; padding: .18rem .65rem; font-size: .68rem; font-weight: 600; }
+.accom-link { display: inline-block; margin-top: .8rem; font-size: .75rem; font-weight: 600; color: var(--sky); text-decoration: none; border-bottom: 1px solid var(--ice); }
+
+/* ─── SKIPAS ─── */
+.skipas-card { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(13,43,82,.07); border: 1px solid rgba(13,43,82,.06); margin-bottom: 1rem; }
+.skipas-head { background: var(--glacier); color: white; padding: 1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+.skipas-head h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+.skipas-head .source { font-size: .7rem; opacity: .65; }
+.skipas-body { padding: 1.2rem 1.4rem; }
+.skipas-hd { display: grid; grid-template-columns: 2fr repeat(3, 1fr); font-size: .67rem; letter-spacing: .5px; text-transform: uppercase; color: var(--stone); font-weight: 600; padding-bottom: .5rem; border-bottom: 2px solid var(--sand); margin-bottom: .3rem; }
+.skipas-row { display: grid; grid-template-columns: 2fr repeat(3, 1fr); padding: .6rem 0; border-bottom: 1px solid #edf2f8; font-size: .82rem; align-items: center; }
+.skipas-row:last-child { border-bottom: none; }
+.skipas-hd div:not(:first-child), .skipas-row div:not(:first-child) { text-align: right; }
+.skipas-note { background: var(--frost); border-radius: 8px; padding: .7rem 1rem; margin-top: .8rem; font-size: .77rem; color: var(--glacier); line-height: 1.5; }
+
+/* ─── SKISCHOOL ─── */
+.school-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.school-card { background: var(--white); border-radius: 14px; padding: 1.3rem; box-shadow: 0 2px 12px rgba(13,43,82,.07); border: 1px solid rgba(13,43,82,.06); position: relative; }
+.school-card.top::before { content: '🏆 Best beoordeeld'; position: absolute; top: 1rem; right: 1rem; background: var(--amber); color: white; font-size: .63rem; font-weight: 700; padding: .18rem .6rem; border-radius: 50px; }
+.school-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--glacier); margin-bottom: .1rem; }
+.school-rating { font-size: .78rem; color: var(--stone); margin-bottom: .6rem; }
+.school-offer { display: flex; justify-content: space-between; align-items: flex-start; padding: .45rem 0; border-bottom: 1px solid #edf2f8; font-size: .8rem; gap: .5rem; }
+.school-offer:last-child { border-bottom: none; }
+.offer-name { flex: 1; color: var(--bark); }
+.offer-name small { display: block; font-size: .7rem; color: var(--stone); margin-top: .1rem; }
+.offer-price { font-weight: 700; color: var(--sky); white-space: nowrap; font-size: .85rem; }
+.school-link { display: inline-block; margin-top: .9rem; font-size: .74rem; font-weight: 600; color: var(--sky); text-decoration: none; border-bottom: 1px solid var(--ice); }
+
+/* ─── BUDGET ─── */
+.budget-wrap { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(13,43,82,.07); border: 1px solid rgba(13,43,82,.06); margin-bottom: 1.2rem; }
+.bt-head { display: grid; grid-template-columns: 2.2fr repeat(4, 1fr); background: var(--glacier); color: white; font-size: .68rem; font-weight: 600; letter-spacing: .4px; padding: .85rem 1.3rem; }
+.bt-row { display: grid; grid-template-columns: 2.2fr repeat(4, 1fr); padding: .65rem 1.3rem; font-size: .81rem; border-bottom: 1px solid #edf2f8; align-items: center; }
+.bt-row:nth-child(even) { background: #f5f8fc; }
+.bt-total { display: grid; grid-template-columns: 2.2fr repeat(4, 1fr); padding: .9rem 1.3rem; font-weight: 700; font-size: .85rem; background: var(--sand); border-top: 2px solid rgba(13,43,82,.15); }
+.bt-pp { display: grid; grid-template-columns: 2.2fr repeat(4, 1fr); padding: .65rem 1.3rem; font-size: .77rem; color: var(--stone); background: #ecf3fa; }
+.bt-note { padding: .7rem 1.3rem; font-size: .73rem; color: var(--stone); background: #f5f8fc; border-top: 1px solid #ddeef8; display: flex; flex-wrap: wrap; gap: 1rem; line-height: 1.5; }
+.r { text-align: right; }
+.bold { font-weight: 700; }
+.green { color: #27ae60; font-weight: 700; }
+
+/* ─── PROGRAMMA ─── */
+.prog-wrap { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(13,43,82,.07); border: 1px solid rgba(13,43,82,.06); }
+.prog-head { background: var(--glacier); color: white; padding: 1rem 1.4rem; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; }
+.prog-item { display: grid; grid-template-columns: 70px 1fr; gap: 1rem; padding: .85rem 1.4rem; border-bottom: 1px solid #edf2f8; font-size: .83rem; align-items: start; }
+.prog-item:last-child { border-bottom: none; }
+.prog-day { font-weight: 700; font-size: .68rem; text-transform: uppercase; letter-spacing: .5px; color: var(--sky); padding-top: .15rem; line-height: 1.4; }
+.prog-item strong { display: block; font-weight: 600; color: var(--bark); margin-bottom: .15rem; }
+.prog-item span { color: var(--stone); line-height: 1.5; }
+.prog-item .tag { display: inline-block; background: var(--frost); color: var(--glacier); border-radius: 50px; padding: .1rem .55rem; font-size: .65rem; font-weight: 600; margin-left: .3rem; vertical-align: middle; }
+
+/* ─── ALTERNATIEF ─── */
+.alt-header { background: linear-gradient(130deg, #0d2240, #1a4070, #2a6090); border-radius: 14px; padding: 1.8rem 2rem; color: white; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
+.alt-header::before { content: '🌨'; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); font-size: 4rem; opacity: .15; }
+.alt-header h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: .3rem; }
+.alt-header p { font-size: .84rem; opacity: .8; max-width: 600px; }
+.alt-day { background: var(--white); border-radius: 14px; overflow: hidden; margin-bottom: .8rem; box-shadow: 0 2px 12px rgba(13,43,82,.07); border: 1px solid rgba(13,43,82,.06); }
+.alt-day-head { background: var(--bark); color: white; padding: .75rem 1.3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+.alt-day-head .day-num { font-size: .65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: .6; }
+.alt-day-head .day-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; }
+.alt-day-head .day-dist { font-size: .72rem; opacity: .65; background: rgba(255,255,255,.12); padding: .18rem .55rem; border-radius: 50px; }
+.alt-acts { padding: 1rem 1.3rem; display: flex; flex-direction: column; gap: .6rem; }
+.alt-act { display: flex; gap: .9rem; align-items: flex-start; font-size: .81rem; }
+.act-icon { font-size: 1.2rem; flex-shrink: 0; width: 28px; }
+.act-body strong { display: block; color: var(--bark); font-weight: 600; margin-bottom: .1rem; }
+.act-body span { color: var(--stone); line-height: 1.5; }
+.act-price { margin-left: auto; flex-shrink: 0; font-size: .75rem; font-weight: 700; color: var(--sky); white-space: nowrap; }
+
+/* ─── TIPS ─── */
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .85rem; }
+.tip-card { background: var(--white); border-radius: 12px; padding: 1.1rem; box-shadow: 0 2px 10px rgba(13,43,82,.06); border: 1px solid rgba(13,43,82,.05); }
+.tip-icon { font-size: 1.4rem; margin-bottom: .4rem; }
+.tip-card strong { display: block; font-size: .84rem; color: var(--glacier); margin-bottom: .2rem; }
+.tip-card p { font-size: .77rem; color: var(--stone); line-height: 1.5; }
+
+/* ─── UITGANGSPUNTEN ─── */
+.uitg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+.uitg-card { background: var(--white); border-radius: 14px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(13,43,82,.07); border: 1px solid rgba(13,43,82,.06); }
+.uitg-item { display: flex; gap: .75rem; align-items: flex-start; font-size: .85rem; }
+.uitg-item .ui-icon { font-size: 1.3rem; flex-shrink: 0; }
+.uitg-item .ui-body strong { display: block; color: var(--glacier); font-weight: 600; margin-bottom: .1rem; }
+.uitg-item .ui-body span { color: var(--stone); line-height: 1.5; }
+.uitg-aandacht { background: var(--warning); border-left: 4px solid var(--warning-border); border-radius: 10px; padding: 1rem 1.2rem; font-size: .83rem; line-height: 1.6; }
+.uitg-aandacht strong { color: var(--bark); }
+.uitg-aandacht ul { margin: .4rem 0 0 1.2rem; }
+
+/* ─── FOOTER ─── */
+.footer-bar { background: var(--glacier); color: rgba(255,255,255,.5); font-size: .72rem; text-align: center; padding: 1.2rem; }
+
+@media(max-width:700px){
+  .bt-head,.bt-row,.bt-total,.bt-pp { grid-template-columns: 1.5fr repeat(4,.85fr); font-size:.64rem; padding:.6rem .8rem; }
+  .vlucht-hd,.vlucht-row { grid-template-columns: 1.5fr repeat(3,.9fr); font-size:.72rem; }
+  .hero-content { padding: 2rem 1.2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ STICKY NAV ═══ -->
+<nav class="sticky-nav">
+  <a class="nav-btn" href="index.html" style="border-color:rgba(255,255,255,.35)">← Startpagina</a>
+  <a class="nav-btn" href="#uitgangspunten">📋 Uitgangspunten</a>
+  <a class="nav-btn" href="#bestemming">🏔 Bestemming</a>
+  <a class="nav-btn" href="#vlucht">✈️ Vlucht &amp; transfer</a>
+  <a class="nav-btn" href="#accommodatie">🏠 Accommodatie</a>
+  <a class="nav-btn" href="#skipas">🎿 Skipas</a>
+  <a class="nav-btn" href="#skischool">📚 Skischool</a>
+  <a class="nav-btn" href="#budget">💰 Budget ~€1.000 p.p.</a>
+  <a class="nav-btn" href="#programma">📅 Weekprogramma</a>
+  <a class="nav-btn" href="#alternatief">🌨 Geen sneeuw?</a>
+  <a class="nav-btn" href="#tips">💡 Tips</a>
+</nav>
+<script>
+(function(){
+  const btns = document.querySelectorAll('.nav-btn[href^="#"]');
+  const ids = Array.from(btns).map(b => b.getAttribute('href').slice(1));
+  function onScroll(){
+    const offset = 70; let active = ids[0];
+    ids.forEach(id => { const el = document.getElementById(id); if(el && window.scrollY >= el.getBoundingClientRect().top + window.scrollY - offset) active = id; });
+    btns.forEach(b => b.classList.toggle('active', b.getAttribute('href') === '#' + active));
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+})();
+</script>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="hero-texture"></div>
+  <svg class="hero-mountains" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="white">
+    <path d="M0,80 L100,20 L200,60 L320,0 L440,50 L560,10 L680,55 L800,5 L920,45 L1040,15 L1150,50 L1200,30 L1200,120 L0,120Z"/>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-flag">🇦🇹</div>
+    <p class="hero-eyebrow">Uitgewerkt voorstel · ✈️ Per vliegtuig · Carnavalsvakantie 2027</p>
+    <h1 class="hero-title">Sölden</h1>
+    <p class="hero-sub">Ötztal · Tirol · Oostenrijk · 3 gezinnen · 13 personen · 7 dagen</p>
+    <div class="hero-chips">
+      <span class="chip">🗓 Za 13 – Za 20 feb 2027</span>
+      <a class="chip" href="#vlucht">✈️ AMS → Innsbruck</a>
+      <a class="chip" href="#accommodatie">🏠 Concreet appartement</a>
+      <a class="chip" href="#skipas">🎿 Ötztal Superskipass</a>
+      <a class="chip" href="#alternatief">🌨 Gletsjer = altijd sneeuw</a>
+      <a class="chip" href="#budget">💶 ~€1.000 p.p. totaal</a>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <div class="sb-item"><div class="sb-val">7 dagen</div><div class="sb-lbl">Duur</div></div>
+    <div class="sb-item"><div class="sb-val">6 nachten</div><div class="sb-lbl">Verblijf</div></div>
+    <div class="sb-item"><div class="sb-val">~1,5 uur</div><div class="sb-lbl">Vluchttijd</div></div>
+    <div class="sb-item"><div class="sb-val">€1.000 p.p.</div><div class="sb-lbl">Gem. kosten</div></div>
+    <div class="sb-item"><div class="sb-val">€250 p.p.</div><div class="sb-lbl">Restbudget</div></div>
+    <div class="sb-item"><div class="sb-val">148 km</div><div class="sb-lbl">Piste</div></div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ═══ BESTEMMING ═══ -->
+  <div class="sec-title" id="bestemming"><span class="icon">🏔</span> Bestemming &amp; terrein</div>
+
+  <div class="notice notice-blue">
+    <span class="notice-icon">💡</span>
+    <div><strong>Waarom Sölden? — Gletsjer = gegarandeerde sneeuw</strong><br>
+    Sölden beschikt over twee gletsjers (Rettenbach 3.078 m en Tiefenbach 3.263 m) die ook bij slecht weer altijd open zijn. Beroemd als locatie van James Bond film Spectre (2015). Uitstekend voor beginners &amp; gevorderden — brede, overzichtelijke pistes op verschillende hoogtes. <strong>Ski School Sölden Total biedt Engelstalige lessen</strong> — ook voor beginners.</div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🏔</div>
+      <div class="card-lbl">Hoogte</div>
+      <div class="card-val">1.377 – 3.340 m</div>
+      <div class="card-sub">Hoogste skigebied in het Ötztal · Gletsjers altijd skibaar, ook bij warm weer in februari</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎿</div>
+      <div class="card-lbl">Skigebied</div>
+      <div class="card-val">148 km · 38 liften</div>
+      <div class="card-sub">Compacter dan SkiWelt maar spectaculairder · Ötztal Superskipass geldig in meerdere gebieden</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">✈️</div>
+      <div class="card-lbl">Reistijd totaal</div>
+      <div class="card-val">~4 – 5 uur deur-tot-deur</div>
+      <div class="card-sub">Vlucht AMS→INN ~1,5u · Transfer Innsbruck→Sölden ~1–1,5u · Inchecken/luchthaven ~1,5u</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">❄️</div>
+      <div class="card-lbl">Sneeuwzekerheid</div>
+      <div class="card-val">Uitstekend (gletsjer)</div>
+      <div class="card-sub">Twee gletsjers garanderen skiën zelfs bij weinig sneeuw · Hoogste betrouwbaarheid van alle opties</div>
+    </div>
+  </div>
+
+  <!-- ═══ VLUCHT ═══ -->
+  <div class="sec-title" id="vlucht"><span class="icon">✈️</span> Vlucht &amp; transfer — Amsterdam naar Sölden</div>
+
+  <div class="notice notice-amber">
+    <span class="notice-icon">⚠️</span>
+    <div><strong>Boek vluchten vroeg!</strong> Carnavalsvakantie is drukste periode. Vroegboekkorting kan 40–60% schelen. Boek bij voorkeur direct na zomervakantie 2026. Transavia opent doorgaans 6–9 maanden vooruit.</div>
+  </div>
+
+  <div class="vlucht-card">
+    <div class="vlucht-head">
+      <div>
+        <h3>Amsterdam (AMS) → Innsbruck (INN) — retour</h3>
+        <div class="source">Transavia · KLM (via München) · Vroegboek = beste prijs · Carnaval = hoogseizoen</div>
+      </div>
+    </div>
+    <div class="vlucht-body">
+      <div class="vlucht-hd">
+        <div>Route / Maatschappij</div>
+        <div>Vroegboek</div>
+        <div>Normaal</div>
+        <div>Aanbevolen</div>
+      </div>
+      <div class="vlucht-row">
+        <div><strong>AMS → INN</strong> · Transavia direct<small>Vluchttijd ~1u25 · Dagelijks in winterseizoen</small></div>
+        <div class="r price-online">~€ 80–130 p.p.</div>
+        <div class="r price-box">~€ 180–280</div>
+        <div class="r price-best">Vroegboek zomer '26</div>
+      </div>
+      <div class="vlucht-row">
+        <div><strong>AMS → INN</strong> · KLM/Lufthansa<small>Via München of Frankfurt · langere reistijd</small></div>
+        <div class="r price-online">~€ 120–200 p.p.</div>
+        <div class="r price-box">~€ 250–380</div>
+        <div class="r price-best">Alternatief Transavia</div>
+      </div>
+      <div class="vlucht-row">
+        <div><strong>Transfer INN → Sölden</strong> · Ötztal Bus<small>Reguliere buslijn · ~1,5u · Comfortabel</small></div>
+        <div class="r price-online">~€ 15 p.p.</div>
+        <div class="r price-box">—</div>
+        <div class="r price-best">Goedkoopst</div>
+      </div>
+      <div class="vlucht-row">
+        <div><strong>Transfer INN → Sölden</strong> · Taxi/shuttle<small>Voor groep van 13: 3 auto's of minibus</small></div>
+        <div class="r price-online">~€ 35–50 p.p.</div>
+        <div class="r price-box">—</div>
+        <div class="r price-best">Snelst + bagage</div>
+      </div>
+      <div class="vlucht-note">
+        💡 <strong>Aanbevolen combinatie:</strong> Transavia vroegboek (~€100 p.p. retour) + Ötztal Bus voor transfer (~€30 p.p. retour). Totaal vervoer: ~€130 p.p. — comfortabeler dan 9 uur rijden met 13 personen. <strong>Skirugzakken en skimateriaal als ruimbagage meenemen of ter plekke huren.</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ACCOMMODATIE ═══ -->
+  <div class="sec-title" id="accommodatie"><span class="icon">🏠</span> Accommodatie — concreet advies voor 13 personen</div>
+
+  <div class="notice notice-amber">
+    <span class="notice-icon">⚠️</span>
+    <div><strong>Boek vroeg!</strong> Sölden is populair en klein — appartementen voor groepen zijn snel weg. Reserveer bij voorkeur zomer 2026. Let bij zoeken op "Sölden" zelf of naburig Zwieselstein (5 min).</div>
+  </div>
+
+  <div class="accom-grid">
+
+    <div class="accom-card recommended">
+      <div class="accom-thumb">🏔</div>
+      <div class="accom-body">
+        <h3>Centralhotel / Appartements Sölden centrum</h3>
+        <p>Meerdere appartementcomplexen in het centrum van Sölden, direct aan de voet van de Giggijochbahn gondel. Volledig uitgeruste appartementen voor 4–6 personen. Wellness aanwezig. Aanbevolen: Hotel &amp; Chalet Sölden, Appartements Bergfried of Alpinresort Sölden.</p>
+        <div class="accom-price">€ 175 – 250 / nacht <small>per appartement (4–6 pers. · winter)</small></div>
+        <div class="accom-dist dist-green"><span>🎿</span> Giggijochbahn gondel op &lt;200 m loopafstand — ski-in/ski-out mogelijk</div>
+        <div class="accom-pros">
+          <span class="pro-tag">Gondel op loopafstand</span>
+          <span class="pro-tag">Wellness</span>
+          <span class="pro-tag">Centrum</span>
+          <span class="pro-tag">Eigen keuken</span>
+        </div>
+        <a href="https://www.booking.com/searchresults.html?ss=S%C3%B6lden+ski+appartement" target="_blank" class="accom-link">🔗 Zoek op Booking.com</a>
+      </div>
+    </div>
+
+    <div class="accom-card">
+      <div class="accom-thumb">🏡</div>
+      <div class="accom-body">
+        <h3>Alpinresort / Chalets Zwieselstein</h3>
+        <p>Rustig dorpje op 5 minuten rijden van Sölden. Rustiger, groener en goedkoper. Pendel met skibus naar Sölden gondel. Chalets en grote appartementen beschikbaar voor 10–14 personen. Uitzicht op het Ötztal.</p>
+        <div class="accom-price">€ 150 – 210 / nacht <small>per appartement (winter)</small></div>
+        <div class="accom-dist dist-amber"><span>🚶</span> Skibus naar Sölden gondel · ~5 min per bus</div>
+        <div class="accom-pros">
+          <span class="pro-tag">Rustiger</span>
+          <span class="pro-tag">Goedkoper</span>
+          <span class="pro-tag">Uitzicht</span>
+          <span class="pro-tag">Skibus</span>
+        </div>
+        <a href="https://www.booking.com/searchresults.html?ss=Zwieselstein+Tirol" target="_blank" class="accom-link">🔗 Zoek op Booking.com</a>
+      </div>
+    </div>
+
+    <div class="accom-card">
+      <div class="accom-thumb">🏠</div>
+      <div class="accom-body">
+        <h3>Groot vakantiehuis / Chalet via Airbnb</h3>
+        <p>Huur één groot chalet voor alle 13 personen. Gemeenschappelijke ruimte, aparte kamers per gezin. Zoek in Sölden of Zwieselstein. Vraag altijd naar de afstand tot de gondel. Filter op "ski-in/ski-out" of max. 500 m van lift.</p>
+        <div class="accom-price">€ 220 – 350 / nacht <small>totaal huis (13 pers.)</small></div>
+        <div class="accom-dist dist-grey"><span>📍</span> Afstand tot gondel verschilt per woning — filter op "ski-in" of max. 500 m</div>
+        <div class="accom-pros">
+          <span class="pro-tag">Budgetvriendelijkst p.p.</span>
+          <span class="pro-tag">Eigen keuken</span>
+          <span class="pro-tag">Privacy per gezin</span>
+        </div>
+        <a href="https://www.airbnb.nl/s/S%C3%B6lden--Tirol/homes" target="_blank" class="accom-link">🔗 Zoek op Airbnb</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ SKIPAS ═══ -->
+  <div class="sec-title" id="skipas"><span class="icon">🎿</span> Skipas — Ötztal Superskipass</div>
+
+  <div class="skipas-card">
+    <div class="skipas-head">
+      <div>
+        <h3>Ötztal Superskipass — Sölden + omliggende gebieden</h3>
+        <div class="source">Bron: soelden.com · Prijzen seizoen 2024/25 · Carnaval = hoogseizoen · Vroeg kopen = goedkoper</div>
+      </div>
+    </div>
+    <div class="skipas-body">
+      <div class="skipas-hd">
+        <div>Categorie</div>
+        <div>Online vroegboek</div>
+        <div>Kassa</div>
+        <div>Aanbevolen</div>
+      </div>
+      <div class="skipas-row">
+        <div><strong>Volwassene</strong> (16+) · 6 dagen</div>
+        <div class="r price-online">~€ 318–355</div>
+        <div class="r price-box">~€ 380–420</div>
+        <div class="r price-best">Vroegboek = ±€325</div>
+      </div>
+      <div class="skipas-row">
+        <div><strong>Junior</strong> (10–18j) · 6 dagen</div>
+        <div class="r price-online">~€ 240–268</div>
+        <div class="r price-box">~€ 285–320</div>
+        <div class="r price-best">Vroegboek = ±€245</div>
+      </div>
+      <div class="skipas-row">
+        <div><strong>Kind</strong> (6–9j) · 6 dagen</div>
+        <div class="r price-online">~€ 165–185</div>
+        <div class="r price-box">~€ 200–230</div>
+        <div class="r price-best">Vroegboek = ±€168</div>
+      </div>
+      <div class="skipas-row">
+        <div><strong>Gezinskorting</strong></div>
+        <div class="r price-online">Beperkt</div>
+        <div class="r price-box">—</div>
+        <div class="r price-best">Vraag op soelden.com</div>
+      </div>
+      <div class="skipas-note">
+        💡 <strong>Inclusief:</strong> Sölden (incl. beide gletsjers), Hochgurgl, Obergurgl en Vent. Koop online via <strong>soelden.com</strong> of de Ötztal Card App. Gletsjergebied Rettenbach en Tiefenbach zijn altijd open — ook als lager gelegen pistes dicht zijn.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SKISCHOOL ═══ -->
+  <div class="sec-title" id="skischool"><span class="icon">📚</span> Skischool — aanbod kinderen (12–17j) in Sölden</div>
+
+  <div class="school-grid">
+
+    <div class="school-card top">
+      <div class="school-name">Ski School Sölden Total</div>
+      <div class="school-rating">⭐ 4.9 · Engelstalig · Speciale tienergroepen</div>
+      <div class="school-offers">
+        <div class="school-offer">
+          <div class="offer-name">Groepsles 5 dagen (3u/dag)<small>Beginners t/m gevorderd · Max. 8 p.p. groep</small></div>
+          <div class="offer-price">~€ 195–230</div>
+        </div>
+        <div class="school-offer">
+          <div class="offer-name">Privéles per uur<small>Ideaal voor snelle progressie</small></div>
+          <div class="offer-price">~€ 70–90</div>
+        </div>
+      </div>
+      <a href="https://www.skischule-soelden.com" target="_blank" class="school-link">🔗 skischule-soelden.com</a>
+    </div>
+
+    <div class="school-card">
+      <div class="school-name">Ski School Sölden-Ötztaler</div>
+      <div class="school-rating">⭐ 4.6 · Budget-vriendelijker alternatief</div>
+      <div class="school-offers">
+        <div class="school-offer">
+          <div class="offer-name">Groepsles 5 dagen (3u/dag)<small>Groepen van max. 10 pers.</small></div>
+          <div class="offer-price">~€ 170–205</div>
+        </div>
+        <div class="school-offer">
+          <div class="offer-name">Privéles per uur</div>
+          <div class="offer-price">~€ 60–80</div>
+        </div>
+      </div>
+      <a href="https://www.skischule-soelden.at" target="_blank" class="school-link">🔗 skischule-soelden.at</a>
+    </div>
+
+  </div>
+
+  <!-- ═══ BEGROTING ═══ -->
+  <div class="sec-title" id="budget"><span class="icon">💰</span> Begroting — carnavalsvakantie 13–20 februari 2027</div>
+
+  <div class="budget-wrap">
+    <div class="bt-head">
+      <div>Kostenpost</div><div class="r">Volw. (6×)</div><div class="r">Kind 12–17 (7×)</div><div class="r">Totaal</div><div class="r">p.p. gem.</div>
+    </div>
+    <div class="bt-row">
+      <div>✈️ Vlucht AMS→INN retour (Transavia vroegboek)</div>
+      <div class="r">€ 130</div><div class="r">€ 130</div><div class="r">€ 1.690</div><div class="r bold">€ 130</div>
+    </div>
+    <div class="bt-row">
+      <div>🚌 Transfer Innsbruck ↔ Sölden (bus retour)</div>
+      <div class="r">€ 30</div><div class="r">€ 25</div><div class="r">€ 355</div><div class="r bold">€ 27</div>
+    </div>
+    <div class="bt-row">
+      <div>🏠 Accommodatie (6 nachten, 3 units à €200/n)</div>
+      <div class="r">€ 277</div><div class="r">€ 277</div><div class="r">€ 3.600</div><div class="r bold">€ 277</div>
+    </div>
+    <div class="bt-row">
+      <div>🎿 Skipas 6 dagen (Ötztal Superskipass, vroegboek)</div>
+      <div class="r">€ 325</div><div class="r">€ 245</div><div class="r">€ 3.665</div><div class="r bold">€ 282</div>
+    </div>
+    <div class="bt-row">
+      <div>📚 Skischool 5 dagen groepsles (kinderen)</div>
+      <div class="r">—</div><div class="r">€ 210</div><div class="r">€ 1.470</div><div class="r bold">€ 113</div>
+    </div>
+    <div class="bt-row">
+      <div>🍽 Eten, drinken &amp; overig</div>
+      <div class="r">€ 180</div><div class="r">€ 120</div><div class="r">€ 1.920</div><div class="r bold">€ 148</div>
+    </div>
+    <div class="bt-total">
+      <div>💶 Totaal</div><div class="r">€ 942</div><div class="r">€ 1.007</div><div class="r">€ 12.700</div><div class="r green">€ 977</div>
+    </div>
+    <div class="bt-pp">
+      <div>Restbudget t.o.v. max €1.250</div><div class="r">€ 308</div><div class="r">€ 243</div><div class="r"></div><div class="r green">€ 273 over</div>
+    </div>
+    <div class="bt-note">
+      <span>* Vlucht vroegboek via Transavia · Transfer Ötztal Bus retour · Accommodation 3 units à €200/n</span>
+      <span>* Prijzen indicatief op basis van seizoen 2024/25 — definitieve prijzen vroegboek 2026</span>
+    </div>
+  </div>
+
+  <!-- ═══ WEEKPROGRAMMA ═══ -->
+  <div class="sec-title" id="programma"><span class="icon">📅</span> Weekprogramma ☀️ — bij voldoende sneeuw</div>
+
+  <div class="prog-wrap">
+    <div class="prog-head">Carnavalsvakantie Sölden · Za 13 – Za 20 februari 2027</div>
+    <div class="prog-item">
+      <div class="prog-day">Za 13 feb<br>Aankomst</div>
+      <div><strong>Vlucht &amp; transfer — aankomst Sölden</strong><span>Vroeg naar Schiphol. Vlucht ~10:00, aankomst Innsbruck ~11:30. Transfer Sölden ~13:00. Inchecken. Supermarkt. Eerste avond op het balkon met uitzicht op het Ötztal.</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Zo 14 feb<br>Dag 1</div>
+      <div><strong>Eerste dag op de piste — Giggijoch</strong><span>Skipas ophalen en skischool inschrijving kinderen. Volwassenen verkennen Giggijoch (2.283 m). Kinderen skischool 10:00–13:00. <span class="tag">Carnaval!</span></span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Ma 15 feb<br>Dag 2</div>
+      <div><strong>Gletsjer Rettenbach — 3.078 m</strong><span>Dag op de gletsjerpiste — Rettenbach en Tiefenbach. Spectaculair uitzicht. Kinderen ski­les. Hoogste punt van de vakantie: 3.340 m.</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Di 16 feb<br>Dag 3</div>
+      <div><strong>Rotkoglhütte &amp; Sixpack-gondel kant</strong><span>Vrij skiën op het lagere deel (Innerwald). Lunchstop bij Rotkoglhütte. Avond: wellnesscentrum in Sölden.</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Wo 17 feb<br>Dag 4</div>
+      <div><strong>007 Elements — James Bond museum</strong><span>Indrukwekkend museum op 3.000 m hoogte, onderdeel van Sölden. Gratis met skipas. Daarna nog een middagje skiën. <span class="tag">Aanrader</span></span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Do 18 feb<br>Dag 5</div>
+      <div><strong>Vrije dag — eigen keuze</strong><span>Favoriete pistes herhalen. Optioneel: Aqua Dome Längenfeld (45 min). Laatste skischool dag kinderen.</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Vr 19 feb<br>Dag 6</div>
+      <div><strong>Laatste skidag + afscheidsavond</strong><span>Ochtend skiën. Middag: inpakken. Avond: gezamenlijk afsluiten in Söldens beroemde après-ski of restaurant.</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Za 20 feb<br>Terugreis</div>
+      <div><strong>Transfer Innsbruck &amp; vlucht naar Amsterdam</strong><span>Uitchecken. Transfer naar Innsbruck. Vlucht terug ~14:00, aankomst Schiphol ~15:30.</span></div>
+    </div>
+  </div>
+
+  <!-- ═══ ALTERNATIEF ═══ -->
+  <div class="sec-title" id="alternatief"><span class="icon">🌨</span> Alternatief programma — bij weinig of geen sneeuw</div>
+
+  <div class="alt-header">
+    <h2>Plan B — maar eigenlijk overbodig in Sölden</h2>
+    <p>Dankzij twee gletsjers boven 3.000 m is skiën in Sölden vrijwel altijd gegarandeerd. Maar voor afwisseling zijn er genoeg opties.</p>
+  </div>
+
+  <div class="alt-day">
+    <div class="alt-day-head">
+      <div class="day-num">Alternatief 1</div>
+      <div class="day-title">Aqua Dome Längenfeld — thermaal bad</div>
+      <div class="day-dist">~45 km · 45 min</div>
+    </div>
+    <div class="alt-acts">
+      <div class="alt-act"><span class="act-icon">🏊</span><div class="act-body"><strong>Europa's meest bijzondere thermaal bad</strong><span>Futuristisch design, buitenbaden op 1.190 m hoogte, uitzicht op de Ötztaler Alpen. Sauna, stoomkabines, massages.</span></div><span class="act-price">~€ 35–45</span></div>
+      <div class="alt-act"><span class="act-icon">🧖</span><div class="act-body"><strong>Gezondheidscentrum &amp; sauna Sölden</strong><span>Sölden zelf heeft ook wellnesscentra bij diverse hotels — toegankelijk voor niet-gasten.</span></div><span class="act-price">~€ 20–30</span></div>
+    </div>
+  </div>
+
+  <div class="alt-day">
+    <div class="alt-day-head">
+      <div class="day-num">Alternatief 2</div>
+      <div class="day-title">Innsbruck — dagtrip</div>
+      <div class="day-dist">~70 km · 1u</div>
+    </div>
+    <div class="alt-acts">
+      <div class="alt-act"><span class="act-icon">🏛</span><div class="act-body"><strong>Innsbruck Altstadt, Hofburg &amp; Winkelen</strong><span>Compact maar prachtig historisch centrum. Gratis wandelen, typisch Tiroolse sfeer.</span></div><span class="act-price">Gratis</span></div>
+      <div class="alt-act"><span class="act-icon">🚡</span><div class="act-body"><strong>Nordkettenbahn — 2.300 m</strong><span>Kabelbaan vanuit het centrum omhoog. Sneeuw gegarandeerd. Spectaculair uitzicht over Innsbruck.</span></div><span class="act-price">~€ 40</span></div>
+    </div>
+  </div>
+
+  <div class="alt-day">
+    <div class="alt-day-head">
+      <div class="day-num">Alternatief 3</div>
+      <div class="day-title">007 Elements museum + Sölden activiteiten</div>
+      <div class="day-dist">In Sölden zelf</div>
+    </div>
+    <div class="alt-acts">
+      <div class="alt-act"><span class="act-icon">🕵️</span><div class="act-body"><strong>007 Elements — James Bond museum op 3.000 m</strong><span>Permanent museum gewijd aan Spectre (2015) en Bond. Indrukwekkend. Met skipas gratis of €18 los.</span></div><span class="act-price">Gratis met pas</span></div>
+      <div class="alt-act"><span class="act-icon">🛷</span><div class="act-body"><strong>Rodelen — Innerwald</strong><span>Populaire rodelbaan in Sölden, ook 's avonds verlicht. Gezinsactiviteit voor alle leeftijden.</span></div><span class="act-price">~€ 10</span></div>
+    </div>
+  </div>
+
+  <!-- ═══ TIPS ═══ -->
+  <div class="sec-title" id="tips"><span class="icon">💡</span> Praktische tips &amp; checklist</div>
+
+  <div class="tips-grid">
+    <div class="tip-card"><div class="tip-icon">✈️</div><strong>Bagage &amp; skimateriaal</strong><p>Skimateriaal als ruimbagage meenemen (check gewichtslimiet) of ter plekke huren. Huur in Sölden: Intersport ~€30–40/dag all-in incl. helm.</p></div>
+    <div class="tip-card"><div class="tip-icon">📋</div><strong>Paspoort of ID</strong><p>Bij vliegen: geldig reisdocument voor alle 13 reizigers, ook kinderen. Controleer vervaldatum ruim van tevoren.</p></div>
+    <div class="tip-card"><div class="tip-icon">🚌</div><strong>Ötztal Bus reserveren</strong><p>Boek de transferbus vroeg: oetztal.com of Postbus Tirol. Betaalbaar en directe verbinding Innsbruck → Sölden.</p></div>
+    <div class="tip-card"><div class="tip-icon">🎿</div><strong>Skipas vroeg kopen</strong><p>Koop de Ötztal Superskipass online via soelden.com zodra de verkoop opent (meestal september 2026). Carnaval = hoge vraag.</p></div>
+    <div class="tip-card"><div class="tip-icon">📱</div><strong>Sölden App</strong><p>Officiële Sölden app met pistemap, liftstatus, weercondities en 007 Elements. Gratis, ook offline.</p></div>
+    <div class="tip-card"><div class="tip-icon">🍽</div><strong>Eten budgettip</strong><p>Avondeten zelf bereiden in appartement. Lunchen op de berg is duur in Sölden (~€15–25 p.p.). Thermoskan meenemen.</p></div>
+    <div class="tip-card"><div class="tip-icon">🏥</div><strong>Reisverzekering</strong><p>Annuleringsdekkking EN wintersport. Helikopterrescue bij ongeluk op piste kost zonder verzekering €5.000+. EHIC kaart meenemen.</p></div>
+    <div class="tip-card"><div class="tip-icon">🌡</div><strong>Temperatuur op hoogte</strong><p>Op de gletsjer (3.340 m) kan het -15°C zijn met windchill. Goede thermische kleding, zonnebrand en ski-bril zijn essentieel.</p></div>
+  </div>
+
+  <!-- ═══ UITGANGSPUNTEN ═══ -->
+  <div class="sec-title" id="uitgangspunten"><span class="icon">📋</span> Uitgangspunten skivakantie</div>
+
+  <div class="uitg-grid">
+    <div class="uitg-card"><div class="uitg-item"><span class="ui-icon">👨‍👩‍👧‍👦</span><div class="ui-body"><strong>Gezelschap</strong><span>3 gezinnen · 13 personen<br>6 volwassenen (2 per gezin)<br>7 kinderen leeftijd 12–17 jaar</span></div></div></div>
+    <div class="uitg-card"><div class="uitg-item"><span class="ui-icon">🗓</span><div class="ui-body"><strong>Periode</strong><span>Carnavalsvakantie: za 13 – za 20 feb 2027<br>Duur: ca. 7 dagen</span></div></div></div>
+    <div class="uitg-card"><div class="uitg-item"><span class="ui-icon">💶</span><div class="ui-body"><strong>Budget</strong><span>Max. €1.250,- per persoon totaal</span></div></div></div>
+    <div class="uitg-card"><div class="uitg-item"><span class="ui-icon">🏠</span><div class="ui-body"><strong>Accommodatie</strong><span>Appartement of hotel<br>Gezamenlijke ruimte + privacy per gezin</span></div></div></div>
+    <div class="uitg-card"><div class="uitg-item"><span class="ui-icon">✈️</span><div class="ui-body"><strong>Vervoer</strong><span>Vliegtuig · AMS→Innsbruck ~1,5u<br>Transfer Innsbruck→Sölden ~1–1,5u</span></div></div></div>
+    <div class="uitg-card"><div class="uitg-item"><span class="ui-icon">🎿</span><div class="ui-body"><strong>Skilessen</strong><span>Alle kinderen volgen skilessen</span></div></div></div>
+    <div class="uitg-card"><div class="uitg-item"><span class="ui-icon">🧖</span><div class="ui-body"><strong>Overig</strong><span>Wellness gewenst<br>Piste op loopafstand van de accommodatie</span></div></div></div>
+  </div>
+
+  <div class="uitg-aandacht">
+    <strong>⚠️ Aandachtspunten voor de reis</strong>
+    <ul>
+      <li>Geldig reisdocument (paspoort of ID) voor alle 13 personen — ook kinderen</li>
+      <li>Bagage check-in voor skimateriaal vroeg regelen bij Transavia</li>
+      <li>Transferbus (Ötztal Bus) vroeg reserveren via oetztal.com</li>
+      <li>Reisverzekering met wintersport- én annuleringsdekking is essentieel</li>
+      <li>Op gletsjer (3.300m): goede kleding, zonnebrand factor 50+ en skibril verplicht</li>
+    </ul>
+  </div>
+
+</div><!-- /container -->
+
+<div class="footer-bar">
+  Sölden Carnaval 2027 · Prijzen indicatief seizoen 2024/25 · Skipas: <a href="https://soelden.com" style="color:rgba(255,255,255,.5)">soelden.com</a> · Vlucht: <a href="https://transavia.com" style="color:rgba(255,255,255,.5)">transavia.com</a> · Transfer: <a href="https://oetztal.com" style="color:rgba(255,255,255,.5)">oetztal.com</a>
+</div>
+</body>
+</html>

@@ -13,17 +13,48 @@ body { background: #f0f3f8; font-family: 'Outfit', sans-serif; color: #1a2a4a; m
 .hero h1 { font-size: 2rem; font-weight: 600; color: white; margin-bottom: 0.4rem; }
 .hero p { color: rgba(255,255,255,.6); font-size: 0.95rem; }
 
-.main { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+.main { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
 
 /* Voorstellen */
 .section-label { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: #52b788; font-weight: 600; margin-bottom: 1rem; }
-.cards { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 3rem; }
-a.card { display: block; background: white; border-radius: 14px; padding: 1.8rem 2rem; text-decoration: none; color: #1a2a4a; box-shadow: 0 4px 20px rgba(0,0,0,0.07); transition: transform 0.2s, box-shadow 0.2s; flex: 1; min-width: 220px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.1rem; margin-bottom: 3rem; }
+
+a.card {
+  display: flex; flex-direction: column;
+  background: white; border-radius: 14px; padding: 1.5rem 1.6rem;
+  text-decoration: none; color: #1a2a4a;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-top: 3px solid transparent;
+}
 a.card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
-a.card .emoji { font-size: 2.2rem; margin-bottom: 0.6rem; }
-a.card .title { font-size: 1.05rem; font-weight: 600; }
-a.card .sub { font-size: 0.82rem; color: #777; margin-top: 0.25rem; }
-a.card .arrow { display: inline-block; margin-top: 1rem; font-size: 0.78rem; color: #2d6a4f; font-weight: 600; }
+
+/* Kleur per kaart */
+a.card.cz { border-top-color: #2d6a4f; }
+a.card.oo-auto { border-top-color: #9b2335; }
+a.card.oo-fly { border-top-color: #1a5295; }
+a.card.overzicht { border-top-color: #888; }
+
+.card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: .8rem; }
+.card-flag { font-size: 2rem; line-height: 1; }
+.card-transport {
+  display: inline-flex; align-items: center; gap: .3rem;
+  font-size: .72rem; font-weight: 600; padding: .2rem .6rem;
+  border-radius: 50px; white-space: nowrap;
+}
+.transport-auto { background: #e8f4ee; color: #2d6a4f; }
+.transport-fly { background: #ddeef8; color: #1a5295; }
+.transport-none { background: #f0f0f0; color: #666; }
+
+.card-title { font-size: 1rem; font-weight: 600; margin-bottom: .25rem; }
+.card-sub { font-size: .8rem; color: #777; line-height: 1.4; }
+.card-meta { margin-top: .7rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-tag { font-size: .68rem; background: #f0f3f8; color: #555; padding: .15rem .5rem; border-radius: 50px; }
+.card-arrow { margin-top: auto; padding-top: 1rem; font-size: .78rem; font-weight: 600; }
+a.card.cz .card-arrow { color: #2d6a4f; }
+a.card.oo-auto .card-arrow { color: #9b2335; }
+a.card.oo-fly .card-arrow { color: #1a5295; }
+a.card.overzicht .card-arrow { color: #666; }
 
 /* Uitgangspunten */
 .uitg-title {
@@ -53,25 +84,71 @@ a.card .arrow { display: inline-block; margin-top: 1rem; font-size: 0.78rem; col
 
 <div class="hero">
   <h1>⛷️ Skivakantie 2027</h1>
-  <p>3 gezinnen · 13 personen · Carnavalsvakantie · Tsjechië</p>
+  <p>3 gezinnen · 13 personen · Carnavalsvakantie · za 13 – za 20 feb 2027</p>
 </div>
 
 <div class="main">
 
   <div class="section-label">Voorstellen</div>
   <div class="cards">
-    <a class="card" href="2027-02_skivakantie-3opties-2027.html">
-      <div class="emoji">🗺️</div>
-      <div class="title">Skivakantie — 3 Opties</div>
-      <div class="sub">Vergelijking van bestemmingen</div>
-      <div class="arrow">Bekijken →</div>
+
+    <a class="card cz" href="2027-02_tsjechie-carnaval-2027_4.html">
+      <div class="card-top">
+        <span class="card-flag">🇨🇿</span>
+        <span class="card-transport transport-auto">🚗 Auto ~7u</span>
+      </div>
+      <div class="card-title">Špindlerův Mlýn</div>
+      <div class="card-sub">Tsjechië · Reuzengebergte · 28 km piste</div>
+      <div class="card-meta">
+        <span class="card-tag">💶 ~€573 p.p.</span>
+        <span class="card-tag">❄️ Kunstsneeuw</span>
+        <span class="card-tag">👪 Familiepistes</span>
+      </div>
+      <div class="card-arrow">Bekijken →</div>
     </a>
-    <a class="card" href="2027-02_tsjechie-carnaval-2027_4.html">
-      <div class="emoji">🇨🇿</div>
-      <div class="title">Špindlerův Mlýn</div>
-      <div class="sub">Carnaval 2027 — Uitgewerkt voorstel</div>
-      <div class="arrow">Bekijken →</div>
+
+    <a class="card oo-auto" href="2027-02_oostenrijk-auto-2027.html">
+      <div class="card-top">
+        <span class="card-flag">🇦🇹</span>
+        <span class="card-transport transport-auto">🚗 Auto ~9u</span>
+      </div>
+      <div class="card-title">SkiWelt Wilder Kaiser</div>
+      <div class="card-sub">Oostenrijk · Söll · Tirol · 279 km piste</div>
+      <div class="card-meta">
+        <span class="card-tag">💶 ~€750 p.p.</span>
+        <span class="card-tag">🏔 Grootste skigebied</span>
+        <span class="card-tag">👪 Familiepistes</span>
+      </div>
+      <div class="card-arrow">Bekijken →</div>
     </a>
+
+    <a class="card oo-fly" href="2027-02_oostenrijk-vliegtuig-2027.html">
+      <div class="card-top">
+        <span class="card-flag">🇦🇹</span>
+        <span class="card-transport transport-fly">✈️ Vlucht ~1,5u</span>
+      </div>
+      <div class="card-title">Sölden</div>
+      <div class="card-sub">Oostenrijk · Ötztal · Gletsjer · 148 km piste</div>
+      <div class="card-meta">
+        <span class="card-tag">💶 ~€1.000 p.p.</span>
+        <span class="card-tag">🧊 Gletsjer = altijd sneeuw</span>
+      </div>
+      <div class="card-arrow">Bekijken →</div>
+    </a>
+
+    <a class="card overzicht" href="2027-02_skivakantie-3opties-2027.html">
+      <div class="card-top">
+        <span class="card-flag">🗺️</span>
+        <span class="card-transport transport-none">Vergelijking</span>
+      </div>
+      <div class="card-title">3 Opties vergeleken</div>
+      <div class="card-sub">Overzicht van alle bestemmingen naast elkaar</div>
+      <div class="card-meta">
+        <span class="card-tag">📊 Vergelijking</span>
+      </div>
+      <div class="card-arrow">Bekijken →</div>
+    </a>
+
   </div>
 
   <div class="uitg-title">📋 Uitgangspunten skivakantie</div>
@@ -106,10 +183,10 @@ a.card .arrow { display: inline-block; margin-top: 1rem; font-size: 0.78rem; col
       </div>
     </div>
     <div class="uitg-card">
-      <span class="icon">🚗</span>
+      <span class="icon">🚗 ✈️</span>
       <div>
         <strong>Vervoer</strong>
-        <span>Auto</span>
+        <span>Auto (Tsjechië, Oostenrijk SkiWelt)<br>Vliegtuig (Oostenrijk Sölden via Innsbruck)</span>
       </div>
     </div>
     <div class="uitg-card">
@@ -140,7 +217,8 @@ a.card .arrow { display: inline-block; margin-top: 1rem; font-size: 0.78rem; col
     <ul>
       <li>Winterbanden verplicht in Tsjechië en Oostenrijk</li>
       <li>Sneeuwkettingen meenemen (verplicht op sommige wegen)</li>
-      <li>Vignet controleren per land (Tsjechië: digitaal vignet verplicht)</li>
+      <li>Vignet controleren per land (Tsjechië: digitaal · Oostenrijk: ~€10 via asfinag.at)</li>
+      <li>Bij vliegen: geldig reisdocument voor alle reizigers incl. kinderen</li>
     </ul>
   </div>
 
