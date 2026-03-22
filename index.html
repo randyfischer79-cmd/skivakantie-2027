@@ -235,7 +235,8 @@ a.card.cz-fly .card-arrow { color: #1a2a4d; }
   <button class="tab-btn" onclick="showTab(this,'uitgangspunten')">📋 Uitgangspunten</button>
   <button class="tab-btn active" onclick="showTab(this,'voorstellen')">🗺 Voorstellen</button>
   <button class="tab-btn" onclick="showTab(this,'skigebied')">⛷️ Skigebied</button>
-  <button class="tab-btn" onclick="showTab(this,'actiepunten')">✅ Actiepunten</button>
+  <button class="tab-btn" onclick="showTab(this,'actieplan')">📅 Actieplan</button>
+  <button class="tab-btn" onclick="showTab(this,'checklist')">🎒 Checklist</button>
 </div>
 
 <div class="main">
@@ -413,23 +414,35 @@ a.card.cz-fly .card-arrow { color: #1a2a4d; }
 
   </div>
 
-  <!-- TAB: ACTIEPUNTEN -->
-  <div id="actiepunten" class="tab-content">
+  <!-- TAB: ACTIEPLAN -->
+  <div id="actieplan" class="tab-content">
 
-    <!-- STAPPENPLAN -->
     <div class="act-title">🗓 Stappenplan — wanneer wat regelen</div>
     <div class="timeline">
 
       <div class="tl-item">
-        <div class="tl-dot urgent"></div>
+        <div class="tl-dot done"></div>
         <div class="tl-card">
-          <div class="tl-when urgent">Nu — maart / april 2026</div>
-          <div class="tl-title">⚡ Bestemming definitief kiezen &amp; accommodatie reserveren</div>
-          <div class="tl-desc">Keuze maken tussen Optie 1, 2 of 3. Daarna direct accommodatie boeken — carnavalsvakantie is het drukste moment van het skiseizoen. Aldrov Resort of vergelijkbaar: vraag 3 aangrenzende units aan.</div>
+          <div class="tl-when done">✅ Begin maart 2026 — Afgerond</div>
+          <div class="tl-title">🔍 Eerste verkenning</div>
+          <div class="tl-desc">Eerste oriëntatie op bestemmingen, vervoersopties en kosten. Voorstellen uitgewerkt voor Tsjechië (auto, combi, vliegtuig). Iedereen op de hoogte gebracht van de opties en budgetten.</div>
           <div class="tl-tags">
-            <span class="tl-tag red">⚠️ Hoogste prioriteit</span>
-            <span class="tl-tag">Aldrov Resort Vítkovice</span>
-            <span class="tl-tag">booking.com</span>
+            <span class="tl-tag green">✓ Afgerond</span>
+            <span class="tl-tag">3 opties uitgewerkt</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot done"></div>
+        <div class="tl-card">
+          <div class="tl-when done">✅ Eind maart 2026 — Afgerond</div>
+          <div class="tl-title">📍 Bestemming + periode definitief gekozen</div>
+          <div class="tl-desc">Bestemming Špindlerův Mlýn (Tsjechië) is definitief. Periode: zondag 7 februari (aankomst) t/m zaterdag 13 februari 2027 (vertrek) — carnavalsvakantie. Auto vertrekt een dag eerder op zaterdag 6 februari.</div>
+          <div class="tl-tags">
+            <span class="tl-tag green">✓ Afgerond</span>
+            <span class="tl-tag">Zo 7 – Za 13 feb 2027</span>
+            <span class="tl-tag">Špindlerův Mlýn · CZ</span>
           </div>
         </div>
       </div>
@@ -437,13 +450,13 @@ a.card.cz-fly .card-arrow { color: #1a2a4d; }
       <div class="tl-item">
         <div class="tl-dot urgent"></div>
         <div class="tl-card">
-          <div class="tl-when urgent">April / mei 2026</div>
-          <div class="tl-title">✈️ Vluchten boeken (vroegboek = goedkoopst)</div>
-          <div class="tl-desc">Retourvluchten vanuit EIN, RTM, AMS of BRU naar Praag (PRG) voor Zo 7 feb en Za 13 feb 2027. Vroegboek ~€70 p.p. retour. Let op: bij Optie 1 (auto) sla je dit over.</div>
+          <div class="tl-when urgent">⏳ Juni 2026 — Volgende stap</div>
+          <div class="tl-title">🤝 Bij elkaar komen: vervoer + accommodatie boeken</div>
+          <div class="tl-desc">Gezamenlijk beslissen welke vervoersoptie het wordt (auto / combi / vliegtuig). Direct daarna accommodatie boeken (carnavalsvakantie is druk — niet langer wachten!) en vluchten vastleggen bij Optie 2 of 3. Vroegboek vluchten ~€70 p.p. retour via EIN / RTM / AMS / BRU → PRG.</div>
           <div class="tl-tags">
-            <span class="tl-tag red">Optie 2 + 3</span>
-            <span class="tl-tag">Ryanair · easyJet · Transavia</span>
-            <span class="tl-tag">EIN / RTM / AMS / BRU → PRG</span>
+            <span class="tl-tag red">⚡ Volgende bijeenkomst</span>
+            <span class="tl-tag">Accommodatie + vluchten</span>
+            <span class="tl-tag">booking.com · Ryanair · easyJet</span>
           </div>
         </div>
       </div>
@@ -555,6 +568,11 @@ a.card.cz-fly .card-arrow { color: #1a2a4d; }
       </div>
 
     </div>
+
+  </div>
+
+  <!-- TAB: CHECKLIST -->
+  <div id="checklist" class="tab-content">
 
     <!-- MEENEMEN: ALGEMEEN -->
     <div class="act-title">🎒 Meenemen — algemeen (iedereen)</div>
