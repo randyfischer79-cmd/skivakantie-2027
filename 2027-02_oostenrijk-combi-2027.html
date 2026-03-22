@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkiWelt Wilder Kaiser — Carnaval 2027 · Combi Auto + Vliegtuig</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest: #1a4d2e;
+  --grove:  #2d7a4f;
+  --leaf:   #52b788;
+  --mint:   #d8f3dc;
+  --cream:  #f0f7f2;
+  --sand:   #deeee4;
+  --bark:   #1a2d1f;
+  --stone:  #5a7060;
+  --white:  #ffffff;
+  --amber:  #d4820a;
+  --warning: #fff3cd;
+  --warning-border: #d4820a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--bark); line-height: 1.6; padding-top: 52px; }
+html { scroll-behavior: smooth; }
+
+/* ─── STICKY NAV ─── */
+.sticky-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: var(--forest);
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; align-items: center; gap: .35rem;
+  padding: .55rem 1.2rem; overflow-x: auto; scrollbar-width: none;
+}
+.sticky-nav::-webkit-scrollbar { display: none; }
+.nav-btn {
+  display: inline-flex; align-items: center; gap: .35rem; white-space: nowrap;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.85); border-radius: 50px; padding: .28rem .85rem;
+  font-family: 'DM Sans', sans-serif; font-size: .74rem; font-weight: 500;
+  text-decoration: none; transition: background .15s, color .15s; flex-shrink: 0;
+}
+.nav-btn:hover, .nav-btn.active { background: var(--leaf); border-color: var(--leaf); color: var(--forest); font-weight: 700; }
+
+/* ─── HERO ─── */
+.hero {
+  background: var(--forest); position: relative;
+  padding: 0; overflow: hidden; min-height: 320px;
+  display: flex; flex-direction: column;
+}
+.hero-texture {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(82,183,136,.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(26,77,46,.4) 0%, transparent 50%);
+}
+.hero-mountains { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; opacity: .07; }
+.hero-content { position: relative; z-index: 2; padding: 3rem 2rem 2rem; max-width: 1100px; margin: 0 auto; width: 100%; }
+.hero-flag { font-size: 3rem; margin-bottom: .75rem; }
+.hero-eyebrow { font-size: .68rem; letter-spacing: 4px; text-transform: uppercase; color: var(--leaf); margin-bottom: .6rem; }
+.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem,5vw,4rem); font-weight: 900; color: var(--white); line-height: 1.05; margin-bottom: .5rem; }
+.hero-sub { font-size: 1rem; color: rgba(255,255,255,.65); margin-bottom: 1.5rem; }
+.hero-chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.chip { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.85); border-radius: 50px; padding: .3rem .9rem; font-size: .75rem; font-weight: 500; }
+a.chip { text-decoration: none; transition: background .15s; }
+a.chip:hover { background: rgba(255,255,255,.2); }
+
+/* ─── SUMMARY BAR ─── */
+.summary-bar { background: var(--grove); display: flex; justify-content: space-around; flex-wrap: wrap; gap: .5rem; padding: 1.2rem 2rem; }
+.sb-item { text-align: center; color: white; }
+.sb-val { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1; color: var(--mint); }
+.sb-lbl { font-size: .64rem; letter-spacing: 1.5px; text-transform: uppercase; opacity: .7; margin-top: .15rem; }
+
+/* ─── LAYOUT ─── */
+.container { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+/* ─── SECTION TITLE ─── */
+.sec-title { display: flex; align-items: center; gap: .8rem; margin: 2.5rem 0 1.1rem; font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--forest); }
+.sec-title .icon { font-size: 1.4rem; }
+.sec-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, rgba(26,77,46,.3), transparent); }
+
+/* ─── CARDS ─── */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; }
+.card { background: var(--white); border-radius: 14px; padding: 1.3rem; box-shadow: 0 2px 12px rgba(26,77,46,.07); border: 1px solid rgba(26,77,46,.06); }
+.card-icon { font-size: 1.6rem; margin-bottom: .6rem; }
+.card-lbl { font-size: .63rem; letter-spacing: 2px; text-transform: uppercase; color: var(--stone); margin-bottom: .3rem; }
+.card-val { font-size: .98rem; font-weight: 600; color: var(--bark); }
+.card-sub { font-size: .77rem; color: var(--stone); margin-top: .3rem; line-height: 1.5; }
+
+/* ─── NOTICE ─── */
+.notice { border-radius: 12px; padding: 1rem 1.3rem; margin-bottom: 1rem; font-size: .84rem; line-height: 1.6; display: flex; gap: .8rem; align-items: flex-start; }
+.notice-green { background: var(--mint); border-left: 4px solid var(--leaf); }
+.notice-amber { background: var(--warning); border-left: 4px solid var(--warning-border); }
+.notice-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: .05rem; }
+.notice strong { color: var(--forest); }
+
+/* ─── VERVOER SPLIT ─── */
+.vervoer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1rem; }
+@media(max-width:680px){ .vervoer-grid { grid-template-columns: 1fr; } }
+
+.vervoer-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 14px rgba(26,77,46,.08); border: 1px solid rgba(26,77,46,.07); }
+.vervoer-head { padding: 1rem 1.4rem; color: white; }
+.vervoer-head.auto-head { background: linear-gradient(130deg, var(--forest), var(--grove)); }
+.vervoer-head.fly-head  { background: linear-gradient(130deg, #1a4a6b, #2a72a8); }
+.vervoer-head h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: .15rem; }
+.vervoer-head p { font-size: .75rem; opacity: .8; }
+.vervoer-body { padding: 1.2rem 1.4rem; }
+.vervoer-row { display: flex; justify-content: space-between; align-items: flex-start; padding: .55rem 0; border-bottom: 1px solid #edf5f0; font-size: .82rem; gap: .5rem; }
+.vervoer-row:last-child { border-bottom: none; }
+.vervoer-label { color: var(--stone); flex: 1; }
+.vervoer-val { font-weight: 600; color: var(--bark); text-align: right; white-space: nowrap; }
+.vervoer-note { background: var(--mint); border-radius: 8px; padding: .7rem 1rem; margin-top: .8rem; font-size: .77rem; color: var(--forest); line-height: 1.5; }
+
+/* ─── VLUCHTEN ─── */
+.vlucht-card { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(26,77,46,.07); border: 1px solid rgba(26,77,46,.06); margin-bottom: 1rem; }
+.vlucht-head { background: var(--forest); color: white; padding: 1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+.vlucht-head h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+.vlucht-head .source { font-size: .7rem; opacity: .65; }
+.vlucht-body { padding: 1.2rem 1.4rem; }
+.vlucht-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; padding: .6rem 0; border-bottom: 1px solid #edf5f0; font-size: .82rem; align-items: center; }
+.vlucht-row:last-child { border-bottom: none; }
+.vlucht-hd { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; font-size: .67rem; letter-spacing: .5px; text-transform: uppercase; color: var(--stone); font-weight: 600; padding-bottom: .5rem; border-bottom: 2px solid var(--sand); margin-bottom: .3rem; }
+.vlucht-hd div:not(:first-child), .vlucht-row div:not(:first-child) { text-align: right; }
+.price-online { color: var(--grove); font-weight: 700; }
+.price-box { color: var(--stone); font-size: .78rem; }
+.price-best { color: var(--amber); font-weight: 700; font-size: .82rem; }
+.vlucht-note { background: var(--mint); border-radius: 8px; padding: .7rem 1rem; margin-top: .8rem; font-size: .77rem; color: var(--forest); line-height: 1.5; }
+
+/* ─── ACCOMMODATIE ─── */
+.accom-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+.accom-card { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(26,77,46,.07); border: 1px solid rgba(26,77,46,.06); position: relative; }
+.accom-card.recommended::before { content: '⭐ Aanbevolen'; position: absolute; top: .8rem; right: .8rem; background: var(--grove); color: white; font-size: .64rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: .2rem .6rem; border-radius: 50px; z-index: 1; }
+.accom-card.must::before { content: '🎿 Ski-in/Ski-out'; position: absolute; top: .8rem; right: .8rem; background: var(--forest); color: white; font-size: .64rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: .2rem .6rem; border-radius: 50px; z-index: 1; }
+.accom-thumb { height: 100px; background: linear-gradient(135deg, #a8d8b8, #5aaa7a); display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+.accom-body { padding: 1.2rem; }
+.accom-body h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: .3rem; color: var(--forest); }
+.accom-body p { font-size: .8rem; color: var(--stone); line-height: 1.55; margin-bottom: .5rem; }
+.accom-price { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--grove); }
+.accom-price small { font-family: 'DM Sans', sans-serif; font-size: .72rem; color: var(--stone); font-weight: 400; }
+.accom-dist { display: flex; align-items: center; gap: .4rem; margin: .5rem 0 .6rem; font-size: .8rem; font-weight: 600; }
+.dist-green { color: #1a6b35; }
+.dist-amber { color: #d4820a; }
+.dist-grey { color: var(--stone); }
+.accom-pros { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .35rem; }
+.pro-tag { background: var(--mint); color: var(--forest); border-radius: 50px; padding: .18rem .65rem; font-size: .68rem; font-weight: 600; }
+.accom-link { display: inline-block; margin-top: .8rem; font-size: .75rem; font-weight: 600; color: var(--grove); text-decoration: none; border-bottom: 1px solid var(--leaf); }
+
+/* ─── SKIPAS ─── */
+.skipas-card { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(26,77,46,.07); border: 1px solid rgba(26,77,46,.06); margin-bottom: 1rem; }
+.skipas-head { background: var(--forest); color: white; padding: 1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+.skipas-head h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+.skipas-head .source { font-size: .7rem; opacity: .65; }
+.skipas-body { padding: 1.2rem 1.4rem; }
+.skipas-hd { display: grid; grid-template-columns: 2fr repeat(3, 1fr); font-size: .67rem; letter-spacing: .5px; text-transform: uppercase; color: var(--stone); font-weight: 600; padding-bottom: .5rem; border-bottom: 2px solid var(--sand); margin-bottom: .3rem; }
+.skipas-row { display: grid; grid-template-columns: 2fr repeat(3, 1fr); padding: .6rem 0; border-bottom: 1px solid #edf5f0; font-size: .82rem; align-items: center; }
+.skipas-row:last-child { border-bottom: none; }
+.skipas-hd div:not(:first-child), .skipas-row div:not(:first-child) { text-align: right; }
+.price-best-g { color: var(--amber); font-weight: 700; font-size: .82rem; }
+.skipas-note { background: var(--mint); border-radius: 8px; padding: .7rem 1rem; margin-top: .8rem; font-size: .77rem; color: var(--forest); line-height: 1.5; }
+
+/* ─── SKISCHOOL ─── */
+.school-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.school-card { background: var(--white); border-radius: 14px; padding: 1.3rem; box-shadow: 0 2px 12px rgba(26,77,46,.07); border: 1px solid rgba(26,77,46,.06); position: relative; }
+.school-card.top::before { content: '🏆 Best beoordeeld'; position: absolute; top: 1rem; right: 1rem; background: var(--amber); color: white; font-size: .63rem; font-weight: 700; padding: .18rem .6rem; border-radius: 50px; }
+.school-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--forest); margin-bottom: .1rem; }
+.school-rating { font-size: .78rem; color: var(--stone); margin-bottom: .6rem; }
+.school-offer { display: flex; justify-content: space-between; align-items: flex-start; padding: .45rem 0; border-bottom: 1px solid #edf5f0; font-size: .8rem; gap: .5rem; }
+.school-offer:last-child { border-bottom: none; }
+.offer-name { flex: 1; color: var(--bark); }
+.offer-name small { display: block; font-size: .7rem; color: var(--stone); margin-top: .1rem; }
+.offer-price { font-weight: 700; color: var(--grove); white-space: nowrap; font-size: .85rem; }
+.school-link { display: inline-block; margin-top: .9rem; font-size: .74rem; font-weight: 600; color: var(--grove); text-decoration: none; border-bottom: 1px solid var(--leaf); }
+
+/* ─── BUDGET ─── */
+.budget-wrap { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(26,77,46,.07); border: 1px solid rgba(26,77,46,.06); margin-bottom: 1.2rem; }
+.bt-head { display: grid; grid-template-columns: 2.2fr repeat(4, 1fr); background: var(--forest); color: white; font-size: .68rem; font-weight: 600; letter-spacing: .4px; padding: .85rem 1.3rem; }
+.bt-row { display: grid; grid-template-columns: 2.2fr repeat(4, 1fr); padding: .65rem 1.3rem; font-size: .81rem; border-bottom: 1px solid #edf5f0; align-items: center; }
+.bt-row:nth-child(even) { background: #f5fbf6; }
+.bt-total { display: grid; grid-template-columns: 2.2fr repeat(4, 1fr); padding: .9rem 1.3rem; font-weight: 700; font-size: .85rem; background: var(--sand); border-top: 2px solid rgba(26,77,46,.15); }
+.bt-pp { display: grid; grid-template-columns: 2.2fr repeat(4, 1fr); padding: .65rem 1.3rem; font-size: .77rem; color: var(--stone); background: #ecf6ef; }
+.bt-note { padding: .7rem 1.3rem; font-size: .73rem; color: var(--stone); background: #f5fbf6; border-top: 1px solid #deeee4; display: flex; flex-wrap: wrap; gap: 1rem; line-height: 1.5; }
+.r { text-align: right; }
+.bold { font-weight: 700; }
+.green { color: #27ae60; font-weight: 700; }
+
+/* ─── PROGRAMMA ─── */
+.prog-wrap { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(26,77,46,.07); border: 1px solid rgba(26,77,46,.06); }
+.prog-head { background: var(--forest); color: white; padding: 1rem 1.4rem; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; }
+.prog-item { display: grid; grid-template-columns: 70px 1fr; gap: 1rem; padding: .85rem 1.4rem; border-bottom: 1px solid #edf5f0; font-size: .83rem; align-items: start; }
+.prog-item:last-child { border-bottom: none; }
+.prog-day { font-weight: 700; font-size: .68rem; text-transform: uppercase; letter-spacing: .5px; color: var(--grove); padding-top: .15rem; line-height: 1.4; }
+.prog-item strong { display: block; font-weight: 600; color: var(--bark); margin-bottom: .15rem; }
+.prog-item span { color: var(--stone); line-height: 1.5; }
+.prog-item .tag { display: inline-block; background: var(--mint); color: var(--forest); border-radius: 50px; padding: .1rem .55rem; font-size: .65rem; font-weight: 600; margin-left: .3rem; vertical-align: middle; }
+.prog-item .tag-auto { background: #ffe8c0; color: #7a4500; }
+.prog-item .tag-fly  { background: #cce5ff; color: #0d4580; }
+
+/* ─── ALTERNATIEF ─── */
+.alt-header { background: linear-gradient(130deg, #1a3a12, #2d6b20, #3d8a30); border-radius: 14px; padding: 1.8rem 2rem; color: white; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
+.alt-header::before { content: '🌧'; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); font-size: 4rem; opacity: .15; }
+.alt-header h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: .3rem; }
+.alt-header p { font-size: .84rem; opacity: .8; max-width: 600px; }
+.alt-day { background: var(--white); border-radius: 14px; overflow: hidden; margin-bottom: .8rem; box-shadow: 0 2px 12px rgba(26,77,46,.07); border: 1px solid rgba(26,77,46,.06); }
+.alt-day-head { background: var(--bark); color: white; padding: .75rem 1.3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+.alt-day-head .day-num { font-size: .65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: .6; }
+.alt-day-head .day-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; }
+.alt-day-head .day-dist { font-size: .72rem; opacity: .65; background: rgba(255,255,255,.12); padding: .18rem .55rem; border-radius: 50px; }
+.alt-acts { padding: 1rem 1.3rem; display: flex; flex-direction: column; gap: .6rem; }
+.alt-act { display: flex; gap: .9rem; align-items: flex-start; font-size: .81rem; }
+.act-icon { font-size: 1.2rem; flex-shrink: 0; width: 28px; }
+.act-body strong { display: block; color: var(--bark); font-weight: 600; margin-bottom: .1rem; }
+.act-body span { color: var(--stone); line-height: 1.5; }
+.act-price { margin-left: auto; flex-shrink: 0; font-size: .75rem; font-weight: 700; color: var(--grove); white-space: nowrap; }
+
+/* ─── TIPS ─── */
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .85rem; }
+.tip-card { background: var(--white); border-radius: 12px; padding: 1.1rem; box-shadow: 0 2px 10px rgba(26,77,46,.06); border: 1px solid rgba(26,77,46,.05); }
+.tip-icon { font-size: 1.4rem; margin-bottom: .4rem; }
+.tip-card strong { display: block; font-size: .84rem; color: var(--forest); margin-bottom: .2rem; }
+.tip-card p { font-size: .77rem; color: var(--stone); line-height: 1.5; }
+
+/* ─── UITGANGSPUNTEN ─── */
+.uitg-card { background: var(--white); border-radius: 14px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(26,77,46,.07); border: 1px solid rgba(26,77,46,.06); margin-bottom: 1rem; }
+.uitg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+.uitg-item { display: flex; gap: .75rem; align-items: flex-start; font-size: .85rem; }
+.uitg-item .ui-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: .05rem; }
+.uitg-item .ui-body strong { display: block; color: var(--forest); font-weight: 600; margin-bottom: .1rem; }
+.uitg-item .ui-body span { color: var(--stone); line-height: 1.5; }
+.uitg-aandacht { background: var(--warning); border-left: 4px solid var(--warning-border); border-radius: 10px; padding: 1rem 1.2rem; font-size: .83rem; line-height: 1.6; }
+.uitg-aandacht strong { color: var(--bark); }
+.uitg-aandacht ul { margin: .4rem 0 0 1.2rem; }
+
+/* ─── FOOTER ─── */
+.footer-bar { background: var(--forest); color: rgba(255,255,255,.5); font-size: .72rem; text-align: center; padding: 1.2rem; }
+
+@media(max-width:700px){
+  .bt-head,.bt-row,.bt-total,.bt-pp { grid-template-columns: 1.5fr repeat(4,.85fr); font-size:.64rem; padding:.6rem .8rem; }
+  .skipas-hd,.skipas-row { grid-template-columns: 1.5fr repeat(3,.9fr); font-size:.72rem; }
+  .vlucht-hd,.vlucht-row { grid-template-columns: 1.5fr repeat(3,.9fr); font-size:.72rem; }
+  .hero-content { padding: 2rem 1.2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ STICKY NAV ═══ -->
+<nav class="sticky-nav">
+  <a class="nav-btn" href="index.html" style="border-color:rgba(255,255,255,.35)">← Startpagina</a>
+  <a class="nav-btn" href="#uitgangspunten">📋 Uitgangspunten</a>
+  <a class="nav-btn" href="#bestemming">🏔 Bestemming</a>
+  <a class="nav-btn" href="#vervoer">🚗✈️ Vervoer</a>
+  <a class="nav-btn" href="#accommodatie">🏠 Accommodatie</a>
+  <a class="nav-btn" href="#skipas">🎿 Skipas</a>
+  <a class="nav-btn" href="#skischool">📚 Skischool</a>
+  <a class="nav-btn" href="#budget">💰 Budget ~€875 p.p.</a>
+  <a class="nav-btn" href="#programma">📅 Weekprogramma</a>
+  <a class="nav-btn" href="#alternatief">🌧 Geen sneeuw?</a>
+  <a class="nav-btn" href="#tips">💡 Tips</a>
+</nav>
+<script>
+(function(){
+  const btns = document.querySelectorAll('.nav-btn[href^="#"]');
+  const ids = Array.from(btns).map(b => b.getAttribute('href').slice(1));
+  function onScroll(){
+    const offset = 70; let active = ids[0];
+    ids.forEach(id => { const el = document.getElementById(id); if(el && window.scrollY >= el.getBoundingClientRect().top + window.scrollY - offset) active = id; });
+    btns.forEach(b => b.classList.toggle('active', b.getAttribute('href') === '#' + active));
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+})();
+</script>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="hero-texture"></div>
+  <svg class="hero-mountains" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="white">
+    <path d="M0,80 L100,20 L200,60 L320,0 L440,50 L560,10 L680,55 L800,5 L920,45 L1040,15 L1150,50 L1200,30 L1200,120 L0,120Z"/>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-flag"><img src="https://flagcdn.com/w80/at.png" srcset="https://flagcdn.com/w160/at.png 2x" width="80" alt="Oostenrijk" style="border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.35);vertical-align:middle;"></div>
+    <p class="hero-eyebrow">Uitgewerkt voorstel · 🚗 Mannen per auto · ✈️ Rest per vliegtuig · Carnavalsvakantie 2027</p>
+    <h1 class="hero-title">SkiWelt Wilder Kaiser</h1>
+    <p class="hero-sub">Söll · Tirol · Oostenrijk · 3 gezinnen · 13 personen · 7 dagen · Slimme combi-reis</p>
+    <div class="hero-chips">
+      <span class="chip">🗓 Za 13 – Za 20 feb 2027</span>
+      <span class="chip">🚗 Mannen rijden met dakkoffer</span>
+      <span class="chip">✈️ Rest vliegt RTM of EIN → SZG</span>
+      <a class="chip" href="#accommodatie">🎿 Ski-in/ski-out appartement</a>
+      <a class="chip" href="#budget">💶 ~€875 p.p. totaal</a>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <div class="sb-item"><div class="sb-val">7 dagen</div><div class="sb-lbl">Duur</div></div>
+    <div class="sb-item"><div class="sb-val">6 nachten</div><div class="sb-lbl">Verblijf</div></div>
+    <div class="sb-item"><div class="sb-val">~9–10 uur</div><div class="sb-lbl">Rijden 🚗 (mannen)</div></div>
+    <div class="sb-item"><div class="sb-val">~4 uur</div><div class="sb-lbl">Deur-tot-deur ✈️ (rest)</div></div>
+    <div class="sb-item"><div class="sb-val">€875 p.p.</div><div class="sb-lbl">Gem. kosten p.p.</div></div>
+    <div class="sb-item"><div class="sb-val">~€3.780</div><div class="sb-lbl">Gem. kosten per gezin</div></div>
+    <div class="sb-item"><div class="sb-val">279 km</div><div class="sb-lbl">Piste</div></div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ═══ BESTEMMING ═══ -->
+  <div class="sec-title" id="bestemming"><span class="icon">🏔</span> Bestemming &amp; terrein</div>
+
+  <div class="notice notice-green">
+    <span class="notice-icon">💡</span>
+    <div><strong>Waarom SkiWelt Wilder Kaiser — én ski-in/ski-out?</strong><br>
+    Het grootste aaneengesloten skigebied ter wereld: 279 km piste over 8 dorpen. Voor de combi-optie kiezen we bewust voor een <strong>ski-in/ski-out appartement in Söll</strong> — de mannen rijden met alle skiuitrusting in de dakkoffer, zodat iedereen direct kan skiën zonder extra gedoe. Geen skibags nodig op het vliegtuig, geen huur ter plekke. Skischolen met Engelstalige lessen aanwezig in elk dorp.</div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🏔</div>
+      <div class="card-lbl">Hoogte</div>
+      <div class="card-val">620 – 1.957 m</div>
+      <div class="card-sub">Sneeuwzekerheid goed in februari · Sneeuwkanonnen op vrijwel alle pistes</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎿</div>
+      <div class="card-lbl">Skigebied</div>
+      <div class="card-val">279 km · 93 liften</div>
+      <div class="card-sub">SkiWelt Wilder Kaiser-Brixental — 1 pas voor alle 8 dorpen · Beste prijs-kwaliteit</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚗</div>
+      <div class="card-lbl">Rijden (mannen)</div>
+      <div class="card-val">~9 – 10 uur</div>
+      <div class="card-sub">Via Duitsland (A2/A3/A9/A93) → Kufstein → Wörgl → Söll · Vignet ~€10 · Geen bergpassen</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">✈️</div>
+      <div class="card-lbl">Vliegen (vrouwen + kids)</div>
+      <div class="card-val">~4 uur deur-tot-deur</div>
+      <div class="card-sub">RTM of EIN → Salzburg (SZG) ~1,5u · Transfer Salzburg → Söll ~55 min</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">❄️</div>
+      <div class="card-lbl">Sneeuwzekerheid</div>
+      <div class="card-val">Goed + kunstsneeuw</div>
+      <div class="card-sub">Februari historisch betrouwbaar · Backupplan zie alternatief programma</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎒</div>
+      <div class="card-lbl">Groot voordeel combi</div>
+      <div class="card-val">Geen skibaggage op vlucht</div>
+      <div class="card-sub">Mannen rijden met alle ski's, schoenen &amp; helm in dakkoffer — vliegreizigers hebben lichte handbagage</div>
+    </div>
+  </div>
+
+  <!-- ═══ VERVOER ═══ -->
+  <div class="sec-title" id="vervoer"><span class="icon">🚗✈️</span> Vervoer — slimme taakverdeling</div>
+
+  <div class="notice notice-green">
+    <span class="notice-icon">✅</span>
+    <div><strong>Het concept: mannen rijden, rest vliegt — iedereen wint</strong><br>
+    De 3 mannen rijden gezamenlijk in 1 auto met dakkoffer, beladen met alle ski's, schoenstassen en helmen. Vrouwen en kinderen vliegen met alleen handbagage (of lichte koffer) vanuit Rotterdam of Eindhoven naar Salzburg. <strong>Resultaat:</strong> geen skibaggage-kosten op de vlucht (bespaart €50–150 per set ski's!), de auto staat ter plekke voor dagtrips, en iedereen heeft comfortabele reis.</div>
+  </div>
+
+  <div class="vervoer-grid">
+
+    <div class="vervoer-card">
+      <div class="vervoer-head auto-head">
+        <h3>🚗 Mannen — per auto met dakkoffer</h3>
+        <p>3 mannen · 1 auto · alle skiuitrusting</p>
+      </div>
+      <div class="vervoer-body">
+        <div class="vervoer-row">
+          <span class="vervoer-label">Route</span>
+          <span class="vervoer-val">🇳🇱 → A2/A3 → A9 → A93 → Söll</span>
+        </div>
+        <div class="vervoer-row">
+          <span class="vervoer-label">Afstand</span>
+          <span class="vervoer-val">~1.100 km enkele reis</span>
+        </div>
+        <div class="vervoer-row">
+          <span class="vervoer-label">Reistijd</span>
+          <span class="vervoer-val">~9 – 10 uur</span>
+        </div>
+        <div class="vervoer-row">
+          <span class="vervoer-label">Vertrek zaterdag</span>
+          <span class="vervoer-val">Vroeg (~5–6u) → aankomst ~16–18u</span>
+        </div>
+        <div class="vervoer-row">
+          <span class="vervoer-label">Brandstof retour</span>
+          <span class="vervoer-val">~€300 totaal / 3 = ~€100/man</span>
+        </div>
+        <div class="vervoer-row">
+          <span class="vervoer-label">Vignet Oostenrijk</span>
+          <span class="vervoer-val">~€10 (digitaal, asfinag.at)</span>
+        </div>
+        <div class="vervoer-row">
+          <span class="vervoer-label">Dakkoffer inhoud</span>
+          <span class="vervoer-val">Alle ski's, schoenen, helmen, stokken</span>
+        </div>
+        <div class="vervoer-row">
+          <span class="vervoer-label">Kosten per man</span>
+          <span class="vervoer-val" style="color:#1a4d2e;font-size:.95rem;">~€ 105</span>
+        </div>
+        <div class="vervoer-note">
+          💡 <strong>Tip:</strong> Verdeel rijbeurt in twee shifts. Eerste stop ~Würzburg (~3u), tweede stop ~München (~3u verder). Winterbanden + sneeuwkettingen meenemen — verplicht bij winterse omstandigheden in Oostenrijk.
+        </div>
+      </div>
+    </div>
+
+    <div class="vervoer-card">
+      <div class="vervoer-head fly-head">
+        <h3>✈️ Vrouwen + kinderen — per vliegtuig</h3>
+        <p>10 personen · RTM of EIN → Salzburg</p>
+      </div>
+      <div class="vervoer-body">
+        <div class="vervoer-row">
+          <span class="vervoer-label">Luchthaven heen</span>
+          <span class="vervoer-val">Rotterdam RTM of Eindhoven EIN</span>
+        </div>
+        <div class="vervoer-row">
+          <span class="vervoer-label">Bestemming</span>
+          <span class="vervoer-val">Salzburg (SZG)</span>
+        </div>
+        <div class="vervoer-row">
+          <span class="vervoer-label">Maatschappij</span>
+          <span class="vervoer-val">Transavia (RTM) · Ryanair/TUI (EIN)</span>
+        </div>
+        <div class="vervoer-row">
+          <span class="vervoer-label">Vluchttijd</span>
+          <span class="vervoer-val">~1u 20–30 min</span>
+        </div>
+        <div class="vervoer-row">
+          <span class="vervoer-label">Bagage</span>
+          <span class="vervoer-val">Alleen handbagage of 1 lichte koffer</span>
+        </div>
+        <div class="vervoer-row">
+          <span class="vervoer-label">Transfer SZG → Söll</span>
+          <span class="vervoer-val">Minibus/shuttle · ~65 km · ~55 min</span>
+        </div>
+        <div class="vervoer-row">
+          <span class="vervoer-label">Aankomst Söll</span>
+          <span class="vervoer-val">~13–15u (eerder dan mannen!)</span>
+        </div>
+        <div class="vervoer-row">
+          <span class="vervoer-label">Kosten p.p. (retour)</span>
+          <span class="vervoer-val" style="color:#1a4d2e;font-size:.95rem;">~€ 155 – 175</span>
+        </div>
+        <div class="vervoer-note">
+          💡 <strong>Voordeel:</strong> Geen skibaggage nodig — ski's zitten in de dakkoffer van de auto. Besparing: €50–150 per set ski's. Vrouwen + kids komen eerder aan en kunnen inchecken, inkopen doen en alles klaarzetten. Mannen parkeren de auto bij het appartement.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ VLUCHTEN DETAIL ═══ -->
+  <div class="vlucht-card">
+    <div class="vlucht-head">
+      <div>
+        <h3>Rotterdam (RTM) of Eindhoven (EIN) → Salzburg (SZG) — retour</h3>
+        <div class="source">Transavia (RTM) · Ryanair / TUI (EIN) · Carnavalsvakantie = hoogseizoen · Vroeg boeken = beste prijs</div>
+      </div>
+    </div>
+    <div class="vlucht-body">
+      <div class="vlucht-hd">
+        <div>Route / Maatschappij</div>
+        <div>Vroegboek</div>
+        <div>Normaal</div>
+        <div>Aanbevolen</div>
+      </div>
+      <div class="vlucht-row">
+        <div><strong>RTM → SZG</strong> · Transavia direct<small>Vluchttijd ~1u20 · Winterseizoen directe vluchten naar Salzburg</small></div>
+        <div class="r price-online">~€ 80–120 p.p.</div>
+        <div class="r price-box">~€ 170–250</div>
+        <div class="r price-best">Vroegboek zomer '26</div>
+      </div>
+      <div class="vlucht-row">
+        <div><strong>EIN → SZG</strong> · Ryanair / TUI<small>Vluchttijd ~1u25 · Check ook alternatief EIN → INN (Innsbruck)</small></div>
+        <div class="r price-online">~€ 70–110 p.p.</div>
+        <div class="r price-box">~€ 150–230</div>
+        <div class="r price-best">Vroegboek zomer '26</div>
+      </div>
+      <div class="vlucht-row">
+        <div><strong>Transfer SZG → Söll</strong> · Minibus/shuttle<small>Ski-transferdiensten: bijv. Salzburg Airport Transfers · Groep van 10 = voordelig</small></div>
+        <div class="r price-online">~€ 30–40 p.p.</div>
+        <div class="r price-box">—</div>
+        <div class="r price-best">Boek als groep</div>
+      </div>
+      <div class="vlucht-row">
+        <div><strong>Transfer SZG → Söll</strong> · Skibus / ÖPNV<small>Openbaar vervoer via Salzburg Hbf → Wörgl → Söll · meerdere overstappen</small></div>
+        <div class="r price-online">~€ 15–20 p.p.</div>
+        <div class="r price-box">—</div>
+        <div class="r price-best">Goedkoopst, meer tijd</div>
+      </div>
+      <div class="vlucht-note">
+        💡 <strong>Aanbeveling:</strong> Boek vluchten vroegboek via RTM of EIN (~€95 p.p. retour) + privé-minibus transfer als groep van 10 (~€35 p.p. retour). Totaal vervoer per vliegend persoon: ~€130–160 p.p. — comfortabel, snel én goedkoper dan bij Sölden-vliegoptie. <strong>Geen skibaggage nodig!</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ACCOMMODATIE ═══ -->
+  <div class="sec-title" id="accommodatie"><span class="icon">🏠</span> Accommodatie — ski-in/ski-out verplicht</div>
+
+  <div class="notice notice-amber">
+    <span class="notice-icon">⚠️</span>
+    <div><strong>Ski-in/ski-out is harde eis bij deze optie.</strong> Omdat iedereen skispullen heeft (mannen brengen ze mee per auto), moet het appartement direct aan de piste of gondel grenzen. Filter altijd op "ski-in/ski-out" of maximaal 150 m van de lift. Boek vroeg — carnaval is hoogseizoen!</div>
+  </div>
+
+  <div class="accom-grid">
+
+    <div class="accom-card must recommended">
+      <div class="accom-thumb">🏔</div>
+      <div class="accom-body">
+        <h3>Alpinhotel / Appartements direct Hochsöll-gondel</h3>
+        <p>Direct aan de voet van de Hochsöll-gondel in Söll. Ski-in/ski-out: schaats letterlijk vanuit de deur de piste op. Ruime appartementen voor 4–6 personen, eigen keuken, wellness aanwezig. Ideaal voor de auto van de mannen: ruime parkeerplaats bij het complex.</p>
+        <div class="accom-price">€ 155 – 210 / nacht <small>per appartement (4–6 pers. · winter)</small></div>
+        <div class="accom-dist dist-green"><span>🎿</span> Ski-in/ski-out — Hochsöll gondel op &lt;100 m · Direct de piste op</div>
+        <div class="accom-pros">
+          <span class="pro-tag">Ski-in/ski-out</span>
+          <span class="pro-tag">Eigen keuken</span>
+          <span class="pro-tag">Wellness</span>
+          <span class="pro-tag">Gratis parkeren</span>
+          <span class="pro-tag">Skikelder</span>
+        </div>
+        <a href="https://www.booking.com/searchresults.html?ss=S%C3%B6ll+ski-in+ski-out" target="_blank" class="accom-link">🔗 Zoek op Booking.com — filter "ski-in/ski-out"</a>
+      </div>
+    </div>
+
+    <div class="accom-card">
+      <div class="accom-thumb">🏡</div>
+      <div class="accom-body">
+        <h3>Aparthotel Ellmau — rustiger dorp, pistezijde</h3>
+        <p>Ellmau is het rustigste en gezinsvriendelijkste dorp van de SkiWelt. Appartementencomplexen direct bij de Hartkaiserbahn lift — ski-in mogelijkheid aanwezig. Eleganter dan Söll, uitstekend voor families met kinderen. Gratis parkeren en skikelder.</p>
+        <div class="accom-price">€ 150 – 195 / nacht <small>per appartement (winter)</small></div>
+        <div class="accom-dist dist-green"><span>🎿</span> Hartkaiserbahn lift op &lt;150 m · Ski-in/ski-out bij juist complex</div>
+        <div class="accom-pros">
+          <span class="pro-tag">Ski-in/ski-out</span>
+          <span class="pro-tag">Gezinsvriendelijk</span>
+          <span class="pro-tag">Rustig dorp</span>
+          <span class="pro-tag">Gratis parkeren</span>
+        </div>
+        <a href="https://www.booking.com/searchresults.html?ss=Ellmau+Tirol+ski-in" target="_blank" class="accom-link">🔗 Zoek op Booking.com — filter "ski-in/ski-out"</a>
+      </div>
+    </div>
+
+    <div class="accom-card">
+      <div class="accom-thumb">🏠</div>
+      <div class="accom-body">
+        <h3>Groot chalet / vakantiehuis via Airbnb</h3>
+        <p>Eén groot huis voor alle 13 personen samen. Gemeenschappelijke woonkamer, aparte kamers per gezin. Budgetvriendelijkst per persoon. Zoek specifiek op "ski-in/ski-out" of maximaal 200 m van gondel. Let op voldoende parkeerruimte voor de auto van de mannen.</p>
+        <div class="accom-price">€ 200 – 320 / nacht <small>totaal huis (13 pers.)</small></div>
+        <div class="accom-dist dist-amber"><span>📍</span> Filter verplicht op "ski-in/ski-out" of max. 150 m van lift — controleer bij boeking!</div>
+        <div class="accom-pros">
+          <span class="pro-tag">Budgetvriendelijkst</span>
+          <span class="pro-tag">Privacy per gezin</span>
+          <span class="pro-tag">Gezelligst</span>
+        </div>
+        <a href="https://www.airbnb.nl/s/S%C3%B6ll--Tirol/homes?amenities=83" target="_blank" class="accom-link">🔗 Airbnb — filter op skigebied</a>&nbsp;&nbsp;
+        <a href="https://www.fewo-direkt.de/ferienwohnungen-ferienhaeuser/oesterreich/tirol/soell" target="_blank" class="accom-link">🔗 FeWo-direkt</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ SKIPAS ═══ -->
+  <div class="sec-title" id="skipas"><span class="icon">🎿</span> Skipas — SkiWelt Wilder Kaiser-Brixental</div>
+
+  <div class="skipas-card">
+    <div class="skipas-head">
+      <div>
+        <h3>SkiWelt Wilder Kaiser-Brixental — Officiële tarieven</h3>
+        <div class="source">Bron: skiwelt.at · Prijzen seizoen 2024/25 — carnaval = hoogseizoen · Online vroegboek altijd goedkoper</div>
+      </div>
+    </div>
+    <div class="skipas-body">
+      <div class="skipas-hd">
+        <div>Categorie</div>
+        <div>Online vroegboek</div>
+        <div>Kassa</div>
+        <div>Aanbevolen</div>
+      </div>
+      <div class="skipas-row">
+        <div><strong>Volwassene</strong> (16+) · 6 dagen</div>
+        <div class="r price-online">~€ 288–320</div>
+        <div class="r price-box">~€ 340–380</div>
+        <div class="r price-best-g">Vroegboek = ±€295</div>
+      </div>
+      <div class="skipas-row">
+        <div><strong>Junior</strong> (10–15j) · 6 dagen</div>
+        <div class="r price-online">~€ 218–245</div>
+        <div class="r price-box">~€ 260–295</div>
+        <div class="r price-best-g">Vroegboek = ±€222</div>
+      </div>
+      <div class="skipas-row">
+        <div><strong>Kind</strong> (6–9j) · 6 dagen</div>
+        <div class="r price-online">~€ 148–170</div>
+        <div class="r price-box">~€ 175–200</div>
+        <div class="r price-best-g">Vroegboek = ±€150</div>
+      </div>
+      <div class="skipas-row">
+        <div><strong>Gezinskorting</strong></div>
+        <div class="r price-online">Ja</div>
+        <div class="r price-box">Ja</div>
+        <div class="r price-best-g">Vraag bij kassa</div>
+      </div>
+      <div class="skipas-note">
+        💡 <strong>Tip:</strong> Koop pas online via <strong>skiwelt.at</strong> of de SkiWelt app. Bij carnavalsvakantie geldt dynamische prijsstelling — hoe vroeger je koopt, hoe goedkoper. Alle 279 km en 93 liften inclusief.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SKISCHOOL ═══ -->
+  <div class="sec-title" id="skischool"><span class="icon">📚</span> Skischool — aanbod kinderen (12–17j) in Söll</div>
+
+  <div class="school-grid">
+
+    <div class="school-card top">
+      <div class="school-name">Ski School Total Söll</div>
+      <div class="school-rating">⭐ 4.8 · Engelstalige instructeurs · Kindergroepen</div>
+      <div class="school-offers">
+        <div class="school-offer">
+          <div class="offer-name">Groepsles 5 dagen (3u/dag)<small>Beginners t/m gevorderd · Eng/NL · Max. 8 p.p. groep</small></div>
+          <div class="offer-price">~€ 185–215</div>
+        </div>
+        <div class="school-offer">
+          <div class="offer-name">Privéles per uur<small>Max. 4 personen per instructeur</small></div>
+          <div class="offer-price">~€ 65–85</div>
+        </div>
+      </div>
+      <a href="https://www.skischule-soell.at" target="_blank" class="school-link">🔗 skischule-soell.at</a>
+    </div>
+
+    <div class="school-card">
+      <div class="school-name">Schischule Söll Intersport</div>
+      <div class="school-rating">⭐ 4.5 · Budget-vriendelijker alternatief</div>
+      <div class="school-offers">
+        <div class="school-offer">
+          <div class="offer-name">Groepsles 5 dagen (3u/dag)<small>Groepen van max. 10 pers.</small></div>
+          <div class="offer-price">~€ 160–190</div>
+        </div>
+        <div class="school-offer">
+          <div class="offer-name">Privéles per uur<small>Individueel of klein groepje</small></div>
+          <div class="offer-price">~€ 55–75</div>
+        </div>
+      </div>
+      <a href="https://www.intersport-soell.at" target="_blank" class="school-link">🔗 intersport-soell.at</a>
+    </div>
+
+  </div>
+
+  <!-- ═══ BEGROTING ═══ -->
+  <div class="sec-title" id="budget"><span class="icon">💰</span> Begroting — carnavalsvakantie 13–20 februari 2027</div>
+
+  <div class="notice notice-green">
+    <span class="notice-icon">💡</span>
+    <div><strong>Transportkosten zijn gemengd</strong> — mannen rijden (goedkoop), rest vliegt (iets duurder maar geen skibaggage-toeslag). Gemiddeld zit deze combi-optie tussen de pure auto- en vliegoptie in.</div>
+  </div>
+
+  <div class="budget-wrap">
+    <div class="bt-head">
+      <div>Kostenpost</div><div class="r">Mannen 🚗 (3×)</div><div class="r">Vrouwen+kids ✈️ (10×)</div><div class="r">Totaal</div><div class="r">p.p. gem.</div>
+    </div>
+    <div class="bt-row">
+      <div>🏠 Accommodatie (6 nachten, 3 units à €165/n)</div>
+      <div class="r">€ 228</div><div class="r">€ 228</div><div class="r">€ 2.970</div><div class="r bold">€ 228</div>
+    </div>
+    <div class="bt-row">
+      <div>🎿 Skipas 6 dagen (online vroegboek) · mix volw./junior</div>
+      <div class="r">€ 295</div><div class="r">€ 248 gem.</div><div class="r">€ 3.360</div><div class="r bold">€ 258</div>
+    </div>
+    <div class="bt-row">
+      <div>📚 Skischool 5 dagen groepsles (kinderen, 7×)</div>
+      <div class="r">—</div><div class="r">€ 195 gem.</div><div class="r">€ 1.365</div><div class="r bold">€ 105</div>
+    </div>
+    <div class="bt-row">
+      <div>🍽 Eten, drinken &amp; overig</div>
+      <div class="r">€ 170</div><div class="r">€ 135 gem.</div><div class="r">€ 1.860</div><div class="r bold">€ 143</div>
+    </div>
+    <div class="bt-row">
+      <div>🚗 Vervoer mannen (brandstof retour + vignet, gedeeld)</div>
+      <div class="r">€ 105</div><div class="r">—</div><div class="r">€ 315</div><div class="r bold">€ 24</div>
+    </div>
+    <div class="bt-row">
+      <div>✈️ Vervoer rest (vlucht retour + transfer SZG↔Söll)</div>
+      <div class="r">—</div><div class="r">€ 160 gem.</div><div class="r">€ 1.600</div><div class="r bold">€ 123</div>
+    </div>
+    <div class="bt-total">
+      <div>💶 Totaal</div><div class="r">€ 798</div><div class="r">€ 966 gem.</div><div class="r">€ 11.470</div><div class="r green">€ 875 p.p.</div>
+    </div>
+    <div class="bt-pp" style="font-weight:600;color:#1a4d2e;background:#d8f3dc;">
+      <div>Gem. per gezin (4,3 pers.)</div><div class="r"></div><div class="r"></div><div class="r">€ 11.470 totaal</div><div class="r">~€ 3.823 p.gz.</div>
+    </div>
+    <div class="bt-pp">
+      <div>Restbudget t.o.v. max €1.250 p.p.</div><div class="r">€ 452</div><div class="r">€ 284 gem.</div><div class="r"></div><div class="r green">€ 375 over</div>
+    </div>
+    <div class="bt-note">
+      <span>* Accommodatie 3 units à €165/n × 6n · Skipas online vroegboek · Skischool 7 kinderen groepsles 5 dagen</span>
+      <span>* Vlucht ~€95 p.p. retour + transfer ~€65 p.p. retour (minibus groep) · Geen skibaggage-kosten op vlucht</span>
+      <span>* Prijzen indicatief seizoen 2024/25 — definitieve prijzen vroegboek 2026</span>
+    </div>
+  </div>
+
+  <!-- ═══ WEEKPROGRAMMA ═══ -->
+  <div class="sec-title" id="programma"><span class="icon">📅</span> Weekprogramma ☀️ — bij voldoende sneeuw</div>
+
+  <div class="prog-wrap">
+    <div class="prog-head">Carnavalsvakantie Söll · Za 13 – Za 20 februari 2027 · Combi vervoer</div>
+    <div class="prog-item">
+      <div class="prog-day">Za 13 feb<br>Aankomst</div>
+      <div>
+        <strong>Gesplitste aankomst — iedereen doet zijn ding</strong>
+        <span>
+          <span class="tag tag-auto">🚗 Mannen</span> Vertrek ~5–6u uit Nederland. Rijden via A2/A9. Aankomst Söll ~15–17u met dakkoffer vol skiuitrusting.<br>
+          <span class="tag tag-fly">✈️ Vrouwen + kids</span> Vlucht ~9–10u vanuit RTM of EIN. Aankomst Salzburg ~11u. Transfer Söll, aankomst ~12–13u. Inchecken, inkopen doen en klaarzetten.<br>
+          Avond: gezamenlijk eten en uitpakken ski's. Eerste kennismaking met het dorp. Rust.
+        </span>
+      </div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Zo 14 feb<br>Dag 1</div>
+      <div><strong>Eerste dag op de piste — Söll/Hochsöll</strong><span>Skipas ophalen + skischool inschrijving kinderen. Volwassenen verkennen Hochsöll. Kinderskischool start 10:00. <span class="tag">Carnaval!</span> Appartementen zijn ski-in/ski-out: iedereen loopt direct de piste op.</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Ma 15 feb<br>Dag 2</div>
+      <div><strong>Ellmau &amp; Going verkennen</strong><span>Skiën richting Ellmau via de SkiWelt verbinding. Lunchen in Gasthof in Going. Kinderen skiles. Rustige terugkeer via piste.</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Di 16 feb<br>Dag 3</div>
+      <div><strong>Scheffau &amp; langste afdalingen</strong><span>Langste afdaling van het gebied via Scheffau. Avond: wellness &amp; sauna in accommodatie. Optioneel: carnavalstocht in Söll dorp. <span class="tag">Carnaval di.</span></span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Wo 17 feb<br>Dag 4</div>
+      <div><strong>Westendorf — avontuurlijkste deel</strong><span>Skiën naar Westendorf (rode en zwarte pistes). Spectaculair uitzicht op de Kitzbüheler Alpen. Optioneel: dagtrip met de <em>auto</em> naar Innsbruck (groot voordeel van auto ter plekke!).</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Do 18 feb<br>Dag 5</div>
+      <div><strong>Vrije dag — eigen keuze</strong><span>Favoriete pistes herhalen. Optioneel dagtrip met auto naar Kufstein of Achensee. Laatste skischool dag kinderen.</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Vr 19 feb<br>Dag 6</div>
+      <div><strong>Laatste skidag + afscheidsavond</strong><span>Ochtend skiën. Middag: ski's inpakken in dakkoffer. Avond: gezamenlijk afsluiten in dorpsrestaurant.</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-day">Za 20 feb<br>Terugreis</div>
+      <div>
+        <strong>Gesplitste terugreis — iedereen op zijn eigen manier</strong>
+        <span>
+          <span class="tag tag-auto">🚗 Mannen</span> Uitchecken vroeg. Terugrit ~9–10 uur naar Nederland.<br>
+          <span class="tag tag-fly">✈️ Vrouwen + kids</span> Transfer Söll → Salzburg. Vlucht terug naar RTM of EIN. Aankomst 🇳🇱 vroege middag.
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ALTERNATIEF ═══ -->
+  <div class="sec-title" id="alternatief"><span class="icon">🌧</span> Alternatief programma — bij weinig of geen sneeuw</div>
+
+  <div class="alt-header">
+    <h2>Plan B — wat als er geen sneeuw is?</h2>
+    <p>De SkiWelt heeft sneeuwkanonnen op vrijwel alle pistes. Groot voordeel van de combi-optie: de auto staat ter plekke voor dagtrips naar alternatieve gebieden of bezienswaardigheden!</p>
+  </div>
+
+  <div class="alt-day">
+    <div class="alt-day-head">
+      <div class="day-num">Alternatief 1</div>
+      <div class="day-title">Innsbruck — hoofdstad Tirol (auto!)</div>
+      <div class="day-dist">~70 km · 1u</div>
+    </div>
+    <div class="alt-acts">
+      <div class="alt-act"><span class="act-icon">🚗</span><div class="act-body"><strong>Makkelijk per auto bereikbaar</strong><span>Groot voordeel van de combi-optie — dagtrip naar Innsbruck zonder gedoe met bus of trein.</span></div><span class="act-price">Gratis rijden</span></div>
+      <div class="alt-act"><span class="act-icon">🏛</span><div class="act-body"><strong>Innsbruck Altstadt &amp; Goldenes Dachl</strong><span>Historisch centrum, Hofburg paleis, winkelstraten. Gratis wandelen.</span></div><span class="act-price">Gratis</span></div>
+      <div class="alt-act"><span class="act-icon">🚡</span><div class="act-body"><strong>Nordkettenbahn — bergtop 2.300 m</strong><span>Kabelbaan naar Seegrube en Hafelekar. Spectaculair uitzicht.</span></div><span class="act-price">~€ 40</span></div>
+    </div>
+  </div>
+
+  <div class="alt-day">
+    <div class="alt-day-head">
+      <div class="day-num">Alternatief 2</div>
+      <div class="day-title">Aqua Dome Längenfeld — thermaal bad</div>
+      <div class="day-dist">~60 km · 45 min met auto</div>
+    </div>
+    <div class="alt-acts">
+      <div class="alt-act"><span class="act-icon">🏊</span><div class="act-body"><strong>Aqua Dome Längenfeld</strong><span>Europa's mooiste thermaal bad in het Ötztal. Buiten zwembaden, sauna, uitzicht op bergen. Perfect dagje uit voor het hele gezin.</span></div><span class="act-price">~€ 35</span></div>
+      <div class="alt-act"><span class="act-icon">🚗</span><div class="act-body"><strong>Makkelijk per auto bereikbaar</strong><span>Met de eigen auto flexibel vertrek en terugkeer — groot voordeel t.o.v. vliegoptie.</span></div><span class="act-price">—</span></div>
+    </div>
+  </div>
+
+  <div class="alt-day">
+    <div class="alt-day-head">
+      <div class="day-num">Alternatief 3</div>
+      <div class="day-title">Hoger gelegen skigebied — Saalbach of Kitzbühel</div>
+      <div class="day-dist">~45–60 km · 45 min</div>
+    </div>
+    <div class="alt-acts">
+      <div class="alt-act"><span class="act-icon">🎿</span><div class="act-body"><strong>Dagtrip naar hoger skigebied (auto!)</strong><span>Saalbach (2.000m+) of Kitzbühel op 45–60 min rijden. Vaak wél sneeuw als SkiWelt moeilijker heeft. Ski's al aanwezig in auto.</span></div><span class="act-price">Skipas ter plekke</span></div>
+      <div class="alt-act"><span class="act-icon">🛷</span><div class="act-body"><strong>Rodelen Hartkaiser / Filzalm</strong><span>Rodelbaan van 4 km bij Ellmau, ook zonder skigebied. Groot plezier voor kinderen.</span></div><span class="act-price">~€ 12</span></div>
+    </div>
+  </div>
+
+  <div class="alt-day">
+    <div class="alt-day-head">
+      <div class="day-num">Alternatief 4</div>
+      <div class="day-title">Lokale activiteiten Söll &amp; Kufstein</div>
+      <div class="day-dist">Op loopafstand / 20 min</div>
+    </div>
+    <div class="alt-acts">
+      <div class="alt-act"><span class="act-icon">🏒</span><div class="act-body"><strong>IJshockey of schaatsen — Kufstein</strong><span>IJshal in Kufstein op 20 min rijden. Schaatsen of ijshockey kijken.</span></div><span class="act-price">~€ 8</span></div>
+      <div class="alt-act"><span class="act-icon">🍺</span><div class="act-body"><strong>Carnaval Söll — optocht &amp; feest</strong><span>Carnavalsvakantie = feestweek in Tirol. Kindermaskerades in de dorpen op maandag en dinsdag.</span></div><span class="act-price">Gratis</span></div>
+    </div>
+  </div>
+
+  <!-- ═══ TIPS ═══ -->
+  <div class="sec-title" id="tips"><span class="icon">💡</span> Praktische tips combi-reis</div>
+
+  <div class="tips-grid">
+    <div class="tip-card"><div class="tip-icon">📦</div><strong>Dakkoffer beladen</strong><p>Pak dakkoffer strategisch: ski's langs, schoentassen plat. Helmtassen bovenin. Sla stokken in. Max. dakkoffer-gewicht ~75 kg — check uw dakkoffer-merk. Kleding die niet in dakkoffer past, nemen vliegers mee.</p></div>
+    <div class="tip-card"><div class="tip-icon">✈️</div><strong>Vroeg boeken vluchten</strong><p>Carnaval = drukste periode. Transavia (RTM) en Ryanair/TUI (EIN) openen 6–9 maanden vooruit. Boek direct na zomervakantie 2026 voor beste prijs (~€80–100 p.p. retour).</p></div>
+    <div class="tip-card"><div class="tip-icon">🚌</div><strong>Transfer Salzburg → Söll</strong><p>Boek minibusservice vooraf als groep van 10 — goedkoper dan losse tickets. Zoek op "Salzburg airport transfer Söll" of "ski shuttle Söll". Kosten ~€30–40 p.p. retour.</p></div>
+    <div class="tip-card"><div class="tip-icon">❄️</div><strong>Winterbanden + kettingen</strong><p>Verplicht in Oostenrijk bij winterse omstandigheden. Sneeuwkettingen meenemen. Route via A93 heeft geen bergpassen maar houd rekening met winterweer.</p></div>
+    <div class="tip-card"><div class="tip-icon">🛣</div><strong>Vignet Oostenrijk</strong><p>Digitaal vignet verplicht (~€10 / 10 dagen). Koop op asfinag.at vóór vertrek. Koppel aan kenteken van de auto.</p></div>
+    <div class="tip-card"><div class="tip-icon">⛽</div><strong>Tanken onderweg (mannen)</strong><p>Tank vol in Duitsland — goedkoper dan in Oostenrijk. Laatste tankstations voor Söll: Wörgl of Kufstein. Rijd niet op reserve de bergen in.</p></div>
+    <div class="tip-card"><div class="tip-icon">🅿️</div><strong>Parkeren bij appartement</strong><p>Controleer bij boeking of er gratis parkeerruimte is voor de auto. Ski-in/ski-out complexen hebben bijna altijd eigen parkeerterrein of -garage.</p></div>
+    <div class="tip-card"><div class="tip-icon">📱</div><strong>Communicatie onderweg</strong><p>WhatsApp-groep aanmaken voor mannen (auto) en rest (vlucht). Spreek af wat te doen als vliegers eerder zijn — check-in regelen, inkopen doen, kamer verdelen.</p></div>
+    <div class="tip-card"><div class="tip-icon">🎿</div><strong>Ski-uitrusting organisatie</strong><p>Label alle ski's en schoenen per persoon vóór inladen. Gebruik kleurlabels per gezin. Zo is uitladen op bestemming snel en duidelijk.</p></div>
+    <div class="tip-card"><div class="tip-icon">🏥</div><strong>Reisverzekering</strong><p>Iedereen heeft annulering én wintersport-dekking nodig. Vliegende reizigers ook bagage-verzekering. Pisteredding (helikopter) is duur zonder verzekering.</p></div>
+  </div>
+
+  <!-- ═══ UITGANGSPUNTEN ═══ -->
+  <div class="sec-title" id="uitgangspunten"><span class="icon">📋</span> Uitgangspunten skivakantie — combi-optie</div>
+
+  <div class="uitg-grid">
+    <div class="uitg-card"><div class="uitg-item"><span class="ui-icon">👨‍👩‍👧‍👦</span><div class="ui-body"><strong>Gezelschap</strong><span>3 gezinnen · 13 personen<br>6 volwassenen (2 per gezin)<br>7 kinderen leeftijd 12–17 jaar</span></div></div></div>
+    <div class="uitg-card"><div class="uitg-item"><span class="ui-icon">🗓</span><div class="ui-body"><strong>Periode</strong><span>Carnavalsvakantie: za 13 – za 20 feb 2027<br>Duur: ca. 7 dagen</span></div></div></div>
+    <div class="uitg-card"><div class="uitg-item"><span class="ui-icon">💶</span><div class="ui-body"><strong>Budget</strong><span>Max. €1.250,- per persoon totaal</span></div></div></div>
+    <div class="uitg-card"><div class="uitg-item"><span class="ui-icon">🏠</span><div class="ui-body"><strong>Accommodatie</strong><span>Ski-in/ski-out appartement of hotel<br>Piste op loopafstand — harde eis!</span></div></div></div>
+    <div class="uitg-card"><div class="uitg-item"><span class="ui-icon">🚗</span><div class="ui-body"><strong>Vervoer mannen</strong><span>1 auto met dakkoffer · ~9–10 uur<br>Alle ski-uitrusting mee in auto</span></div></div></div>
+    <div class="uitg-card"><div class="uitg-item"><span class="ui-icon">✈️</span><div class="ui-body"><strong>Vervoer vrouwen + kids</strong><span>Vliegtuig vanuit Rotterdam (RTM) of Eindhoven (EIN)<br>→ Salzburg (SZG) · Transfer → Söll</span></div></div></div>
+    <div class="uitg-card"><div class="uitg-item"><span class="ui-icon">🎿</span><div class="ui-body"><strong>Skilessen</strong><span>Alle kinderen volgen skilessen</span></div></div></div>
+    <div class="uitg-card"><div class="uitg-item"><span class="ui-icon">🧖</span><div class="ui-body"><strong>Overig</strong><span>Wellness gewenst<br>Auto aanwezig voor flexibele dagtrips</span></div></div></div>
+  </div>
+
+  <div class="uitg-aandacht">
+    <strong>⚠️ Aandachtspunten combi-reis</strong>
+    <ul>
+      <li>Winterbanden verplicht in Oostenrijk bij winterse omstandigheden — sneeuwkettingen meenemen</li>
+      <li>Oostenrijks vignet verplicht — digitaal via asfinag.at (~€10 / 10 dagen)</li>
+      <li>Vluchten vroeg boeken (zomer 2026) — carnaval is hoogseizoen</li>
+      <li>Geldig reisdocument voor alle vliegende reizigers incl. kinderen</li>
+      <li>Accommodatie expliciet filteren op "ski-in/ski-out" of max. 150 m van lift</li>
+      <li>Afspraken maken over inchecken: vrouwen + kids komen eerder aan dan de mannen</li>
+    </ul>
+  </div>
+
+</div><!-- /container -->
+
+<div class="footer-bar">
+  SkiWelt Wilder Kaiser · Carnaval 2027 · Combi auto + vliegtuig · Prijzen indicatief seizoen 2024/25 · Skipas: <a href="https://skiwelt.at" style="color:rgba(255,255,255,.5)">skiwelt.at</a> · Vignet: <a href="https://asfinag.at" style="color:rgba(255,255,255,.5)">asfinag.at</a>
+</div>
+</body>
+</html>
